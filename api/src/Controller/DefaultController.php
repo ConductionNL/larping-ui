@@ -21,4 +21,14 @@ class DefaultController extends AbstractController
 	{
 		return [];
 	}
+	
+	
+	/**
+	 * @Route("/event")
+	 * @Template
+	 */
+	public function eventAction(Request $request, EntityManagerInterface $em)
+	{
+		return [];
+	}
 }
