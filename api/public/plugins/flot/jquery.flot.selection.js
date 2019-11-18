@@ -26,7 +26,7 @@ fact that it refers to pixels, not axis units must be taken into account.
 Thus, for example, if there is a bar graph in time mode with BarWidth set to 1
 minute, setting "minSize" to 1 will not make the minimum selection size 1
 minute, but rather 1 pixel. Note also that setting "minSize" to 0 will prevent
-"plotunselected" events from being fired when the user clicks the mouse without
+"plotunselected" event from being fired when the user clicks the mouse without
 dragging.
 
 When selection support is enabled, a "plotselected" event will be emitted on

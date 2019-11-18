@@ -6,7 +6,7 @@ Licensed under the MIT license.
 The default behaviour is double click and scrollwheel up/down to zoom in, drag
 to pan. The plugin defines plot.zoom({ center }), plot.zoomOut() and
 plot.pan( offset ) so you easily can add custom controls. It also fires
-"plotpan" and "plotzoom" events, useful for synchronizing plots.
+"plotpan" and "plotzoom" event, useful for synchronizing plots.
 
 The plugin supports these options:
 

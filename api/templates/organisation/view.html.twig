@@ -1,0 +1,24 @@
+{% extends "body.html.twig" %}
+
+{% block content %}
+
+    {% include 'sections/banner.html.twig' %}
+
+    {% include 'sections/interested.html.twig' %}
+
+    {% include 'sections/popular.html.twig' %}
+
+    {% include 'sections/counter.html.twig' %}
+
+    {% include 'sections/how-it-works.html.twig' %}
+
+    {% include 'sections/articles.html.twig' %}
+
+    {% include 'sections/get-started.html.twig' %}
+
+
+    {% for organisation in organisations %}
+        <li>{{ organisation.name|e }}</li>
+    {% endfor %}
+
+{% endblock %}

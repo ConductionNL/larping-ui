@@ -12,7 +12,7 @@ use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DefaultController extends AbstractController
-{ 
+{
 	/**
 	* @Route("/")
  	* @Template
