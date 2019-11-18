@@ -4953,7 +4953,7 @@ function on( elem, types, selector, data, fn, one ) {
 }
 
 /*
- * Helper functions for managing events -- not part of the public interface.
+ * Helper functions for managing event -- not part of the public interface.
  * Props to Dean Edwards' addEvent library for many of the ideas.
  */
 jQuery.event = {
@@ -4967,7 +4967,7 @@ jQuery.event = {
 			special, handlers, type, namespaces, origType,
 			elemData = dataPriv.get( elem );
 
-		// Don't attach events to noData or text/comment nodes (but allow plain objects)
+		// Don't attach event to noData or text/comment nodes (but allow plain objects)
 		if ( !elemData ) {
 			return;
 		}
@@ -5004,7 +5004,7 @@ jQuery.event = {
 			};
 		}
 
-		// Handle multiple events separated by a space
+		// Handle multiple event separated by a space
 		types = ( types || "" ).match( rnothtmlwhite ) || [ "" ];
 		t = types.length;
 		while ( t-- ) {
@@ -5043,7 +5043,7 @@ jQuery.event = {
 				handlers = events[ type ] = [];
 				handlers.delegateCount = 0;
 
-				// Only use addEventListener if the special events handler returns false
+				// Only use addEventListener if the special event handler returns false
 				if ( !special.setup ||
 					special.setup.call( elem, data, namespaces, eventHandle ) === false ) {
 
@@ -5068,13 +5068,13 @@ jQuery.event = {
 				handlers.push( handleObj );
 			}
 
-			// Keep track of which events have ever been used, for event optimization
+			// Keep track of which event have ever been used, for event optimization
 			jQuery.event.global[ type ] = true;
 		}
 
 	},
 
-	// Detach an event or set of events from an element
+	// Detach an event or set of event from an element
 	remove: function( elem, types, handler, selector, mappedTypes ) {
 
 		var j, origCount, tmp,
@@ -5094,7 +5094,7 @@ jQuery.event = {
 			type = origType = tmp[ 1 ];
 			namespaces = ( tmp[ 2 ] || "" ).split( "." ).sort();
 
-			// Unbind all events (on this namespace, if provided) for the element
+			// Unbind all event (on this namespace, if provided) for the element
 			if ( !type ) {
 				for ( type in events ) {
 					jQuery.event.remove( elem, type + types[ t ], handler, selector, true );
@@ -5108,7 +5108,7 @@ jQuery.event = {
 			tmp = tmp[ 2 ] &&
 				new RegExp( "(^|\\.)" + namespaces.join( "\\.(?:.*\\.|)" ) + "(\\.|$)" );
 
-			// Remove matching events
+			// Remove matching event
 			origCount = j = handlers.length;
 			while ( j-- ) {
 				handleObj = handlers[ j ];
@@ -5144,7 +5144,7 @@ jQuery.event = {
 
 		// Remove data and the expando if it's no longer used
 		if ( jQuery.isEmptyObject( events ) ) {
-			dataPriv.remove( elem, "handle events" );
+			dataPriv.remove( elem, "handle event" );
 		}
 	},
 
@@ -5307,7 +5307,7 @@ jQuery.event = {
 	special: {
 		load: {
 
-			// Prevent triggered image.load events from bubbling to window.load
+			// Prevent triggered image.load event from bubbling to window.load
 			noBubble: true
 		},
 		focus: {
@@ -5491,7 +5491,7 @@ jQuery.each( {
 	which: function( event ) {
 		var button = event.button;
 
-		// Add which for key events
+		// Add which for key event
 		if ( event.which == null && rkeyEvent.test( event.type ) ) {
 			return event.charCode != null ? event.charCode : event.keyCode;
 		}
@@ -5517,7 +5517,7 @@ jQuery.each( {
 	}
 }, jQuery.event.addProp );
 
-// Create mouseenter/leave events using mouseover/out and event-time checks
+// Create mouseenter/leave event using mouseover/out and event-time checks
 // so that event delegation works in jQuery.
 // Do the same for pointerenter/pointerleave and pointerover/pointerout
 //
@@ -5651,7 +5651,7 @@ function cloneCopyEvent( src, dest ) {
 		return;
 	}
 
-	// 1. Copy private data: events, handlers, etc.
+	// 1. Copy private data: event, handlers, etc.
 	if ( dataPriv.hasData( src ) ) {
 		pdataOld = dataPriv.access( src );
 		pdataCur = dataPriv.set( dest, pdataOld );
@@ -5826,7 +5826,7 @@ jQuery.extend( {
 			}
 		}
 
-		// Copy the events from the original to the clone
+		// Copy the event from the original to the clone
 		if ( dataAndEvents ) {
 			if ( deepDataAndEvents ) {
 				srcElements = srcElements || getAll( elem );
@@ -8179,7 +8179,7 @@ jQuery.extend( jQuery.event, {
 
 		cur = lastElement = tmp = elem = elem || document;
 
-		// Don't do events on text and comment nodes
+		// Don't do event on text and comment nodes
 		if ( elem.nodeType === 3 || elem.nodeType === 8 ) {
 			return;
 		}
@@ -8221,13 +8221,13 @@ jQuery.extend( jQuery.event, {
 			[ event ] :
 			jQuery.makeArray( data, [ event ] );
 
-		// Allow special events to draw outside the lines
+		// Allow special event to draw outside the lines
 		special = jQuery.event.special[ type ] || {};
 		if ( !onlyHandlers && special.trigger && special.trigger.apply( elem, data ) === false ) {
 			return;
 		}
 
-		// Determine event propagation path in advance, per W3C events spec (#9951)
+		// Determine event propagation path in advance, per W3C event spec (#9951)
 		// Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
 		if ( !onlyHandlers && !special.noBubble && !isWindow( elem ) ) {
 
@@ -8316,7 +8316,7 @@ jQuery.extend( jQuery.event, {
 	},
 
 	// Piggyback on a donor event to simulate a different one
-	// Used only for `focus(in | out)` events
+	// Used only for `focus(in | out)` event
 	simulate: function( type, elem, event ) {
 		var e = jQuery.extend(
 			new jQuery.Event(),
@@ -8349,11 +8349,11 @@ jQuery.fn.extend( {
 
 
 // Support: Firefox <=44
-// Firefox doesn't have focus(in | out) events
+// Firefox doesn't have focus(in | out) event
 // Related ticket - https://bugzilla.mozilla.org/show_bug.cgi?id=687787
 //
 // Support: Chrome <=48 - 49, Safari <=9.0 - 9.1
-// focus(in | out) events fire after focus & blur events,
+// focus(in | out) event fire after focus & blur event,
 // which is spec violation - http://www.w3.org/TR/DOM-Level-3-Events/#events-focusevent-event-order
 // Related ticket - https://bugs.chromium.org/p/chromium/issues/detail?id=449857
 if ( !support.focusin ) {
@@ -8935,7 +8935,7 @@ jQuery.extend( {
 			// Request state (becomes false upon send and true upon completion)
 			completed,
 
-			// To know if global events are to be dispatched
+			// To know if global event are to be dispatched
 			fireGlobals,
 
 			// Loop variable
@@ -8950,7 +8950,7 @@ jQuery.extend( {
 			// Callbacks context
 			callbackContext = s.context || s,
 
-			// Context for global events is callbackContext if it is a DOM node or jQuery collection
+			// Context for global event is callbackContext if it is a DOM node or jQuery collection
 			globalEventContext = s.context &&
 				( callbackContext.nodeType || callbackContext.jquery ) ?
 					jQuery( callbackContext ) :
@@ -9093,8 +9093,8 @@ jQuery.extend( {
 			return jqXHR;
 		}
 
-		// We can fire global events as of now if asked to
-		// Don't fire events if jQuery.event is undefined in an AMD-usage scenario (#15118)
+		// We can fire global event as of now if asked to
+		// Don't fire event if jQuery.event is undefined in an AMD-usage scenario (#15118)
 		fireGlobals = jQuery.event && s.global;
 
 		// Watch for a new set of requests
@@ -9575,7 +9575,7 @@ jQuery.ajaxTransport( function( options ) {
 					};
 				};
 
-				// Listen to events
+				// Listen to event
 				xhr.onload = callback();
 				errorCallback = xhr.onerror = xhr.ontimeout = callback( "error" );
 
@@ -9926,7 +9926,7 @@ jQuery.fn.load = function( url, params, callback ) {
 
 
 
-// Attach a bunch of functions for handling common AJAX events
+// Attach a bunch of functions for handling common AJAX event
 jQuery.each( [
 	"ajaxStart",
 	"ajaxStop",
@@ -15951,7 +15951,7 @@ return jQuery;
 			// node in the data, assign any user defined widths, then insert it into
 			// the DOM and allow the browser to do all the hard work of calculating
 			// table widths
-			var tmpTable = $(table).clone() // don't use cloneNode - IE8 will remove events on the main table
+			var tmpTable = $(table).clone() // don't use cloneNode - IE8 will remove event on the main table
 				.css( 'visibility', 'hidden' )
 				.removeAttr( 'id' );
 	
@@ -16743,7 +16743,7 @@ return jQuery;
 			settings.oLoadedState = $.extend( true, {}, s );
 	
 			// Restore key features - todo - for 1.11 this needs to be done by
-			// subscribed events
+			// subscribed event
 			if ( s.start !== undefined ) {
 				settings._iDisplayStart    = s.start;
 				settings.iInitDisplayStart = s.start;
@@ -16992,7 +16992,7 @@ return jQuery;
 	
 	
 	/**
-	 * Fire callback functions and trigger events. Note that the loop over the
+	 * Fire callback functions and trigger event. Note that the loop over the
 	 * callback array store is done backwards! Further note that you do not want to
 	 * fire off triggers in time sensitive applications (for example cell creation)
 	 * as its slow.
@@ -19035,7 +19035,7 @@ return jQuery;
 	
 		// Group the column visibility changes
 		if ( vis !== undefined ) {
-			// Second loop once the first is done for events
+			// Second loop once the first is done for event
 			this.iterator( 'column', function ( settings, column ) {
 				_fnCallbackFire( settings, null, 'column-visibility', [settings, column, vis, calc] );
 			} );
@@ -19717,8 +19717,8 @@ return jQuery;
 				new _Api( settings ).columns().visible( true );
 			}
 	
-			// Blitz all `DT` namespaced events (these are internal events, the
-			// lowercase, `dt` events are user subscribed and they are responsible
+			// Blitz all `DT` namespaced event (these are internal event, the
+			// lowercase, `dt` event are user subscribed and they are responsible
 			// for removing them
 			jqWrapper.off('.DT').find(':not(tbody *)').off('.DT');
 			$(window).off('.DT-'+settings.sInstance);
@@ -19748,7 +19748,7 @@ return jQuery;
 			jqTbody.children().detach();
 			jqTbody.append( rows );
 	
-			// Remove the DataTables generated nodes, events and classes
+			// Remove the DataTables generated nodes, event and classes
 			var removedMethod = remove ? 'remove' : 'detach';
 			jqTable[ removedMethod ]();
 			jqWrapper[ removedMethod ]();
@@ -24061,7 +24061,7 @@ return jQuery;
 		/**
 		 * Flag attached to the settings object so you can check in the draw
 		 * callback if filtering has been done in the draw. Deprecated in favour of
-		 * events.
+		 * event.
 		 *  @type boolean
 		 *  @default false
 		 *  @deprecated
@@ -24071,7 +24071,7 @@ return jQuery;
 		/**
 		 * Flag attached to the settings object so you can check in the draw
 		 * callback if sorting has been done in the draw. Deprecated in favour of
-		 * events.
+		 * event.
 		 *  @type boolean
 		 *  @default false
 		 *  @deprecated
@@ -24097,7 +24097,7 @@ return jQuery;
 	
 		/**
 		 * Destroy callback functions - for plug-ins to attach themselves to the
-		 * destroy so they can clean up markup and events.
+		 * destroy so they can clean up markup and event.
 		 *  @type array
 		 *  @default []
 		 */
@@ -25508,10 +25508,10 @@ return jQuery;
 	} );
 
 
-	// Information about events fired by DataTables - for documentation.
+	// Information about event fired by DataTables - for documentation.
 	/**
 	 * Draw event, fired whenever the table is redrawn on the page, at the same
-	 * point as fnDrawCallback. This may be useful for binding events or
+	 * point as fnDrawCallback. This may be useful for binding event or
 	 * performing calculations when the table is altered at all.
 	 *  @name DataTable#draw.dt
 	 *  @event
@@ -25635,7 +25635,7 @@ return jQuery;
 	/**
 	 * Destroy event, fired when the DataTable is destroyed by calling fnDestroy
 	 * or passing the bDestroy:true parameter in the initialisation object. This
-	 * can be used to remove bound events, added DOM nodes, etc.
+	 * can be used to remove bound event, added DOM nodes, etc.
 	 *  @name DataTable#destroy.dt
 	 *  @event
 	 *  @param {event} e jQuery event object
@@ -26933,7 +26933,7 @@ Responsive.display = {
 			if ( ! update ) {
 				// Show a modal
 				var close = function () {
-					modal.remove(); // will tidy events for us
+					modal.remove(); // will tidy event for us
 					$(document).off( 'keypress.dtr' );
 				};
 
@@ -27231,7 +27231,7 @@ $.fn.dataTable.Responsive = Responsive;
 $.fn.DataTable.Responsive = Responsive;
 
 // Attach a listener to the document which listens for DataTables initialisation
-// events so we can automatically initialise
+// event so we can automatically initialise
 $(document).on( 'preInit.dt.dtr', function (e, settings, json) {
 	if ( e.namespace !== 'dt' ) {
 		return;
@@ -27261,7 +27261,7 @@ return Responsive;
 
 /**
  * @summary     Select for DataTables
- * @description A collection of API methods, events and buttons for DataTables
+ * @description A collection of API methods, event and buttons for DataTables
  *   that provides selection options of the items in a DataTable
  * @version     1.3.0
  * @file        dataTables.select.js
@@ -27422,7 +27422,7 @@ been created for rows / cells (DataTables' defer rendering feature).
 ## API methods
 
 A range of API methods are available for triggering selection and de-selection
-of rows. Methods are also available to configure the selection events that can
+of rows. Methods are also available to configure the selection event that can
 be triggered by an end user (such as which items are to be selected). To a large
 extent, these of API methods *is* Select. It is basically a collection of helper
 functions that can be used to select items in a DataTable.
@@ -27558,7 +27558,7 @@ function cellRange( dt, idx, last )
 /**
  * Disable mouse selection by removing the selectors
  *
- * @param {DataTable.Api} dt DataTable to remove events from
+ * @param {DataTable.Api} dt DataTable to remove event from
  * @private
  */
 function disableMouseSelection( dt )
@@ -27577,7 +27577,7 @@ function disableMouseSelection( dt )
 /**
  * Attach mouse listeners to the table to allow mouse selection of items
  *
- * @param {DataTable.Api} dt DataTable to remove events from
+ * @param {DataTable.Api} dt DataTable to remove event from
  * @private
  */
 function enableMouseSelection ( dt )
@@ -27693,7 +27693,7 @@ function enableMouseSelection ( dt )
 /**
  * Trigger an event on a DataTable
  *
- * @param {DataTable.Api} api      DataTable to trigger events on
+ * @param {DataTable.Api} api      DataTable to trigger event on
  * @param  {boolean}      selected true if selected, false if deselected
  * @param  {string}       type     Item type acting on
  * @param  {boolean}      any      Require that there are values before
@@ -27784,7 +27784,7 @@ function init ( ctx ) {
 	// `deferRender` option enabled.
 	// 
 	// This method of attaching to `aoRowCreatedCallback` is a hack until
-	// DataTables has proper events for row manipulation If you are reviewing
+	// DataTables has proper event for row manipulation If you are reviewing
 	// this code to create your own plug-ins, please do not do this!
 	ctx.aoRowCreatedCallback.push( {
 		fn: function ( row, data, index ) {
@@ -28293,7 +28293,7 @@ function i18n( label, def ) {
 	};
 }
 
-// Common events with suitable namespaces
+// Common event with suitable namespaces
 function namespacedEvents ( config ) {
 	var unique = config._eventNamespace;
 
@@ -28422,7 +28422,7 @@ $.each( [ 'Row', 'Column', 'Cell' ], function ( i, item ) {
 // DataTables creation - check if select has been defined in the options. Note
 // this required that the table be in the document! If it isn't then something
 // needs to trigger this method unfortunately. The next major release of
-// DataTables will rework the events and address this.
+// DataTables will rework the event and address this.
 $(document).on( 'preInit.dt.dtSelect', function (e, ctx) {
 	if ( e.namespace !== 'dt' ) {
 		return;

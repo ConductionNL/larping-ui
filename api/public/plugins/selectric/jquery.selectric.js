@@ -191,7 +191,7 @@
       },
 
       /**
-       * Calls the events registered with function name.
+       * Calls the event registered with function name.
        *
        * @param {string}    fn - The name of the function.
        * @param {number} scope - Scope that should be set on the function.
@@ -571,7 +571,7 @@
       );
     },
 
-    /** Remove events on the elements */
+    /** Remove event on the elements */
     unbindEvents: function() {
       var _this = this;
 
@@ -582,7 +582,7 @@
         .off(eventNamespaceSuffix);
     },
 
-    /** Bind events on the elements */
+    /** Bind event on the elements */
     bindEvents: function() {
       var _this = this;
 
@@ -882,7 +882,7 @@
           _this.elements.input.focus();
         }
 
-        // Delayed binds events on Document to make label clicks work
+        // Delayed binds event on Document to make label clicks work
         setTimeout(function() {
           $doc
             .on('click' + eventNamespaceSuffix, $.proxy(_this.close, _this))
@@ -924,7 +924,7 @@
 
       _this.utils.triggerCallback('BeforeClose', _this);
 
-      // Remove custom events on document
+      // Remove custom event on document
       $doc.off(eventNamespaceSuffix);
 
       // Remove visible class to hide options box
