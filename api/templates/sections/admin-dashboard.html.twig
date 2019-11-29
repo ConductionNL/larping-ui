@@ -1,0 +1,541 @@
+<!-- ====================================
+——— DASHBOARD SITE ADMIN
+===================================== -->
+<section class="bg-light py-5 height100vh">
+    <div class="container">
+        <nav class="bg-transparent breadcrumb breadcrumb-2 px-0 mb-5" aria-label="breadcrumb">
+            <h2 class="font-weight-normal mb-4 mb-md-0">Dashboard</h2>
+{#            <ul class="list-unstyled d-flex p-0 m-0">#}
+{#                <li class="breadcrumb-item"><a href="index.html">Home</a></li>#}
+{#                <li class="breadcrumb-item">Dashboard</li>#}
+{#            </ul>#}
+        </nav>
+
+        <div class="row">
+
+            <!-- Visits -->
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <span class="text-content">Visits</span>
+                        <span class="badge badge-primary">Monthly</span>
+                    </div>
+
+                    <div class="card-body widget-content">
+                        <span class="widget-content-title">24,103</span>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="mb-0">Compare to last week</p>
+                            <span class="text-success"> 13% <i class="fa fa-level-up" aria-hidden="true"></i> </span>
+                        </div>
+                        <a href="#" class="btn btn-link">All listing</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Growth -->
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <span class="text-content">Growth</span>
+                        <span class="badge badge-primary">Weekly</span>
+                    </div>
+
+                    <div class="card-body widget-content">
+                        <span class="widget-content-title">+15%</span>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="mb-0">Compare to last week</p>
+                            <span class="text-danger"> 5% <i class="fa fa-level-up" aria-hidden="true"></i> </span>
+                        </div>
+                        <a href="#" class="btn btn-link">See Growth</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bookings -->
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <span class="text-content">Bookings</span>
+                        <span class="badge badge-primary">Daily</span>
+                    </div>
+
+                    <div class="card-body widget-content">
+                        <span class="widget-content-title">1,443</span>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="mb-0">Compare to yesterday</p>
+                            <span class="text-success"> 6% <i class="fa fa-level-up" aria-hidden="true"></i> </span>
+                        </div>
+                        <a href="#" class="btn btn-link">All Bookings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders -->
+        <div class="card">
+            <div class="card-header bg-white">
+                <span class="text-content">Orders</span>
+                <form class="ml-auto d-flex align-items-center">
+                    <div class="form-group mb-0 mr-2">
+                        <input type="text" class="form-control double-date form-control-sm">
+                    </div>
+                    <div class="btn-group" role="group" aria-label="Basic example">
+                        <button type="button" class="btn btn-outline-secondary btn-sm active">Left</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm">Middle</button>
+                        <button type="button" class="btn btn-outline-secondary btn-sm">Right</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="card-body widget-content">
+                <div class="row">
+                    <div class="col-md-4 col-lg-3">
+                        <div class="mb-5">
+                            <span class="widget-content-title">2,450</span>
+                            <p>Total Orders</p>
+                        </div>
+                        <div class="mb-5">
+                            <span class="widget-content-title">$50,500</span>
+                            <p>Total Payments</p>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-lg-9">
+                        <div class="flot-chart">
+                            <div class="flot-chart-content" id="flot-dashboard-chart" style="padding: 0px; position: relative;"><canvas class="flot-base" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 816px; height: 222px;" width="816" height="222"></canvas><div class="flot-text" style="position: absolute; inset: 0px; font-size: smaller; color: rgb(84, 84, 84);"><div class="flot-x-axis flot-x1-axis xAxis x1Axis" style="position: absolute; inset: 0px;"><div style="position: absolute; max-width: 68px; top: 205px; left: 74px; text-align: center;" class="flot-tick-label tickLabel">Jan 03</div><div style="position: absolute; max-width: 68px; top: 205px; left: 148px; text-align: center;" class="flot-tick-label tickLabel">Jan 06</div><div style="position: absolute; max-width: 68px; top: 205px; left: 223px; text-align: center;" class="flot-tick-label tickLabel">Jan 09</div><div style="position: absolute; max-width: 68px; top: 205px; left: 297px; text-align: center;" class="flot-tick-label tickLabel">Jan 12</div><div style="position: absolute; max-width: 68px; top: 205px; left: 371px; text-align: center;" class="flot-tick-label tickLabel">Jan 15</div><div style="position: absolute; max-width: 68px; top: 205px; left: 446px; text-align: center;" class="flot-tick-label tickLabel">Jan 18</div><div style="position: absolute; max-width: 68px; top: 205px; left: 520px; text-align: center;" class="flot-tick-label tickLabel">Jan 21</div><div style="position: absolute; max-width: 68px; top: 205px; left: 595px; text-align: center;" class="flot-tick-label tickLabel">Jan 24</div><div style="position: absolute; max-width: 68px; top: 205px; left: 669px; text-align: center;" class="flot-tick-label tickLabel">Jan 27</div><div style="position: absolute; max-width: 68px; top: 205px; left: 743px; text-align: center;" class="flot-tick-label tickLabel">Jan 30</div></div><div class="flot-y-axis flot-y1-axis yAxis y1Axis" style="position: absolute; inset: 0px;"><div style="position: absolute; top: 190px; left: 21px; text-align: right;" class="flot-tick-label tickLabel">0</div><div style="position: absolute; top: 146px; left: 7px; text-align: right;" class="flot-tick-label tickLabel">250</div><div style="position: absolute; top: 101px; left: 7px; text-align: right;" class="flot-tick-label tickLabel">500</div><div style="position: absolute; top: 57px; left: 7px; text-align: right;" class="flot-tick-label tickLabel">750</div><div style="position: absolute; top: 13px; left: 0px; text-align: right;" class="flot-tick-label tickLabel">1000</div></div><div class="flot-y-axis flot-y2-axis yAxis y2Axis" style="position: absolute; inset: 0px;"><div style="position: absolute; top: 190px; left: 802px;" class="flot-tick-label tickLabel">0</div><div style="position: absolute; top: 159px; left: 802px;" class="flot-tick-label tickLabel">5</div><div style="position: absolute; top: 127px; left: 802px;" class="flot-tick-label tickLabel">10</div><div style="position: absolute; top: 95px; left: 802px;" class="flot-tick-label tickLabel">15</div><div style="position: absolute; top: 64px; left: 802px;" class="flot-tick-label tickLabel">20</div><div style="position: absolute; top: 32px; left: 802px;" class="flot-tick-label tickLabel">25</div><div style="position: absolute; top: 0px; left: 802px;" class="flot-tick-label tickLabel">30</div></div></div><canvas class="flot-overlay" style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 816px; height: 222px;" width="816" height="222"></canvas><div class="legend"><div style="position: absolute; width: 106.017px; height: 35px; top: 14px; left: 38px; background-color: rgb(255, 255, 255); opacity: 0.85;"> </div><table style="position:absolute;top:14px;left:38px;;font-size:smaller;color:#545454"><tbody><tr><td class="legendColorBox"><div style="border:1px solid #000000;padding:1px"><div style="width:4px;height:0;border:5px solid #e5e5e5;overflow:hidden"></div></div></td><td class="legendLabel">Number of orders</td></tr><tr><td class="legendColorBox"><div style="border:1px solid #000000;padding:1px"><div style="width:4px;height:0;border:5px solid #2196f3;overflow:hidden"></div></div></td><td class="legendLabel">Payments</td></tr></tbody></table></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Popular Events -->
+        <div class="row justify-content-md-center">
+            <div class="col-xl-4">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <span class="text-content">Popular Events</span>
+                        <span class="badge badge-primary">Monthly</span>
+                    </div>
+
+                    <div class="card-body px-0">
+                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">
+                            <div>
+                                <h3 class="h5 font-weight-normal mb-0">
+                                    <a class="text-dark" href="listing-reservation.html">Think Coffee</a>
+                                </h3>
+                                <span class="text-small text-nowrap">215 Terry Lane, New York</span>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center align-items-end">
+                                <ul class="list-inline list-inline-rating mb-0">
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star-o" aria-hidden="true"></i>
+                                    </li>
+                                </ul>
+
+                                <div class="text-small text-right">
+                                    <i class="fa fa-heart-o primaryColor text-primary pr-1" aria-hidden="true"></i>8k
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">
+                            <div>
+                                <h3 class="h5 font-weight-normal mb-0">
+                                    <a class="text-dark" href="listing-reservation.html">Burger House</a>
+                                </h3>
+                                <span class="text-small text-nowrap">2726 Shinn Street, New York</span>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center align-items-end">
+                                <ul class="list-inline list-inline-rating mb-0">
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                </ul>
+
+                                <div class="text-small">
+                                    <i class="fa fa-heart-o primaryColor text-primary pr-1" aria-hidden="true"></i>9.2
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">
+                            <div>
+                                <h3 class="h5 font-weight-normal mb-0">
+                                    <a class="text-dark" href="listing-reservation.html">Tom's Restaurant</a>
+                                </h3>
+                                <span class="text-small text-nowrap">964 School Street, New York</span>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center align-items-end">
+                                <ul class="list-inline list-inline-rating mb-0">
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                </ul>
+
+                                <div class="text-small">
+                                    <i class="fa fa-heart-o primaryColor text-primary pr-1" aria-hidden="true"></i>9.2
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">
+                            <div>
+                                <h3 class="h5 font-weight-normal mb-0">
+                                    <a class="text-dark" href="listing-event.html">The City Theater</a>
+                                </h3>
+                                <span class="text-small text-nowrap">155 1st Avenue, New York</span>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center align-items-end">
+                                <ul class="list-inline list-inline-rating mb-0">
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                </ul>
+
+                                <div class="text-small">
+                                    <i class="fa fa-heart-o primaryColor text-primary pr-1" aria-hidden="true"></i>9.5
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">
+                            <div>
+                                <h3 class="h5 font-weight-normal mb-0">
+                                    <a class="text-dark" href="listing-event.html">Sticky Band</a>
+                                </h3>
+                                <span class="text-small text-nowrap">Bishop Avenue, New York</span>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center align-items-end">
+                                <ul class="list-inline list-inline-rating mb-0">
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                </ul>
+
+                                <div class="text-small">
+                                    <i class="fa fa-heart-o primaryColor text-primary pr-1" aria-hidden="true"></i>5.9k
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">
+                            <div>
+                                <h3 class="h5 font-weight-normal mb-0">
+                                    <a class="text-dark" href="listing-rental.html">Hotel Govendor</a>
+                                </h3>
+                                <span class="text-small text-nowrap">78 Country Street,, New York</span>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center align-items-end">
+                                <ul class="list-inline list-inline-rating mb-0">
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                </ul>
+
+                                <div class="text-small">
+                                    <i class="fa fa-heart-o primaryColor text-primary pr-1" aria-hidden="true"></i>5k
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">
+                            <div>
+                                <h3 class="h5 font-weight-normal mb-0">
+                                    <a class="text-dark" href="listing-reservation.html">Water Grill</a>
+                                </h3>
+                                <span class="text-small text-nowrap">31 Union Square, New York</span>
+                            </div>
+                            <div class="d-flex flex-column justify-content-center align-items-end">
+                                <ul class="list-inline list-inline-rating mb-0">
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                    </li>
+                                </ul>
+
+                                <div class="text-small">
+                                    <i class="fa fa-heart-o primaryColor text-primary pr-1" aria-hidden="true"></i>10k
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer bg-white">
+                        <a href="admin-listings.html" class="btn btn-link p-0">All Listings</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Popular Categories -->
+{#            <div class="col-xl-4">#}
+{#                <div class="card">#}
+{#                    <div class="card-header bg-white">#}
+{#                        <span class="text-content">Popular Categories</span>#}
+{#                        <span class="badge badge-primary">Monthly</span>#}
+{#                    </div>#}
+
+{#                    <div class="card-body px-0">#}
+{#                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">#}
+{#                            <div>#}
+{#                                <div class="icon-sm font-lg rounded-circle bg-primary text-white mr-1">#}
+{#                                    <i class="icon-listy icon-tea-cup-1 "></i>#}
+{#                                </div>#}
+
+{#                                <span class="text-dark">Restaurants</span>#}
+{#                            </div>#}
+{#                            <div class="text-small">#}
+{#                                <span> Submited List: <sapn class="text-dark">250</sapn> </span>#}
+{#                            </div>#}
+{#                        </div>#}
+
+{#                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">#}
+{#                            <div>#}
+{#                                <div class="icon-sm font-lg rounded-circle bg-primary text-white mr-1 h5">#}
+{#                                    <i class="icon-listy icon-building "></i>#}
+{#                                </div>#}
+{#                                <span class="text-dark">Hotels</span>#}
+{#                            </div>#}
+{#                            <div class="text-small">#}
+{#                                <span> Submited List: <sapn class="text-dark">90</sapn> </span>#}
+{#                            </div>#}
+{#                        </div>#}
+
+{#                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">#}
+{#                            <div>#}
+{#                                <div class="icon-sm font-lg rounded-circle bg-primary text-white mr-1">#}
+{#                                    <i class="icon-listy icon-juice "></i>#}
+{#                                </div>#}
+{#                                <span class="text-dark">Nightclubs</span>#}
+{#                            </div>#}
+{#                            <div class="text-small">#}
+{#                                <span> Submited List: <sapn class="text-dark">260</sapn> </span>#}
+{#                            </div>#}
+{#                        </div>#}
+
+{#                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">#}
+{#                            <div>#}
+{#                                <div class="icon-sm font-lg rounded-circle bg-primary text-white mr-1">#}
+{#                                    <i class="icon-listy icon-car-1 "></i>#}
+{#                                </div>#}
+{#                                <span class="text-dark">Auto Motive </span>#}
+{#                            </div>#}
+{#                            <div class="text-small">#}
+{#                                <span> Submited List: <sapn class="text-dark">900</sapn> </span>#}
+{#                            </div>#}
+{#                        </div>#}
+
+{#                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">#}
+{#                            <div>#}
+{#                                <div class="icon-sm font-lg rounded-circle bg-primary text-white mr-1">#}
+{#                                    <i class="icon-listy icon-castle "></i>#}
+{#                                </div>#}
+{#                                <span class="text-dark">Museums</span>#}
+{#                            </div>#}
+{#                            <div class="text-small">#}
+{#                                <span> Submited List: <sapn class="text-dark">20</sapn> </span>#}
+{#                            </div>#}
+{#                        </div>#}
+
+{#                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">#}
+{#                            <div>#}
+{#                                <div class="icon-sm font-lg rounded-circle bg-primary text-white mr-1">#}
+{#                                    <i class="icon-listy icon-television "></i>#}
+{#                                </div>#}
+{#                                <span class="text-dark">Movie Theaters</span>#}
+{#                            </div>#}
+{#                            <div class="text-small">#}
+{#                                <span> Submited List: <sapn class="text-dark">150</sapn> </span>#}
+{#                            </div>#}
+{#                        </div>#}
+
+{#                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">#}
+{#                            <div>#}
+{#                                <div class="icon-sm font-lg rounded-circle bg-primary text-white mr-1">#}
+{#                                    <i class="icon-listy icon-mall-1 "></i>#}
+{#                                </div>#}
+{#                                <span class="text-dark">Shopping</span>#}
+{#                            </div>#}
+{#                            <div class="text-small">#}
+{#                                <span> Submited List: <sapn class="text-dark">300</sapn> </span>#}
+{#                            </div>#}
+{#                        </div>#}
+
+{#                    </div>#}
+{#                    <div class="card-footer bg-white">#}
+{#                        <a href="admin-listings.html" class="btn btn-link p-0">All Categories</a>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+
+            <!-- Recent Users -->
+            <div class="col-xl-4">
+                <div class="card">
+                    <div class="card-header bg-white">
+                        <span class="text-content">Recent Users</span>
+                        <span class="badge badge-primary">Monthly</span>
+                    </div>
+
+                    <div class="card-body px-0">
+                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">
+                            <div class="media media-xs align-items-center">
+                                <img class="rounded-circle mr-3" src="assets/img/user/user-xs-1.jpg" alt="Image">
+                                <div class="media-body">
+                                    <span class="font-weight-bold">Aaren</span>
+                                </div>
+                            </div>
+                            <div class="text-small"> Active 10m ago </div>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">
+                            <div class="media media-xs align-items-center">
+                                <img class="rounded-circle mr-3" src="assets/img/user/user-xs-2.jpg" alt="Image">
+                                <div class="media-body">
+                                    <span class="font-weight-bold">Abby</span>
+                                </div>
+                            </div>
+                            <div class="text-small"> Active 12m ago </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">
+                            <div class="media media-xs align-items-center">
+                                <img class="rounded-circle mr-3" src="assets/img/user/user-xs-3.jpg" alt="Image">
+                                <div class="media-body">
+                                    <span class="font-weight-bold">Abriel</span>
+                                </div>
+                            </div>
+                            <div class="text-small"> Active 15m ago </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">
+                            <div class="media media-xs align-items-center">
+                                <img class="rounded-circle mr-3" src="assets/img/user/user-xs-4.jpg" alt="Image">
+                                <div class="media-body">
+                                    <span class="font-weight-bold">Adam Smith</span>
+                                </div>
+                            </div>
+                            <div class="text-small"> Active 20m ago </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">
+                            <div class="media media-xs align-items-center">
+                                <img class="rounded-circle mr-3" src="assets/img/user/user-xs-2.jpg" alt="Image">
+                                <div class="media-body">
+                                    <span class="font-weight-bold">Abby</span>
+                                </div>
+                            </div>
+                            <div class="text-small"> Active 22m ago </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">
+                            <div class="media media-xs align-items-center">
+                                <img class="rounded-circle mr-3" src="assets/img/user/user-xs-1.jpg" alt="Image">
+                                <div class="media-body">
+                                    <span class="font-weight-bold">Aaren</span>
+                                </div>
+                            </div>
+                            <div class="text-small"> Active 7m ago </div>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center hover-bg-light px-3 py-2">
+                            <div class="media media-xs align-items-center">
+                                <img class="rounded-circle mr-3" src="assets/img/user/user-xs-1.jpg" alt="Image">
+                                <div class="media-body">
+                                    <span class="font-weight-bold">Aaren</span>
+                                </div>
+                            </div>
+                            <div class="text-small"> Active 7m ago </div>
+                        </div>
+
+                    </div>
+                    <div class="card-footer bg-white">
+                        <a href="#" class="btn btn-link p-0">All Users</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>

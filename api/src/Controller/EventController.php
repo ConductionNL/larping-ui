@@ -10,26 +10,48 @@ use Doctrine\ORM\EntityManagerInterface;
 use GuzzleHttp\Client;
 use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use App\Service\EventService;
 
-
-
+/**
+ * Class EventController
+ * @package App\Controller
+ * @Route("/events")
+ */
 class EventController extends AbstractController
 {
+
+    private $eventService;
+
+    public function __construct(EventService $eventService)
+    {
+        $this->eventService = $eventService;
+    }
+
 	/**
 	* @Route("/")
  	* @Template
 	*/
 	public function indexAction(Request $request, EntityManagerInterface $em)
 	{
-		return [];
+	    $events = $this->eventService->getAll();
+
+		return ["events"=>$events];
 	}
 
+    /**
+     * @Route("/view")
+     * @Template
+     */
+    public function viewAction(Request $request, EntityManagerInterface $em)
+    {
+        return [];
+    }
 
 	/**
-	 * @Route("/event")
+	 * @Route("/dashboard")
 	 * @Template
 	 */
-	public function eventAction(Request $request, EntityManagerInterface $em)
+	public function dashboardAction(Request $request, EntityManagerInterface $em)
 	{
 		return [];
 	}
