@@ -15,9 +15,8 @@ use App\Service\OrganisationService;
 /**
  * Class OrganisationController
  * @package App\Controller
- * @Route("/organisation")
+ * @Route("/organisations")
  */
-
 class OrganisationController extends AbstractController
 {
     private $organisationService;
@@ -26,7 +25,6 @@ class OrganisationController extends AbstractController
     {
         $this->organisationService = $organisationService;
     }
-
 
     /**
 	* @Route("/")

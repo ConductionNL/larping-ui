@@ -1,5 +1,5 @@
 <!-- ====================================
-———	LOGIN PAGE
+ï¿½ï¿½ï¿½	LOGIN PAGE
 ===================================== -->
 <section class="py-7 py-md-10 bg-light ">
   <div class="container">
@@ -22,15 +22,17 @@
                 <em>Enter the password that accompanies your username.</em>
               </div>
               <div class="form-group d-flex justify-content-between align-items-center mb-7">
-                <button type="submit" class="btn btn-outline-primary text-uppercase">
+                  <a href="{{ path('app_default_index') }}">
+                <button type="" class="btn btn-outline-primary text-uppercase">
                   Log in
                 </button>
-                <a href="#">Fogot Password?</a>
+                  </a>
+                <a href="#">Forgot Password?</a>
               </div>
             </form>
           </div>
           <div class="card-footer bg-transparent text-center py-3">
-            <p class="mb-0">Not a member yet? <a href="sign-up.html" class="link">Sign up</a></p>
+            <p class="mb-0">Not a member yet? <a href="{{ path('app_user_register') }}" class="link">Sign up</a></p>
           </div>
         </div>
       </div>

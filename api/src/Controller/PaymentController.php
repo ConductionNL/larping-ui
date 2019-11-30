@@ -11,19 +11,24 @@ use GuzzleHttp\Client;
 use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
+/**
+ * Class PaymentController
+ * @package App\Controller
+ * @Route("/payment")
+ */
 class PaymentController extends AbstractController
 {
 	/**
-	* @Route("/payment")
+	* @Route("/")
  	* @Template
 	*/
-	public function paymentAction(Request $request, EntityManagerInterface $em)
+	public function indexAction(Request $request, EntityManagerInterface $em)
 	{
 		return [];
 	}
 
     /**
-     * @Route("/confirm-payment")
+     * @Route("/confirm")
      * @Template
      */
     public function confirmAction(Request $request, EntityManagerInterface $em)
