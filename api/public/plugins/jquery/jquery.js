@@ -3581,7 +3581,7 @@ jQuery.extend( {
 		// If there are functions bound, to execute
 		readyList.resolveWith( document, [ jQuery ] );
 
-		// Trigger any bound ready events
+		// Trigger any bound ready event
 		if ( jQuery.fn.triggerHandler ) {
 			jQuery( document ).triggerHandler( "ready" );
 			jQuery( document ).off( "ready" );
@@ -3590,7 +3590,7 @@ jQuery.extend( {
 } );
 
 /**
- * Clean-up method for dom ready events
+ * Clean-up method for dom ready event
  */
 function detach() {
 	if ( document.addEventListener ) {
@@ -3672,7 +3672,7 @@ jQuery.ready.promise = function( obj ) {
 							return window.setTimeout( doScrollCheck, 50 );
 						}
 
-						// detach all dom ready events
+						// detach all dom ready event
 						detach();
 
 						// and execute any waiting functions
@@ -4733,7 +4733,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 	var i, eventName,
 		div = document.createElement( "div" );
 
-	// Support: IE<9 (lack submit/change bubble), Firefox (lack focus(in | out) events)
+	// Support: IE<9 (lack submit/change bubble), Firefox (lack focus(in | out) event)
 	for ( i in { submit: true, change: true, focusin: true } ) {
 		eventName = "on" + i;
 
@@ -4834,7 +4834,7 @@ function on( elem, types, selector, data, fn, one ) {
 }
 
 /*
- * Helper functions for managing events -- not part of the public interface.
+ * Helper functions for managing event -- not part of the public interface.
  * Props to Dean Edwards' addEvent library for many of the ideas.
  */
 jQuery.event = {
@@ -4847,7 +4847,7 @@ jQuery.event = {
 			handlers, type, namespaces, origType,
 			elemData = jQuery._data( elem );
 
-		// Don't attach events to noData or text/comment nodes (but allow plain objects)
+		// Don't attach event to noData or text/comment nodes (but allow plain objects)
 		if ( !elemData ) {
 			return;
 		}
@@ -4880,11 +4880,11 @@ jQuery.event = {
 			};
 
 			// Add elem as a property of the handle fn to prevent a memory leak
-			// with IE non-native events
+			// with IE non-native event
 			eventHandle.elem = elem;
 		}
 
-		// Handle multiple events separated by a space
+		// Handle multiple event separated by a space
 		types = ( types || "" ).match( rnotwhite ) || [ "" ];
 		t = types.length;
 		while ( t-- ) {
@@ -4923,7 +4923,7 @@ jQuery.event = {
 				handlers = events[ type ] = [];
 				handlers.delegateCount = 0;
 
-				// Only use addEventListener/attachEvent if the special events handler returns false
+				// Only use addEventListener/attachEvent if the special event handler returns false
 				if ( !special.setup ||
 					special.setup.call( elem, data, namespaces, eventHandle ) === false ) {
 
@@ -4952,7 +4952,7 @@ jQuery.event = {
 				handlers.push( handleObj );
 			}
 
-			// Keep track of which events have ever been used, for event optimization
+			// Keep track of which event have ever been used, for event optimization
 			jQuery.event.global[ type ] = true;
 		}
 
@@ -4960,7 +4960,7 @@ jQuery.event = {
 		elem = null;
 	},
 
-	// Detach an event or set of events from an element
+	// Detach an event or set of event from an element
 	remove: function( elem, types, handler, selector, mappedTypes ) {
 		var j, handleObj, tmp,
 			origCount, t, events,
@@ -4980,7 +4980,7 @@ jQuery.event = {
 			type = origType = tmp[ 1 ];
 			namespaces = ( tmp[ 2 ] || "" ).split( "." ).sort();
 
-			// Unbind all events (on this namespace, if provided) for the element
+			// Unbind all event (on this namespace, if provided) for the element
 			if ( !type ) {
 				for ( type in events ) {
 					jQuery.event.remove( elem, type + types[ t ], handler, selector, true );
@@ -4994,7 +4994,7 @@ jQuery.event = {
 			tmp = tmp[ 2 ] &&
 				new RegExp( "(^|\\.)" + namespaces.join( "\\.(?:.*\\.|)" ) + "(\\.|$)" );
 
-			// Remove matching events
+			// Remove matching event
 			origCount = j = handlers.length;
 			while ( j-- ) {
 				handleObj = handlers[ j ];
@@ -5047,7 +5047,7 @@ jQuery.event = {
 
 		cur = tmp = elem = elem || document;
 
-		// Don't do events on text and comment nodes
+		// Don't do event on text and comment nodes
 		if ( elem.nodeType === 3 || elem.nodeType === 8 ) {
 			return;
 		}
@@ -5089,13 +5089,13 @@ jQuery.event = {
 			[ event ] :
 			jQuery.makeArray( data, [ event ] );
 
-		// Allow special events to draw outside the lines
+		// Allow special event to draw outside the lines
 		special = jQuery.event.special[ type ] || {};
 		if ( !onlyHandlers && special.trigger && special.trigger.apply( elem, data ) === false ) {
 			return;
 		}
 
-		// Determine event propagation path in advance, per W3C events spec (#9951)
+		// Determine event propagation path in advance, per W3C event spec (#9951)
 		// Bubble up to document, then to window; watch for a global ownerDocument var (#9724)
 		if ( !onlyHandlers && !special.noBubble && !jQuery.isWindow( elem ) ) {
 
@@ -5254,7 +5254,7 @@ jQuery.event = {
 		// Black-hole SVG <use> instance trees (#13180)
 		//
 		// Support: Firefox<=42+
-		// Avoid non-left-click in FF but don't block IE radio events (#3861, gh-2343)
+		// Avoid non-left-click in FF but don't block IE radio event (#3861, gh-2343)
 		if ( delegateCount && cur.nodeType &&
 			( event.type !== "click" || isNaN( event.button ) || event.button < 1 ) ) {
 
@@ -5336,7 +5336,7 @@ jQuery.event = {
 		}
 
 		// Support: IE<9
-		// For mouse/key events, metaKey==false if it's undefined (#3368, #11328)
+		// For mouse/key event, metaKey==false if it's undefined (#3368, #11328)
 		event.metaKey = !!event.metaKey;
 
 		return fixHook.filter ? fixHook.filter( event, originalEvent ) : event;
@@ -5352,7 +5352,7 @@ jQuery.event = {
 		props: "char charCode key keyCode".split( " " ),
 		filter: function( event, original ) {
 
-			// Add which for key events
+			// Add which for key event
 			if ( event.which == null ) {
 				event.which = original.charCode != null ? original.charCode : original.keyCode;
 			}
@@ -5403,7 +5403,7 @@ jQuery.event = {
 	special: {
 		load: {
 
-			// Prevent triggered image.load events from bubbling to window.load
+			// Prevent triggered image.load event from bubbling to window.load
 			noBubble: true
 		},
 		focus: {
@@ -5475,9 +5475,9 @@ jQuery.event = {
 				// jQuery.event.stopPropagation function we had a check for existence of
 				// originalEvent.stopPropagation method, so, consequently it would be a noop.
 				//
-				// Guard for simulated events was moved to jQuery.event.stopPropagation function
+				// Guard for simulated event was moved to jQuery.event.stopPropagation function
 				// since `originalEvent` should point to the original event for the
-				// constancy with other events and for more focused logic
+				// constancy with other event and for more focused logic
 			}
 		);
 
@@ -5502,7 +5502,7 @@ jQuery.removeEvent = document.removeEventListener ?
 
 		if ( elem.detachEvent ) {
 
-			// #8545, #7054, preventing memory leaks for custom events in IE6-8
+			// #8545, #7054, preventing memory leaks for custom event in IE6-8
 			// detachEvent needed property on element, by name of that event,
 			// to properly expose it to GC
 			if ( typeof elem[ name ] === "undefined" ) {
@@ -5609,7 +5609,7 @@ jQuery.Event.prototype = {
 	}
 };
 
-// Create mouseenter/leave events using mouseover/out and event-time checks
+// Create mouseenter/leave event using mouseover/out and event-time checks
 // so that event delegation works in jQuery.
 // Do the same for pointerenter/pointerleave and pointerover/pointerout
 //
@@ -5651,7 +5651,7 @@ if ( !support.submit ) {
 	jQuery.event.special.submit = {
 		setup: function() {
 
-			// Only need this for delegated form submit events
+			// Only need this for delegated form submit event
 			if ( jQuery.nodeName( this, "form" ) ) {
 				return false;
 			}
@@ -5694,7 +5694,7 @@ if ( !support.submit ) {
 
 		teardown: function() {
 
-			// Only need this for delegated form submit events
+			// Only need this for delegated form submit event
 			if ( jQuery.nodeName( this, "form" ) ) {
 				return false;
 			}
@@ -5728,7 +5728,7 @@ if ( !support.change ) {
 							this._justChanged = false;
 						}
 
-						// Allow triggered, simulated change events (#11500)
+						// Allow triggered, simulated change event (#11500)
 						jQuery.event.simulate( "change", this, event );
 					} );
 				}
@@ -5753,7 +5753,7 @@ if ( !support.change ) {
 		handle: function( event ) {
 			var elem = event.target;
 
-			// Swallow native change events from checkbox/radio, we already triggered them above
+			// Swallow native change event from checkbox/radio, we already triggered them above
 			if ( this !== elem || event.isSimulated || event.isTrigger ||
 				( elem.type !== "radio" && elem.type !== "checkbox" ) ) {
 
@@ -5770,11 +5770,11 @@ if ( !support.change ) {
 }
 
 // Support: Firefox
-// Firefox doesn't have focus(in | out) events
+// Firefox doesn't have focus(in | out) event
 // Related ticket - https://bugzilla.mozilla.org/show_bug.cgi?id=687787
 //
 // Support: Chrome, Safari
-// focus(in | out) events fire after focus & blur events,
+// focus(in | out) event fire after focus & blur event,
 // which is spec violation - http://www.w3.org/TR/DOM-Level-3-Events/#events-focusevent-event-order
 // Related ticket - https://code.google.com/p/chromium/issues/detail?id=449857
 if ( !support.focusin ) {
@@ -5948,7 +5948,7 @@ function fixCloneNodeIssues( src, dest ) {
 
 	nodeName = dest.nodeName.toLowerCase();
 
-	// IE6-8 copies events bound via attachEvent when using cloneNode.
+	// IE6-8 copies event bound via attachEvent when using cloneNode.
 	if ( !support.noCloneEvent && dest[ jQuery.expando ] ) {
 		data = jQuery._data( dest );
 
@@ -6162,7 +6162,7 @@ jQuery.extend( {
 			}
 		}
 
-		// Copy the events from the original to the clone
+		// Copy the event from the original to the clone
 		if ( dataAndEvents ) {
 			if ( deepDataAndEvents ) {
 				srcElements = srcElements || getAll( elem );
@@ -9469,7 +9469,7 @@ jQuery.extend( {
 			// timeout handle
 			timeoutTimer,
 
-			// To know if global events are to be dispatched
+			// To know if global event are to be dispatched
 			fireGlobals,
 
 			transport,
@@ -9483,7 +9483,7 @@ jQuery.extend( {
 			// Callbacks context
 			callbackContext = s.context || s,
 
-			// Context for global events is callbackContext if it is a DOM node or jQuery collection
+			// Context for global event is callbackContext if it is a DOM node or jQuery collection
 			globalEventContext = s.context &&
 				( callbackContext.nodeType || callbackContext.jquery ) ?
 					jQuery( callbackContext ) :
@@ -9620,8 +9620,8 @@ jQuery.extend( {
 			return jqXHR;
 		}
 
-		// We can fire global events as of now if asked to
-		// Don't fire events if jQuery.event is undefined in an AMD-usage scenario (#15118)
+		// We can fire global event as of now if asked to
+		// Don't fire event if jQuery.event is undefined in an AMD-usage scenario (#15118)
 		fireGlobals = jQuery.event && s.global;
 
 		// Watch for a new set of requests
@@ -10649,7 +10649,7 @@ jQuery.fn.load = function( url, params, callback ) {
 
 
 
-// Attach a bunch of functions for handling common AJAX events
+// Attach a bunch of functions for handling common AJAX event
 jQuery.each( [
 	"ajaxStart",
 	"ajaxStop",

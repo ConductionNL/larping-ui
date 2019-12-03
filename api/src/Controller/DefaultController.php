@@ -12,17 +12,18 @@ use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class DefaultController extends AbstractController
-{ 
+{
+
 	/**
 	* @Route("/")
  	* @Template
 	*/
 	public function indexAction(Request $request, EntityManagerInterface $em)
 	{
-		return [];
+	    return[];
 	}
-	
-	
+
+
 	/**
 	 * @Route("/event")
 	 * @Template
@@ -31,4 +32,13 @@ class DefaultController extends AbstractController
 	{
 		return [];
 	}
+
+    /**
+     * @Route("/test")
+     * @Template
+     */
+    public function testAction(Request $request, EntityManagerInterface $em)
+    {
+        return [];
+    }
 }

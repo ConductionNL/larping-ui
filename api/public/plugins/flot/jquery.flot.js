@@ -616,7 +616,7 @@ Licensed under the MIT license.
             },
         surface = null,     // the canvas for the plot itself
         overlay = null,     // canvas for interactive stuff on top of plot
-        eventHolder = null, // jQuery object that events should be bound to
+        eventHolder = null, // jQuery object that event should be bound to
         ctx = null, octx = null,
         xaxes = [], yaxes = [],
         plotOffset = { left: 0, right: 0, top: 0, bottom: 0},
@@ -1316,7 +1316,7 @@ Licensed under the MIT license.
             ctx = surface.context;
             octx = overlay.context;
 
-            // define which element we're listening for events on
+            // define which element we're listening for event on
             eventHolder = $(overlay.element).unbind();
 
             // If we're re-using a plot object, shut down the old one
@@ -1333,7 +1333,7 @@ Licensed under the MIT license.
         }
 
         function bindEvents() {
-            // bind events
+            // bind event
             if (options.grid.hoverable) {
                 eventHolder.mousemove(onMouseMove);
 
@@ -2010,7 +2010,7 @@ Licensed under the MIT license.
                             ctx.lineTo(xrange.to + subPixel, yrange.to);
                         } else {
                             ctx.moveTo(xrange.from, yrange.to + subPixel);
-                            ctx.lineTo(xrange.to, yrange.to + subPixel);                            
+                            ctx.lineTo(xrange.to, yrange.to + subPixel);
                         }
                         ctx.stroke();
                     } else {
@@ -2525,9 +2525,9 @@ Licensed under the MIT license.
                 radius = series.points.radius,
                 symbol = series.points.symbol;
 
-            // If the user sets the line width to 0, we change it to a very 
+            // If the user sets the line width to 0, we change it to a very
             // small value. A line width of 0 seems to force the default of 1.
-            // Doing the conditional here allows the shadow setting to still be 
+            // Doing the conditional here allows the shadow setting to still be
             // optional even with a lineWidth of 0.
 
             if( lw == 0 )

@@ -374,7 +374,7 @@ RichMarker.prototype['getContent'] = RichMarker.prototype.getContent;
 
 
 /**
- * Sets the marker content and adds loading events to images
+ * Sets the marker content and adds loading event to images
  */
 RichMarker.prototype.content_changed = function() {
   if (!this.markerContent_) {
@@ -584,7 +584,7 @@ RichMarker.prototype.removeDragListeners_ = function() {
 
 
 /**
- * Add dragability events to the marker.
+ * Add dragability event to the marker.
  *
  * @param {Node} node The node to apply dragging to.
  * @private

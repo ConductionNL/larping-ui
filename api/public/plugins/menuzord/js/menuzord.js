@@ -179,7 +179,7 @@ License: http://codecanyon.net/licenses
 			$(showHideButton).hide(0);
 		}
 		
-		// unbind events
+		// unbind event
 		function unbindEvents(){
 			$(menu_container).find("li, a").unbind();
 			$(document).unbind("click.menu touchstart.menu");
