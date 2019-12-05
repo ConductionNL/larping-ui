@@ -5573,7 +5573,7 @@
 			// node in the data, assign any user defined widths, then insert it into
 			// the DOM and allow the browser to do all the hard work of calculating
 			// table widths
-			var tmpTable = $(table).clone() // don't use cloneNode - IE8 will remove events on the main table
+			var tmpTable = $(table).clone() // don't use cloneNode - IE8 will remove event on the main table
 				.css( 'visibility', 'hidden' )
 				.removeAttr( 'id' );
 	
@@ -6365,7 +6365,7 @@
 			settings.oLoadedState = $.extend( true, {}, s );
 	
 			// Restore key features - todo - for 1.11 this needs to be done by
-			// subscribed events
+			// subscribed event
 			if ( s.start !== undefined ) {
 				settings._iDisplayStart    = s.start;
 				settings.iInitDisplayStart = s.start;
@@ -6614,7 +6614,7 @@
 	
 	
 	/**
-	 * Fire callback functions and trigger events. Note that the loop over the
+	 * Fire callback functions and trigger event. Note that the loop over the
 	 * callback array store is done backwards! Further note that you do not want to
 	 * fire off triggers in time sensitive applications (for example cell creation)
 	 * as its slow.
@@ -8657,7 +8657,7 @@
 	
 		// Group the column visibility changes
 		if ( vis !== undefined ) {
-			// Second loop once the first is done for events
+			// Second loop once the first is done for event
 			this.iterator( 'column', function ( settings, column ) {
 				_fnCallbackFire( settings, null, 'column-visibility', [settings, column, vis, calc] );
 			} );
@@ -9339,8 +9339,8 @@
 				new _Api( settings ).columns().visible( true );
 			}
 	
-			// Blitz all `DT` namespaced events (these are internal events, the
-			// lowercase, `dt` events are user subscribed and they are responsible
+			// Blitz all `DT` namespaced event (these are internal event, the
+			// lowercase, `dt` event are user subscribed and they are responsible
 			// for removing them
 			jqWrapper.off('.DT').find(':not(tbody *)').off('.DT');
 			$(window).off('.DT-'+settings.sInstance);
@@ -9370,7 +9370,7 @@
 			jqTbody.children().detach();
 			jqTbody.append( rows );
 	
-			// Remove the DataTables generated nodes, events and classes
+			// Remove the DataTables generated nodes, event and classes
 			var removedMethod = remove ? 'remove' : 'detach';
 			jqTable[ removedMethod ]();
 			jqWrapper[ removedMethod ]();
@@ -13683,7 +13683,7 @@
 		/**
 		 * Flag attached to the settings object so you can check in the draw
 		 * callback if filtering has been done in the draw. Deprecated in favour of
-		 * events.
+		 * event.
 		 *  @type boolean
 		 *  @default false
 		 *  @deprecated
@@ -13693,7 +13693,7 @@
 		/**
 		 * Flag attached to the settings object so you can check in the draw
 		 * callback if sorting has been done in the draw. Deprecated in favour of
-		 * events.
+		 * event.
 		 *  @type boolean
 		 *  @default false
 		 *  @deprecated
@@ -13719,7 +13719,7 @@
 	
 		/**
 		 * Destroy callback functions - for plug-ins to attach themselves to the
-		 * destroy so they can clean up markup and events.
+		 * destroy so they can clean up markup and event.
 		 *  @type array
 		 *  @default []
 		 */
@@ -15130,10 +15130,10 @@
 	} );
 
 
-	// Information about events fired by DataTables - for documentation.
+	// Information about event fired by DataTables - for documentation.
 	/**
 	 * Draw event, fired whenever the table is redrawn on the page, at the same
-	 * point as fnDrawCallback. This may be useful for binding events or
+	 * point as fnDrawCallback. This may be useful for binding event or
 	 * performing calculations when the table is altered at all.
 	 *  @name DataTable#draw.dt
 	 *  @event
@@ -15257,7 +15257,7 @@
 	/**
 	 * Destroy event, fired when the DataTable is destroyed by calling fnDestroy
 	 * or passing the bDestroy:true parameter in the initialisation object. This
-	 * can be used to remove bound events, added DOM nodes, etc.
+	 * can be used to remove bound event, added DOM nodes, etc.
 	 *  @name DataTable#destroy.dt
 	 *  @event
 	 *  @param {event} e jQuery event object

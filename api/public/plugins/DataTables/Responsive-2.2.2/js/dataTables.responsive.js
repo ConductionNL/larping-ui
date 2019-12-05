@@ -1071,7 +1071,7 @@ Responsive.display = {
 			if ( ! update ) {
 				// Show a modal
 				var close = function () {
-					modal.remove(); // will tidy events for us
+					modal.remove(); // will tidy event for us
 					$(document).off( 'keypress.dtr' );
 				};
 
@@ -1369,7 +1369,7 @@ $.fn.dataTable.Responsive = Responsive;
 $.fn.DataTable.Responsive = Responsive;
 
 // Attach a listener to the document which listens for DataTables initialisation
-// events so we can automatically initialise
+// event so we can automatically initialise
 $(document).on( 'preInit.dt.dtr', function (e, settings, json) {
 	if ( e.namespace !== 'dt' ) {
 		return;

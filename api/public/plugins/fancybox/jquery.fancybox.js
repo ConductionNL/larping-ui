@@ -494,7 +494,7 @@
       return false;
     }
 
-    $(".fancybox-container").css("pointer-events", "none");
+    $(".fancybox-container").css("pointer-event", "none");
 
     elemCenter = {
       x: elem.getBoundingClientRect().left + elem.offsetWidth / 2,
@@ -503,7 +503,7 @@
 
     rez = document.elementFromPoint(elemCenter.x, elemCenter.y) === elem;
 
-    $(".fancybox-container").css("pointer-events", "");
+    $(".fancybox-container").css("pointer-event", "");
 
     return rez;
   };
@@ -623,7 +623,7 @@
 
       self.trigger("onInit");
 
-      // Enable events, deactive previous instances
+      // Enable event, deactive previous instances
       self.activate();
 
       // Build slides, load and reveal content
@@ -1010,7 +1010,7 @@
       }
     },
 
-    // Remove events added by the core
+    // Remove event added by the core
     // ===============================
 
     removeEvents: function () {
@@ -2769,7 +2769,7 @@
         return false;
       }
 
-      // Remove all events
+      // Remove all event
       // If there are multiple instances, they will be set again by "activate" method
       self.removeEvents();
 
@@ -3109,7 +3109,7 @@
       }
     },
 
-    // Close all instances and unbind all events
+    // Close all instances and unbind all event
     // =========================================
 
     destroy: function () {
@@ -3227,7 +3227,7 @@
       from = self.getTranslate($el);
 
       $el.on(transitionEnd, function (e) {
-        // Skip events from child elements and z-index change
+        // Skip event from child elements and z-index change
         if (e && e.originalEvent && (!$el.is(e.originalEvent.target) || e.originalEvent.propertyName == "z-index")) {
           return;
         }
@@ -3726,7 +3726,7 @@
 // ==========================================================================
 //
 // Guestures
-// Adds touch guestures, handles click and tap events
+// Adds touch guestures, handles click and tap event
 //
 // ==========================================================================
 (function (window, document, $) {
@@ -3883,7 +3883,7 @@
       $content = current.$content,
       isTouchDevice = e.type == "touchstart";
 
-    // Do not respond to both (touch and mouse) events
+    // Do not respond to both (touch and mouse) event
     if (isTouchDevice) {
       self.$container.off("mousedown.fb.touch");
     }
@@ -4053,7 +4053,7 @@
 
     self.distance = distance(self.newPoints[0], self.startPoints[0]);
 
-    // Skip false ontouchmove events (Chrome)
+    // Skip false ontouchmove event (Chrome)
     if (self.distance > 0) {
       if (self.isSwiping) {
         self.onSwipe(e);

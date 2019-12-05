@@ -57,7 +57,7 @@
 		this._plugins = {};
 
 		/**
-		 * Currently suppressed events to prevent them from being retriggered.
+		 * Currently suppressed event to prevent them from being retriggered.
 		 * @protected
 		 */
 		this._supress = {};
@@ -751,7 +751,7 @@
 	};
 
 	/**
-	 * Handles `touchstart` and `mousedown` events.
+	 * Handles `touchstart` and `mousedown` event.
 	 * @todo Horizontal swipe threshold as option
 	 * @todo #261
 	 * @protected
@@ -814,7 +814,7 @@
 	};
 
 	/**
-	 * Handles the `touchmove` and `mousemove` events.
+	 * Handles the `touchmove` and `mousemove` event.
 	 * @todo #261
 	 * @protected
 	 * @param {Event} event - The event arguments.
@@ -849,7 +849,7 @@
 	};
 
 	/**
-	 * Handles the `touchend` and `mouseup` events.
+	 * Handles the `touchend` and `mouseup` event.
 	 * @todo #261
 	 * @todo Threshold for click event
 	 * @protected
@@ -1637,9 +1637,9 @@
 	};
 
 	/**
-	 * Suppresses events.
+	 * Suppresses event.
 	 * @protected
-	 * @param {Array.<String>} events - The events to suppress.
+	 * @param {Array.<String>} events - The event to suppress.
 	 */
 	Owl.prototype.suppress = function(events) {
 		$.each(events, $.proxy(function(index, event) {
@@ -1648,9 +1648,9 @@
 	};
 
 	/**
-	 * Releases suppressed events.
+	 * Releases suppressed event.
 	 * @protected
-	 * @param {Array.<String>} events - The events to release.
+	 * @param {Array.<String>} events - The event to release.
 	 */
 	Owl.prototype.release = function(events) {
 		$.each(events, $.proxy(function(index, event) {
