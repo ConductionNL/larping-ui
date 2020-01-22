@@ -107,7 +107,7 @@ window.onload = function() {
 
         // React 15: IE11
         // For unknown reason React 15 added listener for propertychange with addEventListener.
-        // This doesn't work, propertychange event are deprecated in IE11,
+        // This doesn't work, propertychange events are deprecated in IE11,
         // but allows us to dispatch fake propertychange which is handled by IE11.
         const propertychangeEvent = document.createEvent('HTMLEvents');
         propertychangeEvent.initEvent('propertychange', false, false);
