@@ -8,7 +8,7 @@
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- */ 
+ */
 
 
 namespace App\Service;
@@ -18,31 +18,31 @@ use GuzzleHttp\Client;
 
 use App\Entity\Request;
 
-class OrganisationService
+class OrganizationService
 {
 	private $em;
-	
+
 	public function __construct(EntityManagerInterface $em)
 	{
 		$this->em = $em;
 	}
-		
+
 	public function getAll()
 	{
-		$organisations = [];
-		
-		$organisation["name"] = "q date";
-		$organisation["desription"] = "q date";
-		$organisation["data"] = new \DateTime;
-		$organisations[] = $organisation;
-		
-		
-		$organisation["name"] = "C date";
-		$organisation["desription"] = "q date";
-		$organisation["data"] = new \DateTime;
-		$organisations[] = $organisation;
-		
-		return $organisations;
+		$organizations = [];
+
+		$organization["name"] = "q date";
+		$organization["desription"] = "q date";
+		$organization["data"] = new \DateTime;
+		$organizations[] = $organization;
+
+
+		$organization["name"] = "C date";
+		$organization["desription"] = "q date";
+		$organization["data"] = new \DateTime;
+		$organizations[] = $organization;
+
+		return $organizations;
 	}
-	
+
 }

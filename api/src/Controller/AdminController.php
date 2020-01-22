@@ -56,10 +56,10 @@ class AdminController extends AbstractController
     }
 
     /**
-     * @Route("/all-organisations")
+     * @Route("/all-organizations")
      * @Template
      */
-    public function allorganisationsAction(Request $request, EntityManagerInterface $em)
+    public function allorganizationsAction(Request $request, EntityManagerInterface $em)
     {
         return[];
     }

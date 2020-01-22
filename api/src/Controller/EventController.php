@@ -53,6 +53,8 @@ class EventController extends AbstractController
 	 */
 	public function dashboardAction(Request $request, EntityManagerInterface $em)
 	{
-		return [];
+	    $events = $this->eventService->getAll();
+
+		return ["events"=>$events];
 	}
 }
