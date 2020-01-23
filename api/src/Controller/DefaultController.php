@@ -16,8 +16,14 @@ class DefaultController extends AbstractController
      * @Route("/")
      * @Template
      */
-    public function indexAction(Request $request, EntityManagerInterface $em)
+	public function indexAction(Request $request, CommonGroundService $commonGroundService)
     {
-        return [];
+		//  search = ergens vandaan;
+    	
+    	$organizations = $commonGroundService->getResourceList('https://cc.zaakonline.nl/organizations',["name"=>"fc"]);
+    	$groups = $commonGroundService->getResourceList('https://pdc.zaakonline.nl/groups',["sourceOrganization"=>"002851234"]);
+    	
+    	return ['organisations'=>$organizations,'groups'=>$groups];
+    	
     }
 }
