@@ -1,43 +1,22 @@
 <?php
+
 // src/Controller/DefaultController.php
+
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
-use GuzzleHttp\Client;
-use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-
-	/**
-	* @Route("/")
- 	* @Template
-	*/
-	public function indexAction(Request $request, EntityManagerInterface $em)
-	{
-	    return[];
-	}
-
-
-	/**
-	 * @Route("/event")
-	 * @Template
-	 */
-	public function eventAction(Request $request, EntityManagerInterface $em)
-	{
-		return [];
-	}
-
     /**
-     * @Route("/test")
+     * @Route("/")
      * @Template
      */
-    public function testAction(Request $request, EntityManagerInterface $em)
+    public function indexAction(Request $request, EntityManagerInterface $em)
     {
         return [];
     }

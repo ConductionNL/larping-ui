@@ -10,20 +10,20 @@ use Doctrine\ORM\EntityManagerInterface;
 use GuzzleHttp\Client;
 use Knp\Bundle\MarkdownBundle\MarkdownParserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use App\Service\OrganisationService;
+use App\Service\OrganizationService;
 
 /**
- * Class OrganisationController
+ * Class OrganizationController
  * @package App\Controller
- * @Route("/organisations")
+ * @Route("/organizations")
  */
-class OrganisationController extends AbstractController
+class OrganizationController extends AbstractController
 {
-    private $organisationService;
+    private $organizationService;
 
-    public function __construct(OrganisationService $organisationService)
+    public function __construct(OrganizationService $organizationService)
     {
-        $this->organisationService = $organisationService;
+        $this->organizationService = $organizationService;
     }
 
     /**
@@ -32,10 +32,10 @@ class OrganisationController extends AbstractController
 	*/
 	public function indexAction(Request $request, EntityManagerInterface $em)
 	{
-	    $organisations = $this->organisationService->getAll();
+	    $organizations = $this->organizationService->getAll();
 
 
-		return ["organisations"=>$organisations];
+		return ["organizations"=>$organizations];
 	}
 
 
