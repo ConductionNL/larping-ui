@@ -11,10 +11,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DefaultController extends AbstractController
+/**
+ * Class ProductController
+ * @package App\Controller
+ * @Route("/purchase")
+ */
+class PurchaseController extends AbstractController
 {
     /**
-     * @Route("/")
+     * @Route("/products")
      * @Template
      */
 	public function indexAction(Request $request, CommonGroundService $commonGroundService)
@@ -22,6 +27,6 @@ class DefaultController extends AbstractController
     	$organizations = $commonGroundService->getResourceList('https://cc.zaakonline.nl/organizations',["name"=>"fc"]);
     	$groups = $commonGroundService->getResourceList('https://pdc.zaakonline.nl/groups',["sourceOrganization"=>"002851234"]);
 
-    	return $this->redirect('purchase/products');
+    	return ['organisations'=>$organizations,'groups'=>$groups, $this->redirect('products')];
     }
 }

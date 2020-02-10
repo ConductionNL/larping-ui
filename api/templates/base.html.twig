@@ -18,13 +18,15 @@
     <link href="/plugins/dzsparallaxer/dzsparallaxer.css" rel="stylesheet">
     <link href="/plugins/owl-carousel//owl.carousel.min.css" rel="stylesheet">
     <link href="/plugins/owl-carousel//owl.theme.default.min.css" rel="stylesheet">
-    
+
     <link href="/plugins/revolution/css/settings.css" rel="stylesheet">
     <link href="/plugins/map/css/map.css" rel="stylesheet">
     <link href="/plugins/rateyo/jquery.rateyo.min.css" rel="stylesheet">
     <link href="/plugins/daterangepicker/daterangepicker.css" rel="stylesheet">
 
     <link href="/plugins/fancybox/jquery.fancybox.min.css" rel="stylesheet">
+
+      <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 
     <!-- GOOGLE FONT -->
@@ -36,7 +38,7 @@
 
     {% block stylesheet %}
     {% endblock %}
-    
+
     <!-- <link rel="stylesheet" href="/css/default.css" id="option_color"> -->
 
     <!-- FAVICON -->
@@ -65,17 +67,17 @@
       </div>
     </div>
 
-    <div class="main-wrapper">
-    
-    {% include 'header.html.twig' %}
+{#    <div class="main-wrapper">#}
+
+{#    {% include 'header.html.twig' %}#}
 
 	{% block content %}
 
     {% endblock %}
 
-    </div> <!-- element wrapper ends -->
-	
-    {% include 'footer.html.twig' %}
+{#    </div> <!-- element wrapper ends -->#}
+
+{#    {% include 'footer.html.twig' %}#}
 
     <!-- JAVASCRIPTS -->
 
@@ -95,7 +97,7 @@
     <script src="/plugins/map/js/infobox_packed.js"></script>
     <script src="/js/map.js"></script>
     <script src="/js/listty.js"></script>
-    
+
     {% block javascript %}
     {% endblock %}
 
