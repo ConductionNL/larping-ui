@@ -14,12 +14,13 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class ProductController
  * @package App\Controller
- * @Route("/purchase")
+ * @Route("/producten")
  */
-class PurchaseController extends AbstractController
+class ProductenController extends AbstractController
 {
+
     /**
-     * @Route("/products")
+     * @Route("/")
      * @Template
      */
 	public function indexAction(Request $request, CommonGroundService $commonGroundService)
@@ -28,5 +29,17 @@ class PurchaseController extends AbstractController
     	$groups = $commonGroundService->getResourceList('https://pdc.zaakonline.nl/groups',["sourceOrganization"=>"002851234"]);
 
     	return ['organisations'=>$organizations,'groups'=>$groups, $this->redirect('products')];
+    }
+
+    /**
+     * @Route("/betalen")
+     * @Template
+     */
+	public function betalenAction(Request $request, CommonGroundService $commonGroundService)
+    {
+    	$organizations = $commonGroundService->getResourceList('https://cc.zaakonline.nl/organizations',["name"=>"fc"]);
+    	$groups = $commonGroundService->getResourceList('https://pdc.zaakonline.nl/groups',["sourceOrganization"=>"002851234"]);
+
+    	return ['organisations'=>$organizations,'groups'=>$groups, $this->redirect('your-info')];
     }
 }

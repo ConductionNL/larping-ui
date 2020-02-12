@@ -5,26 +5,34 @@
 <table id="my-listing" class="display nowrap table-data-default dataTable no-footer dtr-inline"
        style="width: 100%;" role="grid">
     <thead>
-    <tr class="table-row-bg-white" role="row">
+    <tr class="table-row-bg-white" role="row" style="border-bottom: 1px solid #E5E5E5">
         <th class="sorting" tabindex="0" aria-controls="my-listing" rowspan="1" colspan="1"
-            style="width: 477px;" aria-label="Listing: activate to sort column ascending">
+            style="width: 477px; padding-left: 90px" aria-label="Listing: activate to sort column ascending">
             Product
         </th>
         <th class="sorting_asc" tabindex="0" aria-controls="my-listing" rowspan="1" colspan="1"
+            style="width: 88px; padding-left: 17px" aria-sort="ascending"
+            aria-label="Posted on: activate to sort column descending">Datum
+        </th>
+        <th class="sorting_asc text-align-center" tabindex="0" aria-controls="my-listing" rowspan="1" colspan="1"
             style="width: 88px;" aria-sort="ascending"
-            aria-label="Posted on: activate to sort column descending">Posted on
+            aria-label="Posted on: activate to sort column descending">Prijs
+        </th>
+        <th class="sorting_asc" tabindex="0" aria-controls="my-listing" rowspan="1" colspan="1"
+            style="width: 88px;" aria-sort="ascending"
+            aria-label="Posted on: activate to sort column descending">
+        </th>
+        <th class="sorting_asc text-align-center" tabindex="0" aria-controls="my-listing" rowspan="1" colspan="1"
+            style="width: 88px;" aria-sort="ascending"
+            aria-label="Posted on: activate to sort column descending">Quantiteit
         </th>
         <th class="sorting_asc" tabindex="0" aria-controls="my-listing" rowspan="1" colspan="1"
             style="width: 88px;" aria-sort="ascending"
             aria-label="Posted on: activate to sort column descending">
         </th>
         <th class="sorting_asc" tabindex="0" aria-controls="my-listing" rowspan="1" colspan="1"
-            style="width: 88px;" aria-sort="ascending"
-            aria-label="Posted on: activate to sort column descending">
-        </th>
-        <th class="sorting_asc" tabindex="0" aria-controls="my-listing" rowspan="1" colspan="1"
-            style="width: 88px;" aria-sort="ascending"
-            aria-label="Posted on: activate to sort column descending">
+            style="width: 88px; text-align: center;" aria-sort="ascending"
+            aria-label="Posted on: activate to sort column descending">Kaartjes over
         </th>
     </tr>
     </thead>
@@ -34,26 +42,32 @@
     <tr class="table-row-bg-white odd" role="row">
         <td class="td-media" tabindex="0">
             <div class="media media-table">
-                <img class="img-fluid rounded mr-2" src="assets/img/listing/listing-4.jpg" alt="listing.jpg">
+                <img width="200px" height="200px" class="img-fluid rounded mr-2"
+                     src="https://www.debontewever.nl/wp-content/uploads/2017/12/event-1200x900.png" alt="listing.jpg">
                 <div class="media-body">
-                    <h3 class="media-title">Product Title</h3>
-                    <p class="mb-1">Locatie </p>
-                    <p class="text-dark">Beschrijving</p>
+                    <h3 class="media-title">Lidmaatschap</h3>
+                    <p class="mb-1">1 jaar </p>
+                    <p class="text-dark">Toegang tot alle evenementen en stemrecht!</p>
                 </div>
             </div>
         </td>
         <td>
-            <span class="d-block">01 Aug 19</span>
-            <span class="d-block">07.00 PM</span>
+            <span class="d-block">12 Feb 2021</span>
+        </td>
+        <td class=" text-align-center">
+            <span style="color: black" class="d-block">€ 79.99,-</span>
         </td>
         <td style="text-align: center;">
-            <button class="btn btn-danger">-</button>
+            <button class="btn btn-danger min-button">-</button>
         </td>
-        <td style="text-align: center;">
+        <td class="product-quantity">
             0
         </td>
+        <td>
+            <button class="btn btn-success add-button">+</button>
+        </td>
         <td style="text-align: center;">
-            <button class="btn btn-success">+</button>
+            -
         </td>
     </tr>
 
@@ -61,26 +75,32 @@
     <tr class="table-row-bg-white odd" role="row">
         <td class="td-media" tabindex="0">
             <div class="media media-table">
-                <img class="img-fluid rounded mr-2" src="assets/img/listing/listing-4.jpg" alt="listing.jpg">
+                <img width="200px" height="200px" class="img-fluid rounded mr-2"
+                     src="https://www.debontewever.nl/wp-content/uploads/2017/12/event-1200x900.png" alt="listing.jpg">
                 <div class="media-body">
-                    <h3 class="media-title">Product Title</h3>
-                    <p class="mb-1">Locatie </p>
+                    <h3 class="media-title">Event 1</h3>
+                    <p class="mb-1">Volendam </p>
                     <p class="text-dark">Beschrijving</p>
                 </div>
             </div>
         </td>
         <td>
-            <span class="d-block">01 Aug 19</span>
-            <span class="d-block">07.00 PM</span>
+            <span class="d-block">01 Aug 2020</span>
         </td>
-        <td style="text-align: center;">
-            <button class="btn btn-danger">-</button>
+        <td class="text-align-center">
+            <span style="color: black" class="d-block">€ 39.99,-</span>
         </td>
-        <td style="text-align: center;">
+        <td>
+            <button class="btn btn-danger min-button">-</button>
+        </td>
+        <td class="product-quantity">
             0
         </td>
+        <td>
+            <button class="btn btn-success  add-button">+</button>
+        </td>
         <td style="text-align: center;">
-            <button class="btn btn-success">+</button>
+            33
         </td>
     </tr>
 
@@ -88,44 +108,49 @@
     <tr class="table-row-bg-white odd" role="row">
         <td class="td-media" tabindex="0">
             <div class="media media-table">
-                <img class="img-fluid rounded mr-2" src="assets/img/listing/listing-4.jpg" alt="listing.jpg">
+                <img width="200px" height="200px" class="img-fluid rounded mr-2"
+                     src="https://www.debontewever.nl/wp-content/uploads/2017/12/event-1200x900.png" alt="listing.jpg">
                 <div class="media-body">
-                    <h3 class="media-title">Product Title</h3>
-                    <p class="mb-1">Locatie </p>
+                    <h3 class="media-title">Event 2</h3>
+                    <p class="mb-1">Amsterdam </p>
                     <p class="text-dark">Beschrijving</p>
                 </div>
             </div>
         </td>
         <td>
-            <span class="d-block">01 Aug 19</span>
-            <span class="d-block">07.00 PM</span>
+            <span class="d-block">01 Aug 2020</span>
         </td>
-        <td style="text-align: center;">
-            <button class="btn btn-danger">-</button>
+        <td class="text-align-center">
+            <span class="d-block" style="color: black">€ 34.99,-</span>
         </td>
-        <td style="text-align: center;">
+        <td>
+            <button class="btn btn-danger min-button">-</button>
+        </td>
+        <td class="product-quantity">
             0
         </td>
+        <td>
+            <button class="btn btn-success add-button">+</button>
+        </td>
         <td style="text-align: center;">
-            <button class="btn btn-success">+</button>
+            24
         </td>
     </tr>
 
-    <tr style="border-top: 1px solid lightgray">
+    <tr class="products-last-tr" style="border-top: 1px solid #E5E5E5">
         <td></td>
         <td></td>
         <td></td>
-        <td style="text-align: center; color: black">Totaal: € 0,-</td>
         <td></td>
+        <td style="text-align: center; color: black; border: 1px solid #E5E5E5;"><b>Totaal: € 0,-</b></td>
+        <td></td>
+        <td class="td-next">
+            <a href="{{ path('app_producten_betalen') }}">
+                <div class="text-align-center" style="height:100%;width:100%;padding-top: 20px">
+                    <b>Next</b>
+                </div>
+            </a>
+        </td>
     </tr>
-
     </tbody>
 </table>
-<div class="dataTables_paginate paging_simple_numbers" id="my-listing_paginate"><a
-        class="paginate_button previous disabled" aria-controls="my-listing" data-dt-idx="0"
-        tabindex="0" id="my-listing_previous">Prev</a><span><a class="paginate_button current"
-                                                               aria-controls="my-listing"
-                                                               data-dt-idx="1"
-                                                               tabindex="0">1</a></span><a
-        class="paginate_button next disabled" aria-controls="my-listing" data-dt-idx="2"
-        tabindex="0" id="my-listing_next">Next</a></div>
