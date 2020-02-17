@@ -46,20 +46,11 @@
                                     </tfoot>
                                 </table>
 
-                                <h3 class="h4 font-weight-normal mb-4">Beveiligingscheck</h3>
-                                <div class="form-group mb-7">
-                                    <label for="usernames" class="control-label">
-                                        Bevestig dat je geen robot bent*
-                                    </label> <br>
-                                    <img src="https://davisonpro.dev/wp-content/uploads/2019/09/captcha.gif"
-                                         alt="Image captcha" class="img-fluid">
-                                </div>
-
                                 <div class="form-group mb-6">
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox">
-                                            I agree to the <a href="terms-of-services.html">Terms of Use</a> &amp;
+                                            I agree to the <a href="#">Terms of Use</a> &amp;
                                             <a
                                                 href="#">Privacy Policy</a>. Your
                                             business listing is fully backed by our 100% money back guarantee.
@@ -68,7 +59,8 @@
                                 </div>
 
                                 <div class="text-align-center">
-                                    <button type="submit" class="btn btn-primary"> Afrekenen</button>
+                                    <a href="{{ path('app_producten_bevestiging') }}" class="btn btn-primary">
+                                        Afrekenen</a>
                                 </div>
 
                             </div>
@@ -133,13 +125,12 @@
                                 </div>
 
                                 <div class="row">
-
-                                    <div class="form-group col-md-6">
-                                        <label for="inputtext">Plaats*</label>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputtext">Postcode*</label>
                                         <input type="text" class="form-control" id="inputtext" placeholder="">
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="inputtext">Postcode*</label>
+                                    <div class="form-group col-md-8">
+                                        <label for="inputtext">Plaats*</label>
                                         <input type="text" class="form-control" id="inputtext" placeholder="">
                                     </div>
                                 </div>
