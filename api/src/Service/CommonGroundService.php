@@ -65,8 +65,8 @@ class CommonGroundService
 
 		$response = $this->client->request('GET',$url, [
 				'query' => $query
-		]
-				);
+			]
+		);
 
 		$response = json_decode($response->getBody(), true);
 
