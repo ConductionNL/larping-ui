@@ -28,7 +28,7 @@ class ProductenController extends AbstractController
     	$organizations = $commonGroundService->getResourceList('https://cc.zaakonline.nl/organizations',["name"=>"fc"]);
     	$groups = $commonGroundService->getResourceList('https://pdc.zaakonline.nl/groups',["sourceOrganization"=>"002851234"]);
 
-    	return ['organisations'=>$organizations,'groups'=>$groups, $this->redirect('products')];
+    	return ['organisations'=>$organizations,'groups'=>$groups, $this->redirect('producten')];
     }
 
     /**
@@ -40,6 +40,18 @@ class ProductenController extends AbstractController
     	$organizations = $commonGroundService->getResourceList('https://cc.zaakonline.nl/organizations',["name"=>"fc"]);
     	$groups = $commonGroundService->getResourceList('https://pdc.zaakonline.nl/groups',["sourceOrganization"=>"002851234"]);
 
-    	return ['organisations'=>$organizations,'groups'=>$groups, $this->redirect('your-info')];
+    	return ['organisations'=>$organizations,'groups'=>$groups, $this->redirect('producten/betalen')];
+    }
+
+    /**
+     * @Route("/betalen/bevestiging")
+     * @Template
+     */
+	public function bevestigingAction(Request $request, CommonGroundService $commonGroundService)
+    {
+    	$organizations = $commonGroundService->getResourceList('https://cc.zaakonline.nl/organizations',["name"=>"fc"]);
+    	$groups = $commonGroundService->getResourceList('https://pdc.zaakonline.nl/groups',["sourceOrganization"=>"002851234"]);
+
+    	return ['organisations'=>$organizations,'groups'=>$groups, $this->redirect('producten/betalen/bevestiging')];
     }
 }
