@@ -19,24 +19,14 @@ use App\Service\EventService;
  */
 class EventController extends AbstractController
 {
-
-    private $eventService;
-
-    public function __construct(EventService $eventService)
+    /**
+     * @Route("/")
+     * @Template
+     */
+    public function indexAction(Request $request, EntityManagerInterface $em)
     {
-        $this->eventService = $eventService;
+        return [];
     }
-
-	/**
-	* @Route("/")
- 	* @Template
-	*/
-	public function indexAction(Request $request, EntityManagerInterface $em)
-	{
-	    $events = $this->eventService->getAll();
-
-		return ["events"=>$events];
-	}
 
     /**
      * @Route("/view")
@@ -47,12 +37,12 @@ class EventController extends AbstractController
         return [];
     }
 
-	/**
-	 * @Route("/dashboard")
-	 * @Template
-	 */
-	public function dashboardAction(Request $request, EntityManagerInterface $em)
-	{
-		return [];
-	}
+    /**
+     * @Route("/dashboard")
+     * @Template
+     */
+    public function dashboardAction(Request $request, EntityManagerInterface $em)
+    {
+        return [];
+    }
 }
