@@ -10,7 +10,8 @@ settings:
   version: V.0.1
   description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.&#039;'
   repro: 'https://github.com/ConductionNL/Proto-component-commonground'
-  domain: larping.online  
+  subdomain:   
+  domain: larping.eu
   organisationName: Conduction
   email: info@conduction.nl
   country: Netherlands
@@ -22,7 +23,7 @@ settings:
   debug: 1
   replicaCount: 1
   corsAllowOrigin: ['*']
-  trustedHosts: '^(.+\.)?larping\.online$|localhost'
+  trustedHosts: '^(.+\.)?conduction\.nl$|^(.+\.)?huwelijksplanner\.online$|^(.+\.)?larping\.eu$|^(.+\.)?common-ground\.dev$|^(.+\.)?trouwplanner\.online$|^(.+\.)?zaakonline\.nl$|localhost'
   pullPolicy: Always
   # You will need these proxies on kubernetes
   trustedProxies:
@@ -41,6 +42,7 @@ settings:
   archiveEnabled: false
 
 security:
+  commongroundId: 9329d8d0-1d5e-433c-bb47-6991053c7fcb
   commongroundKey: 9329d8d0-1d5e-433c-bb47-6991053c7fcb
   applicationKey: 45c1a4b6-59d3-4a6e-86bf-88a872f35845
   userKey: 79d5b14c-70ab-41fb-ac02-917e3288870b

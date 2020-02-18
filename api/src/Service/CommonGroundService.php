@@ -31,12 +31,12 @@ class CommonGroundService
         	'X-NLX-Request-Application-Id' => $this->params->get('app_commonground_id')// the id of the application performing the request
         ];
         
-        if($session->get('user') === $user){
-        	$headers['X-NLX-Request-User-Id'] = $user['@id'];
+        if($session->get('user')){
+        	$headers['X-NLX-Request-User-Id'] = $session->get('user')['@id'];
         }
         
-        if($session->get('process') === $process){
-        	$headers[] = $process['@id'];
+        if($session->get('process')){
+        	$headers[] = $session->get('process')['@id'];
         }
         
         
@@ -63,10 +63,13 @@ class CommonGroundService
         if (!$url) {
             return false;
         }
-        $parsedUrl = $parse_url($url);
+        $parsedUrl = parse_url($url);
         
         $elementList = [];
         foreach($query as $element){
+        	if(!is_array($element)){
+        		return;
+        	}
         	$elementList[] = implode("=",$element);
         }
         $elementList = implode(",", $elementList);
@@ -112,7 +115,7 @@ class CommonGroundService
         if (!$url) {
             //return false;
         }
-        $parsedUrl = $parse_url($url);
+        $parsedUrl = parse_url($url);
         
         // To work with NLX we need a couple of default headers
         $headers = $this->headers;
@@ -150,7 +153,7 @@ class CommonGroundService
         if (!$url) {
             return false;
         }
-        $parsedUrl = $parse_url($url);
+        $parsedUrl = parse_url($url);
         
         unset($resource['@context']);
         unset($resource['@id']);
@@ -194,7 +197,7 @@ class CommonGroundService
         if (!$url) {
             return false;
         }
-        $parsedUrl = $parse_url($url);
+        $parsedUrl = parse_url($url);
 
         $response = $this->client->request('POST', $url, [
             'body' => json_encode($resource),

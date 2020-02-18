@@ -11,11 +11,7 @@ settings:
   description: '{{ app_description }}'
   repro: '{{ app_repro }}'
   subdomain: {{ app_subdomain }}  
-  domains:
-{% for domain in app_domains %}
-    - {{ domain }}
-{% endfor %}
-  domainsJson: {{ app_domains | json_encode()|raw }}
+  domain: {{ app_domain }}
   organisationName: {{ organization_name }}
   email: {{ organization_email }}
   country: {{ organization_country }}
