@@ -32,6 +32,12 @@ spec:
       http:
         paths:
           - backend:
+              serviceName: {{ $.Values.settings.name }}
+              servicePort: 80
+    - host: www.{{ .Values.settings.domain }}
+      http:
+        paths:
+          - backend:
               serviceName: {{ include "name" . }}
               servicePort: 80
     - host: www.{{ .Values.settings.domain }}
@@ -48,3 +54,4 @@ spec:
               serviceName: {{ include "name" . }}
               servicePort: 80
      {{- end }}
+  {{- end }}
