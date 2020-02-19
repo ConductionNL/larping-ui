@@ -6,8 +6,10 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
+        # In order to read the docs we must allow anonymous GET reqoust on root    
+        docs:
             anonymous: true
+            methods: [GET]
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
