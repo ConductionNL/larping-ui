@@ -86,7 +86,7 @@ class ProductenController extends AbstractController
     	}
     	
     	// Kijken of het formulier is getriggerd
-    	if ($request->isMethod('POST')){
+    	if($request->isMethod('POST')){
     		// contact persoon aanmaken op order
     		$contact = [];    		
     		$contact[''] = ''; // etc    	
@@ -119,7 +119,7 @@ class ProductenController extends AbstractController
     	// Wederom wat doen organizations en groups hier
     	$organizations = $commonGroundService->getResourceList('https://cc.zaakonline.nl/organizations',["name"=>"fc"]);
     	$groups = $commonGroundService->getResourceList('https://pdc.larping.online/groups',["sourceOrganization"=>"816802828"]);
-    	
+
     	// Factuur ophalen aan de hand van id
     	$invoice = $commonGroundService->getResource('https://bc.larping.online/invoices/'.$uuid);
     	
