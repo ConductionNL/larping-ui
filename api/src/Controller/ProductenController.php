@@ -27,9 +27,16 @@ class ProductenController extends AbstractController
     {
     	$organizations = $commonGroundService->getResourceList('https://cc.zaakonline.nl/organizations',["name"=>"fc"]);
     	$groups = $commonGroundService->getResourceList('https://pdc.larping.online/groups',["sourceOrganization"=>"816802828"]);
-    	$products = $commonGroundService->getResourceList('https://pdc.larping.online/products',["sourceOrganization"=>"816802828"]);
-		
-    	var_dump($products);
+    	$products = $commonGroundService->getResourceList('https://pdc.larping.online/products?sourceOrganization=816802828');
+    	
+    	// Kijken of het formulier is getriggerd
+    	if ($request->isMethod('POST')){
+    		// kijken of er in de sessie al een order zit, zo nee order aan maken
+    		
+    		// order regel aanmaken op order met de gevraagde gegevens
+    		
+    		// flashban zetten met eindresultaat
+    	}
     	
     	return ['organisations'=>$organizations,'groups'=>$groups,'products'=> $products, $this->redirect('producten')];
     }
@@ -42,6 +49,17 @@ class ProductenController extends AbstractController
     {
     	$organizations = $commonGroundService->getResourceList('https://cc.zaakonline.nl/organizations',["name"=>"fc"]);
     	$groups = $commonGroundService->getResourceList('https://pdc.larping.online/groups',["sourceOrganization"=>"816802828"]);
+    	
+    	// Kijken of het formulier is getriggerd
+    	if ($request->isMethod('POST')){
+    		// contact persoon aanmaken op order
+    		
+    		// order updaten
+    		
+    		// order naar bc sturen
+    		
+    		// gebruikerdoorsturen naar terug gegeven responce
+    	}
 
     	return ['organisations'=>$organizations,'groups'=>$groups, $this->redirect('producten/betalen')];
     }
@@ -54,6 +72,12 @@ class ProductenController extends AbstractController
     {
     	$organizations = $commonGroundService->getResourceList('https://cc.zaakonline.nl/organizations',["name"=>"fc"]);
     	$groups = $commonGroundService->getResourceList('https://pdc.larping.online/groups',["sourceOrganization"=>"816802828"]);
+    	
+    	// Factuur ophalen aan de hand van id
+    	
+    	// info renderen 
+    	
+    	// mail versturen
 
     	return ['organisations'=>$organizations,'groups'=>$groups, $this->redirect('producten/betalen/bevestiging')];
     }

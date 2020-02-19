@@ -27,7 +27,8 @@ class CommonGroundService
         $this->headers = [
         	'Accept'        => 'application/ld+json',
         	'Content-Type'  => 'application/json',
-        	'Authorization'  => $this->params->get('app_commonground_key'),
+        	//'Authorization'  => $this->params->get('app_commonground_key'),
+        	'Authorization'  => '45c1a4b6-59d3-4a6e-86bf-88a872f35845',
         	'X-NLX-Request-Application-Id' => $this->params->get('app_commonground_id')// the id of the application performing the request
         ];
         
@@ -92,10 +93,13 @@ class CommonGroundService
         
         $response = json_decode($response->getBody(), true);
         
+        //var_dump($response);
         /* @todo this should look to al @id keus not just the main root */
-        foreach($response['_embedded'] as $key => $embedded){
-        	if($embedded['@id']){
-        		$response['_embedded'][$key]['@id'] = $parsedUrl["host"].$embedded['@id'];
+        if(array_key_exists('_embedded',$response)){
+	        foreach($response['_embedded'] as $key => $embedded){
+	        	if($embedded['@id']){
+	        		$response['_embedded'][$key]['@id'] = $parsedUrl["host"].$embedded['@id'];
+		        }
 	        }
         }
 
