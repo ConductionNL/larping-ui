@@ -33,7 +33,6 @@ class ProductenController extends AbstractController
     	if ($request->isMethod('POST')){
     		// kijken of er in de sessie al een order zit, zo nee order aan maken
             $session = $request->getSession();
-            $session->get()
     		// order regel aanmaken op order met de gevraagde gegevens
 
 
