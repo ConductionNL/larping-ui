@@ -88,10 +88,6 @@ class ProductenController extends AbstractController
      */
     public function betalenAction(Session $session, Request $request, CommonGroundService $commonGroundService)
     {
-    	// Wat doen we hier  eigenlijk met organisations en groups?
-    	$organizations = $commonGroundService->getResourceList('https://cc.zaakonline.nl/organizations',["name"=>"fc"]);
-    	$groups = $commonGroundService->getResourceList('https://pdc.larping.online/groups',["sourceOrganization"=>"816802828"]);
-
     	$orderUri = $session->get('order');
     	$order = false; // Aangezien we de order variable aan het template passeren moet die sowieso bestaan
     	if($orderUri){
@@ -143,7 +139,7 @@ class ProductenController extends AbstractController
     		return $this->redirect($invoice['paymentUrl']);
     	}
 
-    	return ['organisations'=>$organizations,'groups'=>$groups,'order'=>$order,$this->redirect('producten/betalen')];
+    	return ['order'=>$order,$this->redirect('producten/betalen')];
     }
 
     /**
@@ -152,10 +148,6 @@ class ProductenController extends AbstractController
      */
     public function bevestigingAction(Session $session, Request $request, CommonGroundService $commonGroundService, $uuid)
     {
-    	// Wederom wat doen organizations en groups hier
-    	$organizations = $commonGroundService->getResourceList('https://cc.zaakonline.nl/organizations',["name"=>"fc"]);
-    	$groups = $commonGroundService->getResourceList('https://pdc.larping.online/groups',["sourceOrganization"=>"816802828"]);
-
     	// Factuur ophalen aan de hand van id
     	$invoice = $commonGroundService->getResource('https://bc.larping.online/invoices/'.$uuid);
 
@@ -169,6 +161,6 @@ class ProductenController extends AbstractController
 
     	// mail versturen
 
-    	return ['organisations'=>$organizations,'groups'=>$groups,'invoice'=>$invoice, $this->redirect('producten/betalen/bevestiging')];
+    	return ['invoice'=>$invoice, $this->redirect('producten/betalen/bevestiging')];
     }
 }
