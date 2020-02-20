@@ -44,20 +44,23 @@ class ProductenController extends AbstractController
     		if(!$orderUri){
     			
     			$order = [];
-    			$order[''] = ''; // etc
+    			$order['targetOrganization'] = '122432234'; // Ditmoet de RSIN van zijn
+    			$order['name'] = 'Website Order'; // Ditmoet de RSIN van zijn
     			    			
-    			$order = $commonGroundService->getCreateResource($order, 'https://orc.larping.online/orders');
+    			$order = $commonGroundService->createResource($order, 'https://orc.larping.online/orders');
     			$orderUri = $order['@id'];
     			$session->set('order', $orderUri);    			
     		}
     		
     		// order regel aanmaken op order met de gevraagde gegevens
     		
-    		$orderline = [];
-    		$orderline['order'] = $order['@id']; // de vraag is of we hier de baseurl zouden moeten strippen via php pathinfo
-    		$orderline[''] = ''; // etc
+    		foreach($request->request->get('offers') as $offer){
+    		$orderItem= [];
+    		$orderItem['order'] = $order['@id']; // de vraag is of we hier de baseurl zouden moeten strippen via php pathinfo
+    		$orderItem['offer'] = $offer; // etc
     		
-    		$orderline= $commonGroundService->getCreateResource($orderline, 'https://orc.larping.online/orderlines'); // diedit uit mijn hoofd dus weet niet of het werkelijk order linses is
+    		$orderItem= $commonGroundService->createResource($orderItem, 'https://orc.larping.online/orderItem'); // diedit uit mijn hoofd dus weet niet of het werkelijk order linses is
+    		}
     		
     		// Omdat we een order line hebben toegeveogd willen we het order opnieuw ophalen EN een cash refresh afdwingen
     		$order = $commonGroundService->getResource($orderUri, true);
