@@ -1,5 +1,5 @@
 <!-- ====================================
-���	Products
+	Products
 ===================================== -->
 
 <section class="bg-white py-md-2 border mb-10">
@@ -48,10 +48,21 @@
             </div>
 
             <div id="{{ product.sku }}" style="border-top: 1px solid #f5f5f5;" class="collapse show card card-list ">
-
-                <form action="{{ path('app_producten_index') }}" method="post">
-
-                    {% for offer in product.offers %}
+				
+                <form method="post" action="{{ path('app_producten_index')}}">
+                {% for offer in product.offers %}
+                <div class="row my-5">
+                    <div class="col-md-3">
+                        <input style="height: 35px !important;" class="form-control" type="checkbox" value="{{ offer.id }}" id="offers[]" name=offers[]>
+                    </div>
+                    <div class="col-md-9 my-auto">
+                        <div class="row ">
+                            <div class="col-md-6 ">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <h4 class="mb-0">{{ offer.name }}</h4>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
 
                         <div class="row my-7">
                             <div class="col-md-3">
@@ -104,8 +115,13 @@
                                             class="color-limegreen fa fa-plus-square-o"></i></button>
                                 </div>
                             </div>
+                            <div class="col-md-2 d-flex justify-content-center">
+                                <button type="submit" class="my-auto mh-50 pt-4 add-button"><i style="font-size: 36px;border-radius: 4px" class="color-limegreen fa fa-plus-square-o"></i></button>
+                            </div>
                         </div>
                     </div>
+                </div>
+                
                 </form>
             </div>
         {% endfor %}
