@@ -146,6 +146,12 @@ td a, td a:hover {
     max-height: 50px;
 }
 
+.add-button {
+    background-color: white;
+    border: none !important;
+    display: block;
+}
+
 .add-button:hover i {
     height: 28.3px;
     color: lightgreen;
