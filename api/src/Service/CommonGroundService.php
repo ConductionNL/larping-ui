@@ -33,11 +33,11 @@ class CommonGroundService
         ];
         
         if($session->get('user')){
-        	$headers['X-NLX-Request-User-Id'] = $session->get('user')['@id'];
+        	$this->headers['X-NLX-Request-User-Id'] = $session->get('user')['@id'];
         }
         
         if($session->get('process')){
-        	$headers[] = $session->get('process')['@id'];
+        	$this->headers['X-NLX-Request-Procces-Id'] = $session->get('process')['@id'];
         }
         
         
@@ -61,6 +61,8 @@ class CommonGroundService
      */
     public function getResourceList($url, $query = [], $force = false)
     {
+    	
+    	
         if (!$url) {
             return false;
         }
@@ -69,7 +71,7 @@ class CommonGroundService
         $elementList = [];
         foreach($query as $element){
         	if(!is_array($element)){
-        		return;
+        		continue;
         	}
         	$elementList[] = implode("=",$element);
         }
@@ -84,21 +86,28 @@ class CommonGroundService
         if ($item->isHit() && !$force) {
             //return $item->get();
         }
-
+        
+               
         $response = $this->client->request('GET', $url, [
         	'query' => $query,
         	'headers' => $headers,
         ]
         );
         
-        $response = json_decode($response->getBody(), true);
+        if($response->getStatusCode() != 200){
+        	var_dump(json_encode($url));
+        	var_dump(json_encode($response->getBody()));
+        	die;
+        }
         
+        $response = json_decode($response->getBody(), true);
+                
         //var_dump($response);
         /* @todo this should look to al @id keus not just the main root */
         if(array_key_exists('_embedded',$response)){
 	        foreach($response['_embedded'] as $key => $embedded){
 	        	if($embedded['@id']){
-	        		$response['_embedded'][$key]['@id'] = $parsedUrl["host"].$embedded['@id'];
+	        		$response['_embedded'][$key]['@id'] = 'https://'.$parsedUrl["host"].$embedded['@id'];
 		        }
 	        }
         }
@@ -125,9 +134,10 @@ class CommonGroundService
         $headers = $this->headers;
         $headers['X-NLX-Request-Subject-Identifier'] = $url;
         
+        // Cashing
         $item = $this->cash->getItem('commonground_'.md5($url));
         if ($item->isHit() && !$force) {
-            //return $item->get();
+            return $item->get();
         }
 
         $response = $this->client->request('GET', $url, [
@@ -135,16 +145,26 @@ class CommonGroundService
         	'headers' => $headers,
         ]
         );
+        
+        if($response->getStatusCode() != 200){
+        	var_dump(json_encode($url));
+        	var_dump(json_encode($response->getBody()));
+        	die;
+        }
 
         $response = json_decode($response->getBody(), true);
-
-        if($response['@id']){
-        	$response['@id'] = $parsedUrl["host"].$response['@id'];
+        
+        if(array_key_exists ('@id', $response) && $response['@id']){
+        	$response['@id'] = 'https://'.$parsedUrl["host"].$response['@id'];
         }
         
-        $item->set($response);
-        $item->expiresAt(new \DateTime('tomorrow'));
-        $this->cash->save($item);
+        
+        // Lets cash this item for speed purposes
+        if(array_key_exists ('@id', $response) && $response['@id']){
+        	$item->set($response);
+        	$item->expiresAt(new \DateTime('tomorrow'));
+        	$this->cash->save($item);
+        }
 
         return $response;
     }
@@ -159,6 +179,9 @@ class CommonGroundService
         }
         $parsedUrl = parse_url($url);
         
+        // To work with NLX we need a couple of default headers
+        $headers = $this->headers;
+        
         unset($resource['@context']);
         unset($resource['@id']);
         unset($resource['@type']);
@@ -167,7 +190,8 @@ class CommonGroundService
         unset($resource['_embedded']);
 
         $response = $this->client->request('PUT', $url, [
-            'body' => json_encode($resource),
+        		'body' => json_encode($resource),
+        		'headers' => $headers,
         ]
         		);
         
@@ -180,15 +204,17 @@ class CommonGroundService
 
         $response = json_decode($response->getBody(), true);
         
-        if($response['@id']){
-        	$response['@id'] = $parsedUrl["host"].$response['@id'];
+        if(array_key_exists ('@id', $response) && $response['@id']){
+        	$response['@id'] = 'https://'.$parsedUrl["host"].$response['@id'];
         }
-
+        
         // Lets cash this item for speed purposes
-        $item = $this->cash->getItem('commonground_'.md5($url));
-        $item->set($response);
-        $item->expiresAt(new \DateTime('tomorrow'));
-        $this->cash->save($item);
+        if(array_key_exists ('@id', $response) && $response['@id']){
+        	$item = $this->cash->getItem('commonground_'.md5($response['@id']));
+        	$item->set($response);
+        	$item->expiresAt(new \DateTime('tomorrow'));
+        	$this->cash->save($item);
+        }
 
         return $response;
     }
@@ -202,32 +228,38 @@ class CommonGroundService
             return false;
         }
         $parsedUrl = parse_url($url);
-
+        
+        // To work with NLX we need a couple of default headers
+        $headers = $this->headers;
+        
         $response = $this->client->request('POST', $url, [
-            'body' => json_encode($resource),
-        ]
+        		'body' => json_encode($resource),
+        		'headers' => $headers,
+        	]
         );
 
         
         if($response->getStatusCode() != 201){
         	var_dump(json_encode($resource));
         	var_dump(json_encode($url));
+        	var_dump($headers);
         	var_dump($response->getBody());
         	die;
-        }
-        
+       }
         
         $response = json_decode($response->getBody(), true);
         
-        if($response['@id']){
-        	$response['@id'] = $parsedUrl["host"].$response['@id'];
+        if(array_key_exists ('@id', $response) && $response['@id']){
+        	$response['@id'] = 'https://'.$parsedUrl["host"].$response['@id'];
         }
 
         // Lets cash this item for speed purposes
-        $item = $this->cash->getItem('commonground_'.md5($url.'/'.$response['id']));
-        $item->set($response);
-        $item->expiresAt(new \DateTime('tomorrow'));
-        $this->cash->save($item);
+        if(array_key_exists ('@id', $response) && $response['@id']){
+        	$item = $this->cash->getItem('commonground_'.md5($response['@id']));
+	        $item->set($response);
+	        $item->expiresAt(new \DateTime('tomorrow'));
+	        $this->cash->save($item);
+        }
 
         return $response;
     }
@@ -235,7 +267,7 @@ class CommonGroundService
     /*
      * Get a single resource from a common ground componant
      */
-    public function clearCash($url)
+    public function clearCash($resource)
     {
     }
 

@@ -27,10 +27,10 @@ class ProductenController extends AbstractController
 	public function indexAction(Session $session, Request $request, CommonGroundService $commonGroundService)
     {
 		// Wat doen we hier eigenlijk met organizations en groups?
-    	$organizations = $commonGroundService->getResourceList('https://cc.zaakonline.nl/organizations',["name"=>"fc"]);
-    	$groups = $commonGroundService->getResourceList('https://pdc.larping.online/groups',["sourceOrganization"=>"816802828"]);
-    	$products = $commonGroundService->getResourceList('https://pdc.larping.online/products?sourceOrganization=816802828');
-
+    	$organizations = []; // $commonGroundService->getResourceList('https://cc.larping.online/organizations',["name"=>"fc"]);
+    	$groups =   []; // $commonGroundService->getResourceList('https://pdc.larping.online/groups',["sourceOrganization"=>"816802828"]);
+    	$products = $commonGroundService->getResourceList('https://pdc.larping.eu/products',["sourceOrganization"=>"816802828"]);
+    	
     	$orderUri = $session->get('order');
     	$order = false; // Aangezien we de order variable aan hettemplate passeeren moetdie zowiezo bestaan
     	if($orderUri){
@@ -41,42 +41,59 @@ class ProductenController extends AbstractController
     	// Kijken of het formulier is getriggerd
     	if ($request->isMethod('POST')){
     		// kijken of er in de sessie al een order zit, zo nee order aan maken. We slaan hier alleen de order ID (URI) op. Het bijhouden van het order object laten we via de commonground controller aan de cache
-    		if(!$orderUri){
-
+    	
+    		//if(!$orderUri){
+    			
+    			$contact = [];
+    			$contact['givenName'] = 'voornaam';
+    			$contact['additionalName'] = 'tussenvoegsel';
+    			$contact['familyName'] = 'achternaam';
+    			$contact['sourceOrganization'] = '816802828'; // Ditmoet de RSIN van zijn
+    			$contact = $commonGroundService->createResource($contact, 'https://cc.larping.eu/people');
+    			
     			$order = [];
-    			$order['targetOrganization'] = '122432234'; // Ditmoet de RSIN van zijn
+    			$order['targetOrganization'] = '816802828'; // Ditmoet de RSIN van zijn
     			$order['name'] = 'Website Order';
-
-    			$order = $commonGroundService->createResource($order, 'https://orc.larping.online/orders');
+    			$order['customer'] = $contact['@id']; // Deze zou leeg moeten mogen zijn
+    			$order['stage'] = 'cart'; // Deze zou leeg moeten mogen zijn
+    			
+    			$order = $commonGroundService->createResource($order, 'https://orc.larping.eu/orders');
     			$orderUri = $order['@id'];
     			$session->set('order', $orderUri);
-    		}
-
-    		// order regel aanmaken op order met de gevraagde gegevens
-            $orderPrice = 0;
-    		foreach($request->request->get('offers') as $offer)
-    		{
-                $orderItem= [];
-                $orderItem['order'] = $order['@id']; // de vraag is of we hier de baseurl zouden moeten strippen via php pathinfo
-                $orderItem['offer'] = $offer; // etc
-
-                $offer = $commonGroundService->getResource($offer, 'https://pdc.larping.online/offers');
-
-                $orderItem['quantity'] = 1;
-                $orderItem['price'] = $offer['price'];
-                $orderPrice += $offer['price']; //dit wordt rommelig bij verschillende currencies
-                $orderItem['priceCurrency'] = $offer['priceCurrency'];
-                //$orderItem['tax'] = $offer['taxes']; //dit gaat zo niet werken, de taxes in onze offers zijn wellicht een voorbeeld van hoe het moet, maar maken communicatie met de andere componenten lastig zolang dat niet gelijk is
-                $orderItem = $commonGroundService->createResource($orderItem, 'https://orc.larping.online/orderItems'); // diedit uit mijn hoofd dus weet niet of het werkelijk order lines is
-    		}
+    		//}
+    		            
+            if($request->request->get('offers')){
+	    		foreach($request->request->get('offers') as $offer)
+	    		{
+	    			// Dit is lelijk, eigenlijk zou de offer id an zich al een uri moeten zijn
+	    			$offer = $commonGroundService->getResource($offer);
+	    			
+	    			// we need to parse the @id becouse this is an component internar reference
+	    			$parsedId = parse_url($order['@id']);	    		
+	    			
+	                $orderItem= [];
+	                $orderItem['order'] = $parsedId['path']; 
+	                $orderItem['offer'] = $offer['@id']; 
+	                $orderItem['name'] =$offer['name'];
+	                $orderItem['description'] = $offer['description'];
+	                $orderItem['quantity'] = 1;
+	                $orderItem['price'] = number_format($offer['price']/100, 2, '.', ' '); // hier gaat iets mis dat dit nodig is
+	                $orderItem['priceCurrency'] = $offer['priceCurrency'];
+	                //$orderItem['taxPercentage'] = $offer['taxes'][0]['percentage']; // Taxes in orders en invoices moet worden bijgewerkt
+	                $orderItem['taxPercentage'] = 0; /*@todo dit moet dus nog worden gefixed */
+	
+	                /*@todo wtf gebruikt het orc snake case?*/
+	                $orderItem = $commonGroundService->createResource($orderItem, 'https://orc.larping.eu/order_items'); 
+	    		}
+            }
     		// Omdat we een order line hebben toegeveogd willen we het order opnieuw ophalen EN een cash refresh afdwingen
     		$order = $commonGroundService->getResource($orderUri, true);
-    		$order['price'] = $orderPrice;
-    		$order['priceCurrency'] = $orderItem['priceCurrency'];
-            $order = $commonGroundService->updateResource($order, 'https://orc.larping.online/orders');
-
+    		
     		// flashban zetten met eindresultaat
     		$this->addFlash('success', 'Uw product is toegevoegd');
+    		
+    		
+    		return $this->redirect($this->generateUrl('app_producten_betalen'));
     	}
 
     	return ['organisations'=>$organizations,'groups'=>$groups,'products'=> $products,'order'=> $order, $this->redirect('producten')];
@@ -88,58 +105,34 @@ class ProductenController extends AbstractController
      */
     public function betalenAction(Session $session, Request $request, CommonGroundService $commonGroundService)
     {
+    	// Als we geen order hebbenkunnen we logischerwijs ook geen betaling verwerken
     	$orderUri = $session->get('order');
-    	$order = false; // Aangezien we de order variable aan het template passeren moet die sowieso bestaan
     	if($orderUri){
     		$order = $commonGroundService->getResource($orderUri);
+    		$contact = $commonGroundService->getResource($order['customer']);
+    	}
+    	else{
+    		return $this->redirect($this->generateUrl('app_producten_index'));    		
     	}
 
     	// Kijken of het formulier is getriggerd
     	if($request->isMethod('POST')){
     		// contact persoon aanmaken op order
-    		$contact = [];
-    		$contact['givenName'] = 'voornaam'; // etc
-    		$contact['additionalName'] = ''; //n/a
-    		$contact['familyName'] = 'tussenvoegsel'.'achternaam';
 
-            $address = [
-    		    'street'            =>  '',
-                'houseNumber'       =>  '',
-                'houseNumberSuffix' =>  '',
-                'postalCode'        =>  '',
-                'locality'          =>  '',
-                ];
-            $address= $commonGroundService->createResource($address, 'https://cc.larping.online/addresses');
-            $email = [
-                'name'  =>  'e-mail 1',
-                'email' =>  '',
-            ];
-            $email = $commonGroundService->createResource($email, 'https://cc.larping.online/emails');
-            $telephone = [
-                'name'  =>  'phone number 1',
-                'telephone' =>  '',
-            ];
-            $telephone = $commonGroundService->createResource($telephone, 'https://cc.larping.online/telephone');
-            $contact['addresses'][0] = $address['@id'];
-            $contact['emails'][0] = $email['@id'];
-            $contact['telephones'][0] = $telephone['@id'];
-            $contact= $commonGroundService->createResource($contact, 'https://cc.larping.online/people');
-
-            $order['remarks'] = '';
-            $order['customer'] = $contact['@id'];
-
+    		$order['remarks'] = $request->request->get('offers');
+    		
     		// order updaten
     		$order = $commonGroundService->updateResource($order);
 
     		// order naar bc sturen
-    		$invoice= $commonGroundService->createResource($order, 'https://bc.larping.online/invoice/order'); //10 minuten klusje, maar hiervoor moet pre validate wss naar pre deserialize
+    		$invoice= $commonGroundService->createResource($order, 'https://bc.larping.eu/invoice/order'); //10 minuten klusje, maar hiervoor moet pre validate was naar pre deserialize
     		$session->set('invoice',$invoice['@id']);
 
     		// gebruikerdoorsturen naar terug gegeven responce
     		return $this->redirect($invoice['paymentUrl']);
     	}
-
-    	return ['order'=>$order,$this->redirect('producten/betalen')];
+    	
+    	return ['order'=>$order,'contact'=>$contact];
     }
 
     /**
@@ -149,7 +142,7 @@ class ProductenController extends AbstractController
     public function bevestigingAction(Session $session, Request $request, CommonGroundService $commonGroundService, $uuid)
     {
     	// Factuur ophalen aan de hand van id
-    	$invoice = $commonGroundService->getResource('https://bc.larping.online/invoices/'.$uuid);
+    	$invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/'.$uuid);
 
     	// We willen voorkomen dat je via deze route elke factuur kan opvragen
     	if($invoice['@id'] != $session->get('invoice')){
@@ -160,7 +153,11 @@ class ProductenController extends AbstractController
     	$template = $commonGroundService->getResource('https://wrc.larping.online/templates/??????/render',["invoice"=>$invoice]);
 
     	// mail versturen
+    	
+    	// Clear the session for a new order
+    	$session->remove('order');
+    	$session->remove('invoice');
 
-    	return ['invoice'=>$invoice, $this->redirect('producten/betalen/bevestiging')];
+    	return ['invoice'=>$invoice];
     }
 }

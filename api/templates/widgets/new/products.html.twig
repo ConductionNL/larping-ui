@@ -62,10 +62,8 @@
                     {% for offer in product.offers %}
 
                         <div class="row my-8">
-                            <div class="col-md-3">
-                                <input style="height: 35px !important;" class="form-control" name="offer"
-                                       type="checkbox"
-                                       value="{{ offer.id }}[]">
+                            <div class="col-md-3"> 
+                                <input style="height: 35px !important;" class="form-control" name="offers[]"  id="offers[]" type="checkbox" value="https://pdc.larping.online{{ offer['@id'] }}">
                             </div>
                             <!-- ./col -->
                             <div class="col-md-9 my-auto">
