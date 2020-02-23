@@ -13,7 +13,7 @@
                 <form>
 
                     <div style="margin-top: 20px" class="custom-container row ">
-
+                        <form action="{{ path('app_producten_betalen') }}" method="post" ></form>
                         <div class="col-md-6 payment-summary">
                             <div class="bg-white p-5 rounded border">
                                 <h3 style="margin-bottom: 40px !important;" class="font-weight-normal mb-4">
@@ -59,7 +59,7 @@
                                 </div>
 
                                 <div class="text-align-center">
-                                    <a href="{{ path('app_producten_bevestiging') }}" class="btn btn-primary">
+                                    <a href="{{ path('app_producten_bevestiging', {'uuid': order.id}) }}" class="btn btn-primary">
                                         Afrekenen</a>
                                 </div>
 
@@ -69,28 +69,18 @@
                         <div class="col-md-6 payment-form">
                             <div class="bg-white p-5 rounded border">
                                 <h3 class="font-weight-normal mb-4">Uw gegevens</h3>
-
-                                <h3 class="h4 font-weight-normal mb-4 mt-7">Persoonsgegevens</h3>
-
-                                <div class="row">
-
-                                    <div class="form-group col-md-12">
-                                        <label for="inputtext"><b>Is dit uw eerste keer dat u meedoet aan een larp
-                                                event?*</b></label>
-                                        <select class="form-control">
-                                            <option>Ja</option>
-                                            <option>Nee</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                
+                                <h3 class="h4 font-weight-normal mb-4 mt-7">Order gegeven</h3>
 
                                 <div class="row">
 
                                     <div class="form-group col-md-12">
-                                        <label for="inputtext"><b>PLIN*</b></label>
+                                        <label for="inputtext"><b>Opmerkingen (zo als pli)</b></label>
                                         <input type="text" class="form-control" id="inputtext" placeholder="">
                                     </div>
                                 </div>
+
+                                <h3 class="h4 font-weight-normal mb-4 mt-7">Persoonsgegevens</h3>
 
                                 <div class="row">
 
