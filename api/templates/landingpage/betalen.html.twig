@@ -19,31 +19,33 @@
                                 <h3 style="margin-bottom: 40px !important;" class="font-weight-normal mb-4">
                                     Betaaloverzicht</h3>
 
-                                {% for order in order %}
+                                {# for order in order #}
 
                                 <table class="table table-hover text-align-center">
                                     <thead>
                                     <tr>
                                         <th class="sum-first-child">Product</th>
-                                        <th>Quantiteit</th>
+                                        <th>Aantal</th>
                                         <th>Prijs</th>
                                     </tr>
                                     </thead>
+                                    {%  for item in order.items %}
                                     <tr>
-                                        <td class="sum-first-child">{{ order.item.name }}</td>
-                                        <td>{{ order.item.name }}</td>
-                                        <td>{{  }}</td>
+                                        <td class="sum-first-child">{{ item.name }}</td>
+                                        <td>{{ item.quantity }}</td>
+                                        <td>&euro; {{ item.price }},-</td>
                                     </tr>
+                                    {% endfor %}
                                     <tfoot>
                                     <tr>
                                         <td></td>
                                         <td style="text-align: right"><b>Totaal:</b></td>
-                                        <td style="color: black"><b>€ {{ order.price }},-</b></td>
+                                        <td style="color: black"><b>&euro; {{ order.price }},-</b></td>
                                     </tr>
                                     </tfoot>
                                 </table>
 
-                                {% endfor %}
+                                {#endfor #}
 
                                 <div class="form-group mb-6">
                                     <div class="checkbox">
