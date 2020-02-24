@@ -22,6 +22,6 @@ class DefaultController extends AbstractController
     	$organizations = $commonGroundService->getResourceList('https://cc.zaakonline.nl/organizations',["name"=>"fc"]);
     	$groups = $commonGroundService->getResourceList('https://pdc.zaakonline.nl/groups',["sourceOrganization"=>"002851234"]);
 
-    	return $this->redirect('../');
+    	return [];
     }
 }
