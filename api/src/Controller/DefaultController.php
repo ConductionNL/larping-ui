@@ -19,9 +19,9 @@ class DefaultController extends AbstractController
      */
 	public function indexAction(Request $request, CommonGroundService $commonGroundService)
     {
-    	$organizations = $commonGroundService->getResourceList('https://cc.zaakonline.nl/organizations',["name"=>"fc"]);
-    	$groups = $commonGroundService->getResourceList('https://pdc.zaakonline.nl/groups',["sourceOrganization"=>"002851234"]);
-
-    	return [];
+    	$organizations = $commonGroundService->getResourceList('https://cc.larping.eu/organizations');
+    	$groups = $commonGroundService->getResourceList('https://pdc.larping.eu');
+    	
+    	return ['organizations'=>$organizations,'groups'=>$groups];
     }
 }
