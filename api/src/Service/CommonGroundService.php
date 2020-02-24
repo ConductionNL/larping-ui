@@ -147,6 +147,7 @@ class CommonGroundService
         );
         
         if($response->getStatusCode() != 200){
+        	var_dump('get');
         	var_dump(json_encode($url));
         	var_dump(json_encode($response->getBody()));
         	die;
@@ -175,7 +176,7 @@ class CommonGroundService
     public function updateResource($resource, $url = null)
     {
         if (!$url) {
-            return false;
+        	$url = $resource['@id'];
         }
         $parsedUrl = parse_url($url);
         
@@ -196,6 +197,7 @@ class CommonGroundService
         		);
         
         if($response->getStatusCode() != 200){
+        	var_dump('update');
         	var_dump(json_encode($resource));
         	var_dump(json_encode($url));
         	var_dump(json_encode($response->getBody()));
@@ -224,14 +226,14 @@ class CommonGroundService
      */
     public function createResource($resource, $url = null)
     {
-        if (!$url) {
-            return false;
+    	if (!$url) {
+    		$url = $resource['@id'];
         }
         $parsedUrl = parse_url($url);
         
         // To work with NLX we need a couple of default headers
         $headers = $this->headers;
-        
+                
         $response = $this->client->request('POST', $url, [
         		'body' => json_encode($resource),
         		'headers' => $headers,
@@ -239,7 +241,8 @@ class CommonGroundService
         );
 
         
-        if($response->getStatusCode() != 201){
+        if($response->getStatusCode() != 201 && $response->getStatusCode() != 200){
+        	var_dump('create returned '.$response->getStatusCode());
         	var_dump(json_encode($resource));
         	var_dump(json_encode($url));
         	var_dump($headers);
