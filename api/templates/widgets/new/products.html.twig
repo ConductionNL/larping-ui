@@ -13,7 +13,7 @@
             <div style="border-top: 1px solid #e5e5e5;" class="card card-list mt-4 border-bottom-0">
                 <div class="row">
                     <div class="col-md-3">
-                        <img style="border-radius: 4px" src="https://picsum.photos/200/150" width="100%" height="100%"
+                        <img style="border-radius: 4px" src="{{ product.logo }}" width="200px" height="150px"
                              alt="things-4">
                     </div><!-- ./col -->
                     <div class="col-md-9 my-auto">
@@ -52,7 +52,7 @@
                     {% for offer in product.offers %}
 
                         <div class="row my-8">
-                            <div class="col-md-3"> 
+                            <div class="col-md-3">
                                 <input style="height: 35px !important;" class="form-control" name="offers[]"  id="offers[]" type="checkbox" value="https://pdc.larping.eu{{ offer['@id'] }}">
                             </div>
                             <!-- ./col -->
