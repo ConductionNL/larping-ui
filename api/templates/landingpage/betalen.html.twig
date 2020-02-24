@@ -19,6 +19,8 @@
                                 <h3 style="margin-bottom: 40px !important;" class="font-weight-normal mb-4">
                                     Betaaloverzicht</h3>
 
+                                {% for order in order %}
+
                                 <table class="table table-hover text-align-center">
                                     <thead>
                                     <tr>
@@ -28,23 +30,20 @@
                                     </tr>
                                     </thead>
                                     <tr>
-                                        <td class="sum-first-child">Event</td>
-                                        <td>2</td>
-                                        <td>€ 78.98,-</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="sum-first-child">Event 2</td>
-                                        <td>1</td>
-                                        <td>€ 34.99,-</td>
+                                        <td class="sum-first-child">{{ order.item.name }}</td>
+                                        <td>{{ order.item.name }}</td>
+                                        <td>{{  }}</td>
                                     </tr>
                                     <tfoot>
                                     <tr>
                                         <td></td>
                                         <td style="text-align: right"><b>Totaal:</b></td>
-                                        <td style="color: black"><b>€ 113.97,-</b></td>
+                                        <td style="color: black"><b>€ {{ order.price }},-</b></td>
                                     </tr>
                                     </tfoot>
                                 </table>
+
+                                {% endfor %}
 
                                 <div class="form-group mb-6">
                                     <div class="checkbox">
