@@ -40,12 +40,6 @@ spec:
           - backend:
               serviceName: {{ include "name" . }}
               servicePort: 80
-    - host: www.{{ .Values.settings.domain }}
-      http:
-        paths:
-          - backend:
-              serviceName: {{ include "name" . }}
-              servicePort: 80
     {{- else }}      
     - host: {{ .Values.settings.env }}.{{ .Values.settings.domain }}
       http:
@@ -54,4 +48,3 @@ spec:
               serviceName: {{ include "name" . }}
               servicePort: 80
      {{- end }}
-  {{- end }}
