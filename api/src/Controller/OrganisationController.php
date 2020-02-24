@@ -19,12 +19,12 @@ use App\Service\OrganisationService;
  */
 class OrganisationController extends AbstractController
 {
-    /**
-	* @Route("/")
- 	* @Template
-	*/
-	public function indexAction(Request $request, EntityManagerInterface $em)
-	{
-		return [];
-	}
+//    /**
+//	* @Route("/")
+// 	* @Template
+//	*/
+//	public function indexAction(Request $request, EntityManagerInterface $em)
+//	{
+//		return [];
+//	}
 }
