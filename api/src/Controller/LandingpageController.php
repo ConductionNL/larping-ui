@@ -41,8 +41,6 @@ class LandingpageController extends AbstractController
         if ($request->isMethod('POST')){
             // kijken of er in de sessie al een order zit, zo nee order aan maken. We slaan hier alleen de order ID (URI) op. Het bijhouden van het order object laten we via de commonground controller aan de cache
 
-            //if(!$orderUri){
-
             $contact = [];
             $contact['givenName'] = 'voornaam';
             $contact['additionalName'] = 'tussenvoegsel';
@@ -55,11 +53,7 @@ class LandingpageController extends AbstractController
             $order['name'] = 'Website Order';
             $order['customer'] = $contact['@id']; // Deze zou leeg moeten mogen zijn
             $order['stage'] = 'cart'; // Deze zou leeg moeten mogen zijn
-
-            $order = $commonGroundService->createResource($order, 'https://orc.larping.eu/orders');
-            $orderUri = $order['@id'];
-            $session->set('order', $orderUri);
-            //}
+            $order['items'] = [];
 
             if($request->request->get('offers')){
                 foreach($request->request->get('offers') as $offer)
@@ -67,13 +61,9 @@ class LandingpageController extends AbstractController
                     // Dit is lelijk, eigenlijk zou de offer id an zich al een uri moeten zijn
                     $offer = $commonGroundService->getResource($offer);
 
-                    // we need to parse the @id becouse this is an component internar reference
-                    $parsedId = parse_url($order['@id']);
-
                     $orderItem= [];
-                    $orderItem['order'] = $parsedId['path'];
                     $orderItem['offer'] = $offer['@id'];
-                    $orderItem['name'] =$offer['name'];
+                    $orderItem['name'] =  $offer['name'];
                     $orderItem['description'] = $offer['description'];
                     $orderItem['quantity'] = 1;
                     $orderItem['price'] = number_format($offer['price']/100, 2, '.', ' '); // hier gaat iets mis dat dit nodig is
@@ -82,15 +72,18 @@ class LandingpageController extends AbstractController
                     $orderItem['taxPercentage'] = 0; /*@todo dit moet dus nog worden gefixed */
 
                     /*@todo wtf gebruikt het orc snake case?*/
-                    $orderItem = $commonGroundService->createResource($orderItem, 'https://orc.larping.eu/order_items');
+                    //$orderItem = $commonGroundService->createResource($orderItem, 'https://orc.larping.eu/order_items');
+                    $order['items'][] = $orderItem;
                 }
             }
-            // Omdat we een order line hebben toegeveogd willen we het order opnieuw ophalen EN een cash refresh afdwingen
-            $order = $commonGroundService->getResource($orderUri, true);
+            // Omdat we een order line hebben toegeveogd willen we het order opnieuw ophalen EN een cash refresh afdwingen            
+            $order = $commonGroundService->createResource($order, 'https://orc.larping.eu/orders');
+            $orderUri = $order['@id'];
+            $session->set('order', $orderUri);
 
             // flashban zetten met eindresultaat
             $this->addFlash('success', 'Uw product is toegevoegd');
-
+            
 
             return $this->redirect($this->generateUrl('app_landingpage_betalen'));
         }
@@ -123,6 +116,7 @@ class LandingpageController extends AbstractController
             // order updaten
            // $order = $commonGroundService->updateResource($order);
            
+        	
         	if(!$order['description']){
         		$order['description'] = "Order ".$order['reference'];
         	}
