@@ -175,7 +175,7 @@ class CommonGroundService
     public function updateResource($resource, $url = null)
     {
         if (!$url) {
-            return false;
+        	$url = $resource['@id'];
         }
         $parsedUrl = parse_url($url);
         
@@ -224,8 +224,8 @@ class CommonGroundService
      */
     public function createResource($resource, $url = null)
     {
-        if (!$url) {
-            return false;
+    	if (!$url) {
+    		$url = $resource['@id'];
         }
         $parsedUrl = parse_url($url);
         
