@@ -27,8 +27,8 @@ class ProductenController extends AbstractController
 	public function indexAction(Session $session, Request $request, CommonGroundService $commonGroundService)
     {
 		// Wat doen we hier eigenlijk met organizations en groups?
-    	$organizations = []; // $commonGroundService->getResourceList('https://cc.larping.online/organizations',["name"=>"fc"]);
-    	$groups =   []; // $commonGroundService->getResourceList('https://pdc.larping.online/groups',["sourceOrganization"=>"816802828"]);
+    	$organizations = []; // $commonGroundService->getResourceList('https://cc.larping.eu/organizations',["name"=>"fc"]);
+    	$groups =   []; // $commonGroundService->getResourceList('https://pdc.larping.eu/groups',["sourceOrganization"=>"816802828"]);
     	$products = $commonGroundService->getResourceList('https://pdc.larping.eu/products',["sourceOrganization"=>"816802828"]);
     	
     	$orderUri = $session->get('order');
@@ -42,8 +42,7 @@ class ProductenController extends AbstractController
     	if ($request->isMethod('POST')){
     		// kijken of er in de sessie al een order zit, zo nee order aan maken. We slaan hier alleen de order ID (URI) op. Het bijhouden van het order object laten we via de commonground controller aan de cache
     	
-    		//if(!$orderUri){
-    			
+    		//if(!$orderUri){    			
     			$contact = [];
     			$contact['givenName'] = 'voornaam';
     			$contact['additionalName'] = 'tussenvoegsel';
@@ -60,6 +59,7 @@ class ProductenController extends AbstractController
     			$order = $commonGroundService->createResource($order, 'https://orc.larping.eu/orders');
     			$orderUri = $order['@id'];
     			$session->set('order', $orderUri);
+    			
     		//}
     		            
             if($request->request->get('offers')){
@@ -67,7 +67,7 @@ class ProductenController extends AbstractController
 	    		{
 	    			// Dit is lelijk, eigenlijk zou de offer id an zich al een uri moeten zijn
 	    			$offer = $commonGroundService->getResource($offer);
-	    			
+	    				    			
 	    			// we need to parse the @id becouse this is an component internar reference
 	    			$parsedId = parse_url($order['@id']);	    		
 	    			
@@ -80,9 +80,7 @@ class ProductenController extends AbstractController
 	                $orderItem['price'] = number_format($offer['price']/100, 2, '.', ' '); // hier gaat iets mis dat dit nodig is
 	                $orderItem['priceCurrency'] = $offer['priceCurrency'];
 	                //$orderItem['taxPercentage'] = $offer['taxes'][0]['percentage']; // Taxes in orders en invoices moet worden bijgewerkt
-	                $orderItem['taxPercentage'] = 0; /*@todo dit moet dus nog worden gefixed */
 	
-	                /*@todo wtf gebruikt het orc snake case?*/
 	                $orderItem = $commonGroundService->createResource($orderItem, 'https://orc.larping.eu/order_items'); 
 	    		}
             }
@@ -119,15 +117,20 @@ class ProductenController extends AbstractController
     	if($request->isMethod('POST')){
     		// contact persoon aanmaken op order
 
-    		$order['remarks'] = $request->request->get('offers');
+    		//$order['remarks'] = $request->request->get("remarks");
+    		if(!$order['description']){
+    			$order['description'] = 'Ja halo';
+	    	}
     		
     		// order updaten
-    		$order = $commonGroundService->updateResource($order);
+    		//$order = $commonGroundService->updateResource($order);
 
     		// order naar bc sturen
-    		$invoice= $commonGroundService->createResource($order, 'https://bc.larping.eu/invoice/order'); //10 minuten klusje, maar hiervoor moet pre validate was naar pre deserialize
-    		$session->set('invoice',$invoice['@id']);
-
+    		$invoice = $commonGroundService->createResource($order, 'https://bc.larping.eu/order'); 
+    		//$session->set('invoice',$invoice['@id']);
+    		
+    		//var_dump($invoice);
+    		//die;
     		// gebruikerdoorsturen naar terug gegeven responce
     		return $this->redirect($invoice['paymentUrl']);
     	}
@@ -150,7 +153,7 @@ class ProductenController extends AbstractController
     	}
 
     	// info renderen
-    	$template = $commonGroundService->getResource('https://wrc.larping.online/templates/??????/render',["invoice"=>$invoice]);
+    	$template = $commonGroundService->getResource('https://wrc.larping.eu/templates/??????/render',["invoice"=>$invoice]);
 
     	// mail versturen
     	
