@@ -19,48 +19,48 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class AdminController extends AbstractController
 {
 
-	/**
-	* @Route("/")
- 	* @Template
-	*/
-	public function indexAction(Request $request, EntityManagerInterface $em)
-	{
-	    return[];
-	}
-
-    /**
-     * @Route("/dashboard")
-     * @Template
-     */
-    public function dashboardAction(Request $request, EntityManagerInterface $em)
-    {
-        return[];
-    }
-
-    /**
-     * @Route("/all-events")
-     * @Template
-     */
-    public function alleventsAction(Request $request, EntityManagerInterface $em)
-    {
-        return[];
-    }
-
-    /**
-     * @Route("/all-users")
-     * @Template
-     */
-    public function allusersAction(Request $request, EntityManagerInterface $em)
-    {
-        return[];
-    }
-
-    /**
-     * @Route("/all-organisations")
-     * @Template
-     */
-    public function allorganisationsAction(Request $request, EntityManagerInterface $em)
-    {
-        return[];
-    }
+//	/**
+//	* @Route("/")
+// 	* @Template
+//	*/
+//	public function indexAction(Request $request, EntityManagerInterface $em)
+//	{
+//	    return[];
+//	}
+//
+//    /**
+//     * @Route("/dashboard")
+//     * @Template
+//     */
+//    public function dashboardAction(Request $request, EntityManagerInterface $em)
+//    {
+//        return[];
+//    }
+//
+//    /**
+//     * @Route("/all-events")
+//     * @Template
+//     */
+//    public function alleventsAction(Request $request, EntityManagerInterface $em)
+//    {
+//        return[];
+//    }
+//
+//    /**
+//     * @Route("/all-users")
+//     * @Template
+//     */
+//    public function allusersAction(Request $request, EntityManagerInterface $em)
+//    {
+//        return[];
+//    }
+//
+//    /**
+//     * @Route("/all-organisations")
+//     * @Template
+//     */
+//    public function allorganisationsAction(Request $request, EntityManagerInterface $em)
+//    {
+//        return[];
+//    }
 }

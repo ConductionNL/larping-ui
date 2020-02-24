@@ -57,12 +57,12 @@
 
             <div id="{{ product.sku }}" style="border-top: 1px solid #f5f5f5;" class="collapse card card-list ">
 
-                <form action="{{ path('app_producten_index') }}" method="post">
+                <form action="{{ path('app_landingpage_index') }}" method="post">
 
                     {% for offer in product.offers %}
 
                         <div class="row my-8">
-                            <div class="col-md-3"> 
+                            <div class="col-md-3">
                                 <input style="height: 35px !important;" class="form-control" name="offers[]"  id="offers[]" type="checkbox" value="https://pdc.larping.online{{ offer['@id'] }}">
                             </div>
                             <!-- ./col -->
