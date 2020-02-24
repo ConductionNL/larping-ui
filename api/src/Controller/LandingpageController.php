@@ -76,14 +76,14 @@ class LandingpageController extends AbstractController
                     $order['items'][] = $orderItem;
                 }
             }
-            // Omdat we een order line hebben toegeveogd willen we het order opnieuw ophalen EN een cash refresh afdwingen            
+            // Omdat we een order line hebben toegeveogd willen we het order opnieuw ophalen EN een cash refresh afdwingen
             $order = $commonGroundService->createResource($order, 'https://orc.larping.eu/orders');
             $orderUri = $order['@id'];
             $session->set('order', $orderUri);
 
             // flashban zetten met eindresultaat
             $this->addFlash('success', 'Uw product is toegevoegd');
-            
+
 
             return $this->redirect($this->generateUrl('app_landingpage_betalen'));
         }
@@ -106,7 +106,6 @@ class LandingpageController extends AbstractController
         else{
             return $this->redirect($this->generateUrl('app_landingpage_index'));
         }
-
         // Kijken of het formulier is getriggerd
         if($request->isMethod('POST')){
             // contact persoon aanmaken op order
