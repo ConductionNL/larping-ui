@@ -118,13 +118,17 @@ class LandingpageController extends AbstractController
         if($request->isMethod('POST')){
             // contact persoon aanmaken op order
 
-            $order['remarks'] = $request->request->get('offers');
+        	// $order['remarks'] = $request->request->get('remarks');
 
             // order updaten
-            $order = $commonGroundService->updateResource($order);
+           // $order = $commonGroundService->updateResource($order);
+           
+        	if(!$order['description']){
+        		$order['description'] = "Order ".$order['reference'];
+        	}
 
             // order naar bc sturen
-            $invoice= $commonGroundService->createResource($order, 'https://bc.larping.eu/invoice/order'); //10 minuten klusje, maar hiervoor moet pre validate was naar pre deserialize
+            $invoice= $commonGroundService->createResource($order, 'https://bc.larping.eu/order');
             $session->set('invoice',$invoice['@id']);
 
             // gebruikerdoorsturen naar terug gegeven responce

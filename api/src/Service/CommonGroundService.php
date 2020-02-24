@@ -147,7 +147,7 @@ class CommonGroundService
         );
         
         if($response->getStatusCode() != 200){
-        	var_dump('get');
+        	var_dump('get returned '.$response->getStatusCode());
         	var_dump(json_encode($url));
         	var_dump(json_encode($response->getBody()));
         	die;
@@ -197,7 +197,7 @@ class CommonGroundService
         		);
         
         if($response->getStatusCode() != 200){
-        	var_dump('update');
+        	var_dump('update returned '.$response->getStatusCode());
         	var_dump(json_encode($resource));
         	var_dump(json_encode($url));
         	var_dump(json_encode($response->getBody()));
