@@ -131,7 +131,7 @@ class LandingpageController extends AbstractController
     }
 
     /**
-     * @Route("/betalen/bevestiging/{uuid}")
+     * @Route("/betalen/bevestigen/{uuid}")
      * @Template
      */
     public function bevestigingAction(Session $session, Request $request, CommonGroundService $commonGroundService, $uuid)
