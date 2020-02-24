@@ -122,7 +122,7 @@ class LandingpageController extends AbstractController
 
             // order updaten
            // $order = $commonGroundService->updateResource($order);
-           
+
         	if(!$order['description']){
         		$order['description'] = "Order ".$order['reference'];
         	}
