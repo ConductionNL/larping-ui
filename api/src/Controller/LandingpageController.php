@@ -128,10 +128,12 @@ class LandingpageController extends AbstractController
 
         	$order['remark'] = $request->request->get('remarks');
             $order['customer'] = $contact['@id'];
+            unset($order["items"]);
+            unset($order["organization"]);
             // order updaten
             $order = $commonGroundService->updateResource($order);
 
-            die;
+//            die;
         	if(!$order['description']){
         		$order['description'] = "Order ".$order['reference'];
         	}
