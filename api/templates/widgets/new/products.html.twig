@@ -1,0 +1,113 @@
+<!-- ====================================
+���	Products
+===================================== -->
+
+<section class="bg-white py-md-2 border mb-10">
+    <div class="container h-100">
+        <div class="search-result-bar mb-0">
+        </div>
+        <!-- ./search -->
+
+        {% for product in products['hydra:member'] %}
+
+            <div style="border-top: 1px solid #e5e5e5;" class="card card-list mt-4 border-bottom-0">
+                <div class="row">
+                    <div class="col-md-3">
+                        <img style="border-radius: 4px" src="{{ product.logo }}" width="200px" height="150px"
+                             alt="things-4">
+                    </div><!-- ./col -->
+                    <div class="col-md-9 my-auto">
+                        <div class="row py-auto">
+                            <div class="col-md-6 py-auto">
+                                <div class="d-flex justify-content-between align-items-center mb-1 mt-1 ">
+                                    <h4 class="card-title mb-0">{{ product.name }}</h4>
+                                </div><!-- ./d-flex -->
+                                <span class="d-block mb-2">{{ product.type|capitalize }} </span>
+                                <p>{{ product.description }}</p>
+                            </div> <!-- ./col -->
+                            <div class="col-md-2 d-flex justify-content-center">
+                                <p class="my-auto">18 Feb 2021</p>
+                            </div> <!-- ./col -->
+                            <div class="col-md-2 d-flex justify-content-center">
+                                <p class="my-auto font-weight-bold color-black">Amsterdam</p>
+                            </div><!-- ./col -->
+                            <div class="col-md-2 d-flex justify-content-center">
+                                <a class="my-auto drop-hover mh-50" role="button" data-toggle="collapse"
+                                   href="#{{ product.sku }}"
+                                   aria-expanded="false"
+                                   aria-controls="event1">
+                                    <p class="color-black"><i style="font-size: 56px; padding-top: 0"
+                                                              class="fa">&#xf107;</i></p>
+                                </a>
+                            </div><!-- ./col -->
+                        </div><!-- ./row -->
+                    </div><!-- ./col -->
+                </div><!-- ./row -->
+            </div> <!-- ./card -->
+
+            <div id="{{ product.sku }}" style="border-top: 1px solid #f5f5f5;" class="collapse card card-list ">
+
+                <form action="{{ path('app_landingpage_index') }}" method="post">
+
+                    {% for offer in product.offers %}
+
+                        <div class="row my-8">
+                            <div class="col-md-3">
+                                <input style="height: 35px !important;" class="form-control" name="offers[]"  id="offers[]" type="checkbox" value="https://pdc.larping.eu{{ offer['@id'] }}">
+                            </div>
+                            <!-- ./col -->
+                            <div class="col-md-9 my-auto">
+                                <div class="row">
+                                    <div class="col-md-6 ">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <h4 class="mb-0">{{ offer.name }}</h4>
+                                        </div><!-- ./d-flex -->
+                                    </div> <!-- ./col -->
+                                    <div class="col-md-2">
+                                    </div><!-- ./col -->
+                                    <div class="col-md-2 d-flex justify-content-center">
+                                        <p class="my-auto font-weight-bold color-black">
+                                            &euro; {{ offer.price/100|number_format(2, '.') }},-</p>
+                                    </div><!-- ./col -->
+                                    <div class="col-md-2">
+                                    </div><!-- ./col -->
+                                </div><!-- ./row -->
+                            </div><!-- ./col -->
+                        </div><!-- ./row -->
+
+                    {% endfor %}
+
+                    <div style="height: 100px" class="row my-5">
+                        <div class="col-md-3">
+                        </div><!-- ./col -->
+                        <div class="col-md-9 my-auto">
+                            <div class="row ">
+                                <div class="col-md-6 ">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <h4 class="mb-0"></h4>
+                                    </div><!-- ./d-flex -->
+                                </div>
+                                <div class="col-md-2">
+                                    <p class="my-auto pt-4 font-weight-bold color-black float-right">Totaal:</p>
+                                </div> <!-- ./col -->
+                                <div class="col-md-2 d-flex justify-content-center border-top">
+                                    <p class="my-auto pt-4 font-weight-bold color-black">?</p>
+                                </div><!-- ./col -->
+                                <div class="col-md-2 d-flex justify-content-center">
+                                    <button type="submit" formmethod="post"
+                                            class="my-auto mh-50 pt-4 add-button form-control"><i
+                                            style="font-size: 36px;border-radius: 4px"
+                                            class="color-limegreen fa fa-plus-square-o"></i></button>
+                                </div><!-- ./col -->
+                            </div><!-- ./row -->
+                        </div> <!-- ./col -->
+                    </div><!-- ./row -->
+                </form>
+            </div><!-- ./card -->
+        {% endfor %}
+    </div> <!-- ./container -->
+</section>
+
+{% block javascripts %}
+
+{% endblock %}
