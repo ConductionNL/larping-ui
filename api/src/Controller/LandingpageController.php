@@ -131,23 +131,65 @@ class LandingpageController extends AbstractController
     }
 
     /**
-     * @Route("/betalen/bevestiging/{uuid}")
+     * @Route("/betalen/bevestigen/{uuid}")
      * @Template
      */
     public function bevestigingAction(Session $session, Request $request, CommonGroundService $commonGroundService, $uuid)
     {
         // Factuur ophalen aan de hand van id
-        $invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/'.$uuid);
+    	$invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/'.$uuid);
 
         // We willen voorkomen dat je via deze route elke factuur kan opvragen
         if($invoice['@id'] != $session->get('invoice')){
             // Throw auth error
         }
+        
+        $order = $commonGroundService->getResource($invoice['order']);
+        $contact = $commonGroundService->getResource($invoice['customer']);
 
-        // info renderen
-        $template = $commonGroundService->getResource('https://wrc.larping.online/templates/??????/render',["invoice"=>$invoice]);
-
+        $variables = ['invoice'=>$invoices,'order'=>$order,'contact'=>$contact];
+        
         // mail versturen
+        $message = [        		
+        		"reciever"=>$invoice['customer'],
+        		"sender"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
+        		"content"=>"https://wrc.larping.eu/templates/cc7d0c70-bb59-4d85-9845-863e896e6ee9",
+        		"service"=>"/services/7d48f13b-f44e-495b-b774-3d4f9b994b09", 
+        		"status"=>"concept",
+        		//"externalServiceId"=>"7d48f13b-f44e-495b-b774-3d4f9b994b09", 
+        		"data"=> $variables
+        ];        
+        $userMail= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
+        $message = [
+        		"reciever"=>$invoice['customer'],
+        		"sender"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
+        		"content"=>"https://wrc.larping.eu/templates/3b96e9bc-1d9c-4701-9554-4a597f01f4bf",
+        		"service"=>"/services/dfb46b45-0737-4500-b8f9-2f791913c8ad", 
+        		"status"=>"concept",
+        		//"externalServiceId"=>"dfb46b45-0737-4500-b8f9-2f791913c8ad", 
+        		"data"=> $variables
+        ];        
+        $userSMS= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
+        $message = [
+        		"reciever"=>$invoice['customer'],
+        		"sender"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
+        		"content"=>"https://wrc.larping.eu/templates/e287f1f4-704e-49e3-8a33-eab955ff2158",
+        		"service"=>"/services/7d48f13b-f44e-495b-b774-3d4f9b994b09", 
+        		"status"=>"concept",
+        		//"externalServiceId"=>"7d48f13b-f44e-495b-b774-3d4f9b994b09",  
+        		"data"=> $variables
+        ];        
+        $organisationMail= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
+        $message = [
+        		"reciever"=>$invoice['customer'],
+        		"sender"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
+        		"content"=>"https://wrc.larping.eu/templates/db583bf1-22ab-47d5-8656-a6faf95a1f7f",
+        		"service"=>"/services/dfb46b45-0737-4500-b8f9-2f791913c8ad", 
+        		"status"=>"concept",
+        		//"externalServiceId"=>"dfb46b45-0737-4500-b8f9-2f791913c8ad", 
+        		"data"=> $variables
+        ];        
+        $organisationSMS= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
 
         // Clear the session for a new order
         $session->remove('order');
