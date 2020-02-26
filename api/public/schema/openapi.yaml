@@ -13,7 +13,6 @@ info:
     - Datamodel: [postman](/schema/larping.postman_collection.json) / [oas](/schema/openapi.yaml) / [pdf](/schema/datamodel.pdf) / [mwb](/schema/datamodel.mwb) 
     
     'Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.'         
-
     
 paths:
   /example_entities:
