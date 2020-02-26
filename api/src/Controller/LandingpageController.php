@@ -106,6 +106,8 @@ class LandingpageController extends AbstractController
         }
         // Kijken of het formulier is getriggerd
         if ($request->isMethod('POST')) {
+
+
             // contact persoon aanmaken op order
             $contact['givenName'] = $request->request->get('givenName');
             $contact['additionalName'] = $request->request->get('additionalName');
@@ -156,6 +158,7 @@ class LandingpageController extends AbstractController
         // Factuur ophalen aan de hand van id
         $invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/' . $uuid);
 
+
         // We willen voorkomen dat je via deze route elke factuur kan opvragen
         if ($invoice['@id'] != $session->get('invoice')) {
             // Throw auth error
@@ -163,6 +166,8 @@ class LandingpageController extends AbstractController
 
         $order = $commonGroundService->getResource($invoice['order']);
         $contact = $commonGroundService->getResource($invoice['customer']);
+
+//        $payments = $commonGroundService->getResource($invoice['payments'][0]);
 
         $variables = ['invoice'=>$invoice,'order'=>$order,'contact'=>$contact];
 
@@ -209,6 +214,8 @@ class LandingpageController extends AbstractController
         $organisationSMS= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
 
         // Clear the session for a new order
+
+        //todo check if the payment status is payed, if so remove order and invoice, if not don't.
         $session->remove('order');
         $session->remove('invoice');
 
