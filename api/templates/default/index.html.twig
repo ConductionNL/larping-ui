@@ -2,6 +2,36 @@
 
 {% block content %}
 
-    {% include 'sections/dashboard.html.twig' %}
+    {# include 'sections/dashboard.html.twig' #}
+
+<!-- MAP SECTION -->
+<div class="clearfix p-0">
+	<div id="map-canvas"></div>
+</div>
+
+<!-- ====================================
+———	LOCATION SEARCH ONE
+===================================== -->
+{% include 'sections/location_search_one.html.twig' %}
+
+<!-- ====================================
+———	INTERESTED
+===================================== -->
+{% include 'sections/interested.html.twig' %}
+
+<!-- ====================================
+———	LISTING
+===================================== -->
+{% include 'sections/popular.html.twig' %}
+
+<!-- ====================================
+———	SERVICES SECTION
+===================================== -->
+{% include 'sections/services_section.html.twig' %}
+
+<!-- ====================================
+———	APP DOWNLOAD SECTION
+===================================== -->
+{% include 'sections/listty_bestway_localbusiness.html.twig' %}
 
 {% endblock %}

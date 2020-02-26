@@ -1,0 +1,178 @@
+{% extends 'body_landing.html.twig' %}
+
+    {% block content %}
+
+        <div class="wrapper">
+
+            <div class="container" style="height: 100%">
+
+                {% if order.price == 0 %}
+
+                <div style="margin-top: 20px" class="custom-container row ">
+                    <form action="{{ path('app_landingpage_betalen') }}" method="post"></form>
+                    <div class="col-md-6 payment-summary">
+                        <div class="bg-white p-5 rounded border">
+                            <p>U heeft geen producten geselecteerd, keer <a href="{{ path('app_landingpage_index') }}">terug</a> om iets aan te schaffen.</p>
+                        </div>
+                    </div>
+                </div>
+
+                {% else %}
+
+                <h2 style="width: 100% !important;" class="d-block m-5"><a class="custom-breadcrumb-link"
+                                                                           href="{{ path('app_landingpage_index') }}">Producten</a>/Betaling
+                </h2>
+
+                <div style="margin-top: 20px" class="custom-container row ">
+                    <form action="{{ path('app_landingpage_betalen') }}" method="post"></form>
+                    <div class="col-md-6 payment-summary">
+                        <div class="bg-white p-5 rounded border">
+                            <h3 style="margin-bottom: 40px !important;" class="font-weight-normal mb-4">
+                                Betaaloverzicht</h3>
+
+                            <table class="table table-hover text-align-center">
+                                <thead>
+                                <tr>
+                                    <th class="sum-first-child">Product</th>
+                                    <th>Aantal</th>
+                                    <th>Prijs</th>
+                                </tr>
+                                </thead>
+                                {% for item in order.items %}
+                                    <tr>
+                                        <td class="sum-first-child">{{ item.name }}</td>
+                                        <td>{{ item.quantity }}</td>
+                                        <td>&euro; {{ item.price }},-</td>
+                                    </tr>
+                                {% endfor %}
+                                <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align: right"><b>Totaal:</b></td>
+                                    <td style="color: black"><b>&euro; {{ order.price }},-</b></td>
+                                </tr>
+                                </tfoot>
+                            </table>
+
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 payment-form">
+                        <div class="bg-white p-5 rounded border">
+
+                            <form action="{{ path('app_landingpage_betalen') }}" method="post">
+
+                                <h3 class="font-weight-normal mb-4">Uw gegevens</h3>
+
+                                <div class="row">
+
+                                    <div class="form-group col-md-12">
+                                        <label for="inputtext"><b>PLIN (sla dit veld over als u dit niet
+                                                heeft)</b></label>
+                                        <input type="text" class="form-control" id="remarks" name="remarks"
+                                               placeholder="">
+                                    </div>
+                                </div>
+
+                                <h3 class="h4 font-weight-normal mb-4 mt-5">Persoonsgegevens</h3>
+
+                                <div class="row">
+
+                                    <div class="form-group col-md-4">
+                                        <label for="inputtext">Voornaam(en)*</label>
+                                        <input type="text" class="form-control required" required id="inputtext"
+                                               name="givenName" placeholder="">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputtext">Tussenvoegsel</label>
+                                        <input type="text" class="form-control" id="inputtext" name="additionalName"
+                                               placeholder="">
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <label for="inputText">Achternaam*</label>
+                                        <input type="text" class="form-control required" required id="inputText"
+                                               name="familyName" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="form-group col-md-6">
+                                        <label for="inputtext">Straat*</label>
+                                        <input type="text" class="form-control required" required id="inputtext"
+                                               name="street" placeholder="">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputtext">Huisnummer*</label>
+                                        <input type="text" class="form-control required" required id="inputtext"
+                                               name="houseNumber" placeholder="">
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputtext">Toevoeging</label>
+                                        <input type="text" class="form-control" id="inputtext"
+                                               name="houseNumberSuffix" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label for="inputtext">Postcode*</label>
+                                        <input type="text" class="form-control required" required id="inputtext"
+                                               name="postalCode" placeholder="">
+                                    </div>
+                                    <div class="form-group col-md-8">
+                                        <label for="inputtext">Plaats*</label>
+                                        <input type="text" class="form-control required" required id="inputtext"
+                                               name="locality" placeholder="">
+                                    </div>
+                                </div>
+
+                                <h3 class="h4 font-weight-normal mb-4 mt-5">Contactgegevens</h3>
+
+                                <div class="row">
+
+                                    <div class="form-group col-md-12 mb-12">
+                                        <label for="inputAddress">E-mail*</label>
+                                        <input type="email" class="form-control required" required id="inputAddress"
+                                               name="email" placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="row">
+
+                                    <div class="form-group col-md-12 mb-8">
+                                        <label for="inputtext">Telefoonnummer</label>
+                                        <input type="tel" class="form-control " id="inputPhone" name="telephone"
+                                               placeholder="">
+                                    </div>
+                                </div>
+
+                                <div class="form-group mb-6">
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" class="required" required>
+                                            I agree to the <a href="{{ path('app_landingpage_termsofservice') }}">Terms of Use</a> &amp;
+                                            <a
+                                                href="{{ path('app_landingpage_privacypolicy') }}">Privacy Policy</a>.
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="text-align-center">
+                                    <button type="submit" formmethod="post"
+                                            class="btn btn-primary">Afrekenen
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+
+    {% endblock %}
+
+
