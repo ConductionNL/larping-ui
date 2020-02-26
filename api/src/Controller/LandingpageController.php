@@ -119,6 +119,7 @@ class LandingpageController extends AbstractController
             $contact['locality'] = $request->request->get('locality');
 
             $contact['email'] = $request->request->get('email');
+
             $contact['telephone'] = $request->request->get('telephone');
 
             $contact = $commonGroundService->updateResource($contact);
@@ -126,6 +127,8 @@ class LandingpageController extends AbstractController
 
         	$order['remark'] = $request->request->get('remarks');
             $order['customer'] = $contact['@id'];
+            unset($order["items"]);
+            unset($order["organization"]);
             // order updaten
             $order = $commonGroundService->updateResource($order);
 
@@ -161,7 +164,7 @@ class LandingpageController extends AbstractController
         $order = $commonGroundService->getResource($invoice['order']);
         $contact = $commonGroundService->getResource($invoice['customer']);
 
-        $variables = ['invoice'=>$invoices,'order'=>$order,'contact'=>$contact];
+        $variables = ['invoice'=>$invoice,'order'=>$order,'contact'=>$contact];
 
         // mail versturen
         $message = [
