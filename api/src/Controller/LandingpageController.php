@@ -176,7 +176,7 @@ class LandingpageController extends AbstractController
     		}
         }
         
-        //var_dump($invoice);
+        var_dump($invoice);
 
         if(!in_array("paid", $invoice) || !$invoice["paid"]){
             return ['invoice'=>$invoice];
@@ -235,8 +235,8 @@ class LandingpageController extends AbstractController
         //todo check if the payment status is payed, if so remove order and invoice, if not don't.
         $session->remove('order');
         $session->remove('invoice');
-
-        return $variables;
+        
+        return ['invoice'=>$invoice];
     }
 
     /**
