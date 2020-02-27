@@ -206,6 +206,7 @@ class LandingpageController extends AbstractController
         		"data"=> $variables
         ];
         $userMail= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
+        /*
         $message= [
         		"reciever"=>$order['customer'],
         		"sender"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
@@ -216,6 +217,8 @@ class LandingpageController extends AbstractController
         		"data"=> $variables
         ];
         $userSMS= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
+        }
+        */
         $message= [
         		"reciever"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
         		"sender"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
@@ -226,6 +229,7 @@ class LandingpageController extends AbstractController
         		"data"=> $variables
         ];
         $organisationMail= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
+        /*
         $message= [
         		"reciever"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
         		"sender"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
@@ -236,6 +240,7 @@ class LandingpageController extends AbstractController
         		"data"=> $variables
         ];
         $organisationSMS= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
+        */
         // Clear the session for a new order
 
         //todo check if the payment status is payed, if so remove order and invoice, if not don't.
