@@ -11,12 +11,31 @@
                         <div class="row">
 
                             <div class="col-12">
-                                <h2 class="h3 mb-6">Uw betaling is geslaagd.</h2>
-                                <p>Keer terug naar <a href="https://www.the-vortex.nl">vortex</a>. </p>
-                                <br>
-                                <p><b>of</b></p>
-                                <br>
-                                <p>Keer terug naar het <a href="{{ path('app_landingpage_index') }}">producten overzicht</a>.</p>
+
+                                {% if invoice.paid is true  %}
+
+                                    <h2 class="h3 mb-6">Uw betaling is geslaagd.</h2>
+                                    <p>Keer terug naar <a href="https://www.the-vortex.nl">vortex</a>. </p>
+                                    <br>
+                                    <p><b>of</b></p>
+                                    <br>
+                                    <p>Keer terug naar het <a href="{{ path('app_landingpage_index') }}">producten
+                                            overzicht</a>.</p>
+
+                                {% endif %}
+
+                                {% if invoice.paid is false  %}
+
+                                    <h2 class="h3 mb-6">Uw betaling is gefaald.</h2>
+                                    <p>U kunt het <a href="{{ invoice.paymentUrl }}">hier</a> opnieuw proberen. </p>
+                                    <br>
+                                    <p><b>of</b></p>
+                                    <br>
+                                    <p>Keer terug naar het <a href="{{ path('app_landingpage_index') }}">producten
+                                            overzicht</a>.</p>
+
+                                {% endif %}
+
                             </div><!-- ./col -->
                         </div><!-- ./row -->
                     </div><!-- ./col -->

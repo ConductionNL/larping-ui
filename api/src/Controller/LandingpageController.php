@@ -157,6 +157,8 @@ class LandingpageController extends AbstractController
      */
     public function bevestigingAction(Session $session, Request $request, CommonGroundService $commonGroundService, $uuid)
     {
+        sleep(5);
+
         // Factuur ophalen aan de hand van id
         $invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/' . $uuid);
 
@@ -166,10 +168,14 @@ class LandingpageController extends AbstractController
             // Throw auth error
         }
 
+        if(!in_array("paid", $invoice) || !$invoice["paid"]){
+            return ['invoice'=>$invoice];
+        }
+
         $order = $commonGroundService->getResource($invoice['order']);
         $contact = $commonGroundService->getResource($invoice['customer']);
 
-//        $payments = $commonGroundService->getResource($invoice['payments'][0]);
+        $payments = $commonGroundService->getResource($invoice['payments'][0]);
 
         $variables = ['invoice'=>$invoice,'order'=>$order,'contact'=>$contact];
 
@@ -221,9 +227,8 @@ class LandingpageController extends AbstractController
         $session->remove('order');
         $session->remove('invoice');
 
-        return ['invoice' => $invoice];
+        return $variables;
     }
-
 
     /**
      * @Route ("/terms-of-services")
