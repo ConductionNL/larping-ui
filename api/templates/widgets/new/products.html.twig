@@ -8,92 +8,100 @@
         </div>
         <!-- ./search -->
 
-        {% for product in products['hydra:member'] %}
+        <form action="{{ path('app_landingpage_index') }}" method="post">
 
-            <div style="border-top: 1px solid #e5e5e5;" class="card card-list mt-4 border-bottom-0">
-                <div class="row">
-                    <div class="col-md-3">
-                        <img style="border-radius: 4px" src="{{ product.logo }}" width="200px" height="150px"
-                             alt="things-4">
-                    </div><!-- ./col -->
-                    <div class="col-md-9 my-auto">
-                        <div class="row py-auto">
-                            <div class="col-md-6 py-auto">
-                                <div class="d-flex justify-content-between align-items-center mb-1 mt-1 ">
-                                    <h4 class="card-title mb-0">{{ product.name }}</h4>
-                                </div><!-- ./d-flex -->
-                                <span class="d-block mb-2">{{ product.type|capitalize }} </span>
-                                <p>{{ product.description }}</p>
-                            </div> <!-- ./col -->
-                            <div class="col-md-2 d-flex justify-content-center">
-                                <p class="my-auto"></p>
-                            </div> <!-- ./col -->
-                            <div class="col-md-2 d-flex justify-content-center">
-                            </div><!-- ./col -->
-                            <div class="col-md-2 d-flex justify-content-center">
-                                <a class="my-auto drop-hover mh-50" role="button" data-toggle="collapse"
-                                   href="#{{ product.sku }}"
-                                   aria-expanded="false"
-                                   aria-controls="event1">
-                                    <p class="color-black"><i style="font-size: 56px; padding-top: 0"
-                                                              class="fa">&#xf107;</i></p>
-                                </a>
-                            </div><!-- ./col -->
-                        </div><!-- ./row -->
-                    </div><!-- ./col -->
-                </div><!-- ./row -->
-            </div> <!-- ./card -->
+            {% for product in products['hydra:member'] %}
 
-            <div id="{{ product.sku }}" style="border-top: 1px solid #f5f5f5;" class="collapse card card-list ">
+                {% if product.audience != "internal" %}
 
-                <form action="{{ path('app_landingpage_index') }}" method="post">
-
-                    {% for offer in product.offers %}
-
-                        <div class="row my-8">
+                    <div style="border-top: 1px solid #e5e5e5;" class="card card-list my-3 border-bottom-0">
+                        <div class="row">
                             <div class="col-md-3">
-                                <input style="height: 35px !important;" class="form-control" name="offers[]"  id="offers[]" type="checkbox" value="https://pdc.larping.eu{{ offer['@id'] }}">
-                            </div>
-                            <!-- ./col -->
+                                <img style="border-radius: 4px" src="{{ product.logo }}" width="100%"
+                                     alt="things-4">
+                            </div><!-- ./col -->
                             <div class="col-md-9 my-auto">
-                                <div class="row">
-                                    <div class="col-md-6 ">
-                                        <div class="d-flex justify-content-between align-items-center">
-                                            <h4 class="mb-0">{{ offer.name }}</h4>
+                                <div class="row py-auto">
+                                    <div class="col-md-9 py-auto">
+                                        <div class="d-flex justify-content-between align-items-center mb-1 mt-1 ">
+                                            <h4 class="card-title mb-0">{{ product.name }}</h4>
                                         </div><!-- ./d-flex -->
+                                        <span class="d-block mb-2">{{ product.type|capitalize }} </span>
+                                        <p>{{ product.description }}</p>
                                     </div> <!-- ./col -->
-                                    <div class="col-md-2">
-                                    </div><!-- ./col -->
-                                    <div class="col-md-2 d-flex justify-content-center">
-                                        <p class="my-auto font-weight-bold color-black">
-                                            &euro; {{ offer.price/100|number_format(2, '.') }},-</p>
-                                    </div><!-- ./col -->
-                                    <div class="col-md-2">
+                                    <div class="col-md-3 d-flex justify-content-center">
+                                        <a class="my-auto drop-hover mh-50" role="button" data-toggle="collapse"
+                                           href="#{{ product.sku }}"
+                                           aria-expanded="false"
+                                           aria-controls="event1">
+                                            <p class="color-black"><i style="font-size: 56px; padding-top: 0"
+                                                                      class="fa">&#xf107;</i></p>
+                                        </a>
                                     </div><!-- ./col -->
                                 </div><!-- ./row -->
                             </div><!-- ./col -->
                         </div><!-- ./row -->
+                    </div> <!-- ./card -->
 
-                    {% endfor %}
+                    <div id="{{ product.sku }}" style="border-top: 1px solid #f5f5f5;" class="collapse card card-list ">
 
-                    <div style="height: 100px" class="row my-5">
-                        <div class="col-md-3">
+                        {% for offer in product.offers %}
+
+                            {% if offer.audience != "internal" %}
+
+                                <div class="row my-8">
+                                    <div class="col-md-3">
+                                        <input style="height: 35px !important;" class="form-control" name="offers[]"
+                                               id="offers[]" type="checkbox"
+                                               value="https://pdc.larping.eu{{ offer['@id'] }}">
+                                    </div>
+                                    <!-- ./col -->
+                                    <div class="col-md-9 my-auto">
+                                        <div class="row">
+                                            <div class="col-md-6 ">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <h4 class="mb-0">{{ offer.name }}</h4>
+                                                </div><!-- ./d-flex -->
+                                            </div> <!-- ./col -->
+                                            <div class="col-md-2">
+                                            </div> <!-- ./col -->
+                                            <div class="col-md-2 d-flex justify-content-center">
+                                                <p class="my-auto font-weight-bold color-black">
+                                                    &euro; {{ offer.price/100|number_format(2, '.') }},-</p>
+                                            </div><!-- ./col -->
+                                            <div class="col-md-2">
+                                            </div> <!-- ./col -->
+                                        </div><!-- ./row -->
+                                    </div><!-- ./col -->
+                                </div><!-- ./row -->
+
+                            {% endif %}
+
+                        {% endfor %}
+
+                    </div><!-- ./card -->
+
+                {% endif %}
+
+            {% endfor %}
+
+            <div class="row border-top p-3 mt-5">
+                <div class="col-md-3">
+                </div><!-- ./col -->
+                <div class="col-md-9">
+                    <div class="row">
+                        <div class="col-md-6">
                         </div><!-- ./col -->
-                        <div class="col-md-9">
-                            <div class="row">
-                                <div class="col-md-6">
-                                </div><!-- ./col -->
-                                <div class="col-md-6 text-align-center">
-                                    <button style="max-width: 40%" type="submit" formmethod="post"
-                                            class="my-auto mh-50 p-2 form-control btn btn-primary">Afrekenen</button>
-                                </div><!-- ./col -->
-                            </div><!-- ./row -->
+                        <div class="col-md-6 text-align-center">
+                            <button style="max-width: 40%" type="submit" formmethod="post"
+                                    class="my-auto mh-50 p-2 form-control btn btn-primary">Afrekenen
+                            </button>
                         </div><!-- ./col -->
                     </div><!-- ./row -->
+                </div><!-- ./col -->
+            </div><!-- ./row -->
 
-                </form>
-            </div><!-- ./card -->
-        {% endfor %}
+        </form>
     </div> <!-- ./container -->
 </section>
 

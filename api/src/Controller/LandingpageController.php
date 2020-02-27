@@ -120,11 +120,11 @@ class LandingpageController extends AbstractController
             $contact['postalCode'] = $request->request->get('postalCode');
             $contact['locality'] = $request->request->get('locality');
 
-            
+
             $contact['emails'] = [];
-            $contact['emails'][0] = ["name" => "primary", "email" => $httpRequest->request->get('email')];
+            $contact['emails'][0] = ["name" => "primary", "email" => $request->request->get('email')];
             $contact['telephones'] = [];
-            $contact['telephones'][0] = ["name" => "primary", "telephone" => $httpRequest->request->get('telephone')];
+            $contact['telephones'][0] = ["name" => "primary", "telephone" => $request->request->get('telephone')];
 
             $contact = $commonGroundService->updateResource($contact);
             //die;
@@ -157,6 +157,8 @@ class LandingpageController extends AbstractController
      */
     public function bevestigingAction(Session $session, Request $request, CommonGroundService $commonGroundService, $uuid)
     {
+        sleep(5);
+
         // Factuur ophalen aan de hand van id
         $invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/' . $uuid);
 
@@ -166,10 +168,14 @@ class LandingpageController extends AbstractController
             // Throw auth error
         }
 
+        if(!in_array("paid", $invoice) || !$invoice["paid"]){
+            return ['invoice'=>$invoice];
+        }
+
         $order = $commonGroundService->getResource($invoice['order']);
         $contact = $commonGroundService->getResource($invoice['customer']);
 
-//        $payments = $commonGroundService->getResource($invoice['payments'][0]);
+        $payments = $commonGroundService->getResource($invoice['payments'][0]);
 
         $variables = ['invoice'=>$invoice,'order'=>$order,'contact'=>$contact];
 
@@ -221,9 +227,8 @@ class LandingpageController extends AbstractController
         $session->remove('order');
         $session->remove('invoice');
 
-        return ['invoice' => $invoice];
+        return $variables;
     }
-
 
     /**
      * @Route ("/terms-of-services")
