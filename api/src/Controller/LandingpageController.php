@@ -174,7 +174,7 @@ class LandingpageController extends AbstractController
         $variables = ['invoice'=>$invoice,'order'=>$order,'contact'=>$contact];
 
         // mail versturen
-        $message = [
+        $userMail= [
         		"reciever"=>$invoice['customer'],
         		"sender"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
         		"content"=>"https://wrc.larping.eu/templates/cc7d0c70-bb59-4d85-9845-863e896e6ee9",
@@ -183,8 +183,8 @@ class LandingpageController extends AbstractController
         		//"externalServiceId"=>"7d48f13b-f44e-495b-b774-3d4f9b994b09",
         		"data"=> $variables
         ];
-        $userMail= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
-        $message = [
+        $userMail= $commonGroundService->createResource($userMail, 'https://bs.larping.eu/messages');
+        $userSMS= [
         		"reciever"=>$invoice['customer'],
         		"sender"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
         		"content"=>"https://wrc.larping.eu/templates/3b96e9bc-1d9c-4701-9554-4a597f01f4bf",
@@ -193,9 +193,9 @@ class LandingpageController extends AbstractController
         		//"externalServiceId"=>"dfb46b45-0737-4500-b8f9-2f791913c8ad",
         		"data"=> $variables
         ];
-        $userSMS= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
-        $message = [
-        		"reciever"=>$invoice['customer'],
+        $userSMS= $commonGroundService->createResource($userSMS, 'https://bs.larping.eu/messages');
+        $organisationMail= [
+        		"reciever"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
         		"sender"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
         		"content"=>"https://wrc.larping.eu/templates/e287f1f4-704e-49e3-8a33-eab955ff2158",
         		"service"=>"/services/7d48f13b-f44e-495b-b774-3d4f9b994b09",
@@ -203,9 +203,9 @@ class LandingpageController extends AbstractController
         		//"externalServiceId"=>"7d48f13b-f44e-495b-b774-3d4f9b994b09",
         		"data"=> $variables
         ];
-        $organisationMail= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
-        $message = [
-        		"reciever"=>$invoice['customer'],
+        $organisationMail= $commonGroundService->createResource($organisationMail, 'https://bs.larping.eu/messages');
+        $organisationSMS= [
+        		"reciever"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
         		"sender"=>"https://cc.larping.eu/organizations/27141158-fde5-4e8b-a2b7-07c7765f0c63",
         		"content"=>"https://wrc.larping.eu/templates/db583bf1-22ab-47d5-8656-a6faf95a1f7f",
         		"service"=>"/services/dfb46b45-0737-4500-b8f9-2f791913c8ad",
@@ -213,7 +213,7 @@ class LandingpageController extends AbstractController
         		//"externalServiceId"=>"dfb46b45-0737-4500-b8f9-2f791913c8ad",
         		"data"=> $variables
         ];
-        $organisationSMS= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
+        $organisationSMS= $commonGroundService->createResource($organisationSMS, 'https://bs.larping.eu/messages');
 
         // Clear the session for a new order
 
