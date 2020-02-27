@@ -11,17 +11,22 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-class DefaultController extends AbstractController
+/**
+ * Class HomeController
+ * @package App\Controller
+ * @Route("/home")
+ */
+class HomeController extends AbstractController
 {
     /**
-     * @Route("/home")
+     * @Route("/")
      * @Template
      */
 	public function indexAction(Request $request, CommonGroundService $commonGroundService)
     {
-    	$organizations = $commonGroundService->getResourceList('https://cc.larping.eu/organizations');
+    	$organizations = $commonGroundService->getResourceList('https://wrc.larping.eu/organizations');
     	$groups = $commonGroundService->getResourceList('https://pdc.larping.eu/groups',["sourceOrganization"=>"816802828"]);
-    	
+
     	return ['organizations'=>$organizations,'groups'=>$groups];
     }
 }
