@@ -12,7 +12,7 @@
 
                             <div class="col-12">
 
-                                {% if invoice.paid is true  %}
+                                {% if invoice.paid == true  %}
 
                                     <h2 class="h3 mb-6">Uw betaling is geslaagd.</h2>
                                     <p>Keer terug naar <a href="https://www.the-vortex.nl">vortex</a>. </p>
@@ -24,7 +24,7 @@
 
                                 {% endif %}
 
-                                {% if invoice.paid is false  %}
+                                {% if invoice.paid == false  %}
 
                                     <h2 class="h3 mb-6">Uw betaling is gefaald.</h2>
                                     <p>U kunt het <a href="{{ invoice.paymentUrl }}">hier</a> opnieuw proberen. </p>
