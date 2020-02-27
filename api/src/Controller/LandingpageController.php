@@ -83,7 +83,6 @@ class LandingpageController extends AbstractController
             // flashban zetten met eindresultaat
             $this->addFlash('success', 'Uw product is toegevoegd');
 
-
             return $this->redirect($this->generateUrl('app_landingpage_betalen'));
         }
 
@@ -127,23 +126,30 @@ class LandingpageController extends AbstractController
             $contact['telephones'][0] = ["name" => "primary", "telephone" => $request->request->get('telephone')];
 
             $contact = $commonGroundService->updateResource($contact);
-            //die;
 
         	$order['remark'] = $request->request->get('remarks');
             $order['customer'] = $contact['@id'];
+            
+            // Why, vanwege de @id?
             unset($order["items"]);
             unset($order["organization"]);
+            
             // order updaten
-            $order = $commonGroundService->updateResource($order);
-
+            $order = $commonGroundService->updateResource($order);            
+            $session->set('order', $order['@id']);
+            
             if (!$order['description']) {
                 $order['description'] = "Order " . $order['reference'];
             }
-
+           
+            // We don't want to make an invoice and payment if we do not have an price
+            if($order['price'] == "0.00"){
+            	return $this->redirect($this->generateUrl('bevestiging'));            	
+            }
+            
             // order naar bc sturen
             $invoice = $commonGroundService->createResource($order, 'https://bc.larping.eu/order');
             $session->set('invoice', $invoice['@id']);
-
             // gebruikerdoorsturen naar terug gegeven responce
             return $this->redirect($invoice['paymentUrl']);
         }
@@ -160,12 +166,13 @@ class LandingpageController extends AbstractController
         sleep(5);
 
         // Factuur ophalen aan de hand van id
-        $invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/' . $uuid);
-
-
-        // We willen voorkomen dat je via deze route elke factuur kan opvragen
-        if ($invoice['@id'] != $session->get('invoice')) {
-            // Throw auth error
+    	if($uuid){
+    		$invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/' . $uuid);
+    		
+    		// We willen voorkomen dat je via deze route elke factuur kan opvragen
+    		if ($invoice['@id'] != $session->get('invoice')) {
+    			// Throw auth error
+    		}
         }
 
         if(!in_array("paid", $invoice) || !$invoice["paid"]){
