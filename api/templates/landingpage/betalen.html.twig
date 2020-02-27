@@ -6,7 +6,7 @@
 
             <div class="container" style="height: 100%">
 
-                {% if order.price == 0 %}
+                {% if offers|length == 0 %}
 
                 <div style="margin-top: 20px" class="custom-container row ">
                     <form action="{{ path('app_landingpage_betalen') }}" method="post"></form>
@@ -19,8 +19,7 @@
 
                 {% else %}
 
-                <h2 style="width: 100% !important;" class="d-block m-5"><a class="custom-breadcrumb-link"
-                                                                           href="{{ path('app_landingpage_index') }}">Producten</a>/Betaling
+                <h2 style="width: 100% !important;" class="d-block m-5"><a class="custom-breadcrumb-link" href="{{ path('app_landingpage_index') }}">Producten</a>/Betaling
                 </h2>
 
                 <div style="margin-top: 20px" class="custom-container row ">
@@ -28,7 +27,7 @@
                     <div class="col-md-6 payment-summary">
                         <div class="bg-white p-5 rounded border">
                             <h3 style="margin-bottom: 40px !important;" class="font-weight-normal mb-4">
-                                Betaaloverzicht</h3>
+                                Besteloverzicht</h3>
 
                             <table class="table table-hover text-align-center">
                                 <thead>
@@ -38,22 +37,23 @@
                                     <th>Prijs</th>
                                 </tr>
                                 </thead>
-                                {% for item in order.items %}
+                                {% set total = 0 %}
+                                {% for offer in offers %}
+                                {% set total = total + commonground_resource(offer).price %}
                                     <tr>
-                                        <td class="sum-first-child">{{ item.name }}</td>
-                                        <td>{{ item.quantity }}</td>
-                                        <td>&euro; {{ item.price }},-</td>
+                                        <td class="sum-first-child">{{ commonground_resource(offer).name }}</td>
+                                        <td>1</td>
+                                        <td>&euro; {{ commonground_resource(offer).price/100 }},-</td>
                                     </tr>
                                 {% endfor %}
                                 <tfoot>
                                 <tr>
                                     <td></td>
                                     <td style="text-align: right"><b>Totaal:</b></td>
-                                    <td style="color: black"><b>&euro; {{ order.price }},-</b></td>
+                                    <td style="color: black"><b>&euro; {{ total/100 }},-</b></td>
                                 </tr>
                                 </tfoot>
                             </table>
-
                         </div>
                     </div>
 
