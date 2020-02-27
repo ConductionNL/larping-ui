@@ -41,7 +41,9 @@
                                 {% for offer in offers %}
                                 {% set total = total + commonground_resource(offer).price %}
                                     <tr>
-                                        <td class="sum-first-child">{{ commonground_resource(offer).name }}</td>
+                                        <td class="sum-first-child"><b>{{ commonground_resource(offer).name }}</b><br/>
+                                        Bevat: {% for product in offer.products %}{{ product.name }} {% endfor %}
+                                        </td>
                                         <td>1</td>
                                         <td>&euro; {{ commonground_resource(offer).price/100 }},-</td>
                                     </tr>

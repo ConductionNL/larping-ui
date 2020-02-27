@@ -141,7 +141,7 @@ class LandingpageController extends AbstractController
         	}
             
             // order updaten
-        	$order = $commonGroundService->createResource($order, 'https://cc.larping.eu/people');
+        	$order = $commonGroundService->createResource($order, 'https://orc.larping.eu/orders');
             $session->set('order', $order['@id']);
            
             // We don't want to make an invoice and payment if we do not have an price
