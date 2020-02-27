@@ -41,7 +41,6 @@ class LandingpageController extends AbstractController
         if ($request->isMethod('POST')) {
         	
             // kijken of er in de sessie al een order zit, zo nee order aan maken. We slaan hier alleen de order ID (URI) op. Het bijhouden van het order object laten we via de commonground controller aan de cache
-        	
         	$session->set('offers', $request->request->get('offers'));
 
             // flashban zetten met eindresultaat
@@ -176,15 +175,17 @@ class LandingpageController extends AbstractController
     			// Throw auth error
     		}
         }
+        
+        //var_dump($invoice);
 
         if(!in_array("paid", $invoice) || !$invoice["paid"]){
             return ['invoice'=>$invoice];
         }
 
         $order = $commonGroundService->getResource($invoice['order']);
-        $contact = $commonGroundService->getResource($invoice['customer']);
+        $contact = $commonGroundService->getResource($order['customer']);
 
-        $payments = $commonGroundService->getResource($invoice['payments'][0]);
+        //$payments = $commonGroundService->getResource($invoice['payments'][0]);
 
         $variables = ['invoice'=>$invoice,'order'=>$order,'contact'=>$contact];
 
@@ -229,7 +230,6 @@ class LandingpageController extends AbstractController
         		"data"=> $variables
         ];
         $organisationSMS= $commonGroundService->createResource($organisationSMS, 'https://bs.larping.eu/messages');
-
         // Clear the session for a new order
 
         //todo check if the payment status is payed, if so remove order and invoice, if not don't.
