@@ -164,7 +164,7 @@ class LandingpageController extends AbstractController
      */
     public function bevestigingAction(Session $session, Request $request, CommonGroundService $commonGroundService, $uuid)
     {
-        sleep(5);
+       // sleep(5);
     	
         // Factuur ophalen aan de hand van id
     	if($uuid){
@@ -177,9 +177,11 @@ class LandingpageController extends AbstractController
         }
         
         // Als de factuur doorkomt als "iet" betaald dan wachten we nog eens 5 seconden
-        if(in_array("paid", $invoice) || !$invoice["paid"]){
-        	sleep(5);
+        if(in_array("paid", $invoice)){
+        	while(!$invoice["paid"]){
+        	sleep(1);
         	$invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/' . $uuid);  
+        	}
         }
         
         //svar_dump($invoice);
