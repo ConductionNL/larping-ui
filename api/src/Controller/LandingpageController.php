@@ -116,8 +116,8 @@ class LandingpageController extends AbstractController
         	$order['remark'] = $request->request->get('remarks');
         	$order['customer'] = $contact['@id'];
         	
-        	if (!$order['description']) {
-        		$order['description'] = "Order " . $order['reference'];
+        	if (!in_array('description',$order) || !$order['description']) {
+        		$order['description'] = "Website Order";
         	}
         	
         	foreach ($offers as $offer) {
