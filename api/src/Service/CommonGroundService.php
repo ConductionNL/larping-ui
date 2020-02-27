@@ -247,21 +247,17 @@ class CommonGroundService
         	var_dump(json_encode($url));
         	var_dump($headers);
         	var_dump($response->getBody());
-        	die;
-       }
-        
+        	die;        
+    	}
+    	
         $response = json_decode($response->getBody(), true);
         
-        if(array_key_exists ('@id', $response) && $response['@id']){
+        if(is_array($response) && array_key_exists ('@id', $response) && $response['@id']){
         	$response['@id'] = 'https://'.$parsedUrl["host"].$response['@id'];
-        }
-
-        // Lets cash this item for speed purposes
-        if(array_key_exists ('@id', $response) && $response['@id']){
         	$item = $this->cash->getItem('commonground_'.md5($response['@id']));
-	        $item->set($response);
-	        $item->expiresAt(new \DateTime('tomorrow'));
-	        $this->cash->save($item);
+        	$item->set($response);
+        	$item->expiresAt(new \DateTime('tomorrow'));
+        	$this->cash->save($item);
         }
 
         return $response;
