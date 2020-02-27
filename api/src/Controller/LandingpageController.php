@@ -168,7 +168,7 @@ class LandingpageController extends AbstractController
     	
         // Factuur ophalen aan de hand van id
     	if($uuid){
-    		$invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/' . $uuid);
+    		$invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/' . $uuid, true);
     		
     		// We willen voorkomen dat je via deze route elke factuur kan opvragen
     		if ($invoice['@id'] != $session->get('invoice')) {
@@ -180,7 +180,7 @@ class LandingpageController extends AbstractController
         if(in_array("paid", $invoice)){
         	while(!$invoice["paid"]){
         	sleep(1);
-        	$invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/' . $uuid);  
+        	$invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/' . $uuid, true);  
         	}
         }
         
