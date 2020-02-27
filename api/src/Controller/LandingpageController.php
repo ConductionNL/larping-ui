@@ -177,10 +177,14 @@ class LandingpageController extends AbstractController
         }
         
         // Als de factuur doorkomt als "iet" betaald dan wachten we nog eens 5 seconden
+        $i = 0;
         if(in_array("paid", $invoice)){
         	while(!$invoice["paid"]){
         	sleep(1);
         	$invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/' . $uuid, true);  
+        	if($i > 15){
+        		break;
+        	}
         	}
         }
         
