@@ -120,9 +120,11 @@ class LandingpageController extends AbstractController
             $contact['postalCode'] = $request->request->get('postalCode');
             $contact['locality'] = $request->request->get('locality');
 
-            $contact['email'] = $request->request->get('email');
-
-            $contact['telephone'] = $request->request->get('telephone');
+            
+            $contact['emails'] = [];
+            $contact['emails'][0] = ["name" => "primary", "email" => $httpRequest->request->get('email')];
+            $contact['telephones'] = [];
+            $contact['telephones'][0] = ["name" => "primary", "telephone" => $httpRequest->request->get('telephone')];
 
             $contact = $commonGroundService->updateResource($contact);
             //die;
