@@ -1,22 +1,18 @@
 {% extends "body.html.twig" %}
 
 {% block content %}
+    <section class="py-7 py-md-10">
+        <div class="container">
+            <div class="row">
 
-    <div class="row">
+                {% include('sections/list-broad-items.html.twig') %}
 
-        <div class="col-md-9">
+                {% include('sections/small-search-filter.html.twig') %}
 
-            {% include('sections/list-broad-items.html.twig') %}
+                {% include('sections/pagination.html.twig') %}
 
+            </div>
         </div>
-        <div class="col-md-3">
-
-            {% include('sections/small-search-filter.html.twig') %}
-
-        </div>
-    </div>
-
-    {% include('sections/pagination.html.twig') %}
-
+    </section>
 
 {% endblock %}

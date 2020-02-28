@@ -1,87 +1,81 @@
 <!-- ====================================
 ���	CATEGORY LIST RIGHT SIDEBAR
 ===================================== -->
-<section class="py-7 py-md-12">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8">
+<div class="col-lg-8">
 
-                <div class="search-result-bar mb-0">
-                    <p>We found <span> {{ items|length }} </span> results for <span> Restaurents </span> near <span> Shinn Street, NY </span>
-                    </p>
-                    <div class="ml-md-auto d-flex align-items-center justify-content-between">
-                        <div class="select-bg-transparent select-border">
-                            <select class="select-location">
-                                <option>Popular</option>
-                                <option>Nearest</option>
-                                <option>Recent</option>
-                            </select>
-                        </div>
-                        <div class="icons">
-                            <a class="mr-2" href="listing-grid-right-sidebar.html">
-                                <i class="fa fa-th" aria-hidden="true"></i>
-                            </a>
-                            <a class="active" href="listing-list-right-sidebar.html">
-                                <i class="fa fa-th-list" aria-hidden="true"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                {% set view = 'app_product_view' %}
-                {% for item in items %}
-                    <div class="card card-list card-listing" data-lat="-33.922125" data-lag="151.159277" data-id="1">
-                        <div class="row">
-                            <div class="col-sm-5 col-xl-4">
-                                <div class="card-list-img">
-                                    <img class="listing-img" src="assets/img/listing/listing-4.jpg" alt="things-4">
-                                    <span class="badge badge-primary">Verified</span>
-                                </div>
-
-                            </div>
-                            <div class="col-sm-7 col-xl-8">
-                                <div class="card-body p-0">
-                                    <ul class="list-inline list-inline-rating">
-                                        <li class="list-inline-item">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <i class="fa fa-star" aria-hidden="true"></i>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <i class="fa fa-star-o" aria-hidden="true"></i>
-                                        </li>
-                                    </ul>
-
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                        <h3 class="card-title listing-title mb-0">
-                                            <a href="{% if view is defined %}{{ path(view, {id: item.id}) }}{% else %}#{% endif %}"> {{ item.name }} </a>
-                                        </h3>
-                                        <button class="btn-like px-2" data-toggle="tooltip" data-placement="top"
-                                                title="Favourite this listing">
-                                            <i class="fa fa-heart-o text-primary" aria-hidden="true"></i>
-                                            <span>8 k</span>
-                                        </button>
-                                    </div>
-
-                                </div>
-                                <span class="d-block mb-4 listing-address">215 Terry Lane, New York</span>
-                                <p class="mb-4">{{ item.description }}</p>
-                                <div>
-                                    <a href="listings-half-screen-map-list.html">Eat & Drink</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
+    <div class="search-result-bar mb-0">
+        <p>We found <span> {{ items|length }} </span> results for <span> Restaurents </span> near <span> Shinn Street, NY </span>
+        </p>
+        <div class="ml-md-auto d-flex align-items-center justify-content-between">
+            <div class="select-bg-transparent select-border">
+                <select class="select-location">
+                    <option>Popular</option>
+                    <option>Nearest</option>
+                    <option>Recent</option>
+                </select>
+            </div>
+            <div class="icons">
+                <a class="mr-2" href="listing-grid-right-sidebar.html">
+                    <i class="fa fa-th" aria-hidden="true"></i>
+                </a>
+                <a class="active" href="listing-list-right-sidebar.html">
+                    <i class="fa fa-th-list" aria-hidden="true"></i>
+                </a>
             </div>
         </div>
     </div>
-</section>
 
+    {% set view = 'app_product_view' %}
+    {% for item in items %}
+        <div class="card card-list card-listing" data-lat="-33.922125" data-lag="151.159277"
+             data-id="1">
+            <div class="row">
+                <div class="col-sm-5 col-xl-4">
+                    <div class="card-list-img">
+                        <img class="listing-img" src="assets/img/listing/listing-4.jpg" alt="things-4">
+                        <span class="badge badge-primary">Verified</span>
+                    </div>
+
+                </div>
+                <div class="col-sm-7 col-xl-8">
+                    <div class="card-body p-0">
+                        <ul class="list-inline list-inline-rating">
+                            <li class="list-inline-item">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </li>
+                            <li class="list-inline-item">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </li>
+                            <li class="list-inline-item">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </li>
+                            <li class="list-inline-item">
+                                <i class="fa fa-star" aria-hidden="true"></i>
+                            </li>
+                            <li class="list-inline-item">
+                                <i class="fa fa-star-o" aria-hidden="true"></i>
+                            </li>
+                        </ul>
+
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <h3 class="card-title listing-title mb-0">
+                                <a href="{% if view is defined %}{{ path(view, {id: item.id}) }}{% else %}#{% endif %}"> {{ item.name }} </a>
+                            </h3>
+                            <button class="btn-like px-2" data-toggle="tooltip" data-placement="top"
+                                    title="Favourite this listing">
+                                <i class="fa fa-heart-o text-primary" aria-hidden="true"></i>
+                                <span>8 k</span>
+                            </button>
+                        </div>
+
+                    </div>
+                    <span class="d-block mb-4 listing-address">215 Terry Lane, New York</span>
+                    <p class="mb-4">{{ item.description }}</p>
+                    <div>
+                        <a href="listings-half-screen-map-list.html">Eat & Drink</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
