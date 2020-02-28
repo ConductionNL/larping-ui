@@ -241,6 +241,7 @@ class LandingpageController extends AbstractController
         ];
         $organisationSMS= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
         */
+        
         // Clear the session for a new order
 
         //todo check if the payment status is payed, if so remove order and invoice, if not don't.

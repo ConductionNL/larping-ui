@@ -24,8 +24,8 @@ class HomeController extends AbstractController
      */
 	public function indexAction(Request $request, CommonGroundService $commonGroundService)
     {
-    	$organizations = $commonGroundService->getResourceList('https://wrc.larping.eu/organizations');
-    	$groups = $commonGroundService->getResourceList('https://pdc.larping.eu/groups',["sourceOrganization"=>"816802828"]);
+    	$organizations = $commonGroundService->getResourceList('https://wrc.larping.eu/organizations')['hydra:member'];
+    	$groups = $commonGroundService->getResourceList('https://pdc.larping.eu/groups')['hydra:member'];
 
     	return ['organizations'=>$organizations,'groups'=>$groups];
     }
