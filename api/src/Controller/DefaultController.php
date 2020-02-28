@@ -12,11 +12,11 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * Class HomeController
+ * Class DefaultController
  * @package App\Controller
  * @Route("/home")
  */
-class HomeController extends AbstractController
+class DefaultController extends AbstractController
 {
     /**
      * @Route("/")
@@ -25,8 +25,13 @@ class HomeController extends AbstractController
 	public function indexAction(Request $request, CommonGroundService $commonGroundService)
     {
     	$organizations = $commonGroundService->getResourceList('https://wrc.larping.eu/organizations')['hydra:member'];
+    	$mainOrganization = $commonGroundService->getResourceList('https://wrc.larping.eu/organizations/bc8880bc-9178-4545-8676-ac72d7f24248');
     	$groups = $commonGroundService->getResourceList('https://pdc.larping.eu/groups')['hydra:member'];
+    	$application = $commonGroundService->getResource('https://wrc.larping.eu/applications/71f9f51f-ab58-4b58-9035-b295db48a302');
+    	$menu = $commonGroundService->getResource('https://wrc.larping.eu/menus/505b716c-9461-4588-95d7-8279b3042807');
 
-    	return ['organizations'=>$organizations,'groups'=>$groups];
+    	$menuItems = $menu['menuItem'];
+
+    	return ['organizations'=>$organizations,'groups'=>$groups,'application'=>$application,'menuItems'=>$menuItems];
     }
 }
