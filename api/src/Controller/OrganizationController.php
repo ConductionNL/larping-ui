@@ -49,6 +49,6 @@ class OrganizationController extends AbstractController
 		$events = $commonGroundService->getResourceList('https://pdc.larping.eu/products', $query)['hydra:member'];
 		$products = $commonGroundService->getResourceList('https://pdc.larping.eu/products', $query)['hydra:member'];
 
-		return ["item"=>$organization,'$events'=>$events,'application'=>$application,'products'=>$products];
+		return ["organization"=>$organization,'$events'=>$events,'application'=>$application,'products'=>$products];
 	}
 }

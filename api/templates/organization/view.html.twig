@@ -2,11 +2,13 @@
 
 {% block content %}
 
-{% include'sections/item-heading.html.twig' %}
+    {% set item = organization %}
 
-{% include'sections/image-carousel.html.twig' %}
+    {% include'sections/item-heading.html.twig' %}
 
-{% include'sections/item-content.html.twig' %}
+    {% include'sections/image-carousel.html.twig' %}
+
+    {% include'sections/item-content.html.twig' %}
 
 
 {% endblock %}

@@ -6,8 +6,8 @@
         <div class="row">
             <div class="col-md-7 col-lg-8">
                 <div class="single-listing-content mb-6">
-                    <h3 class="font-weight-normal mb-6">About This Vendor</h3>
-                    <p class="mb-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident. sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                    <h3 class="font-weight-normal mb-6">About This {% if item.type is not defined %} Organization {% else %} {{ item.type|capitalize }} {% endif %}</h3>
+                    <p class="mb-6">{{ item.description }}</p>
 
                     <!-- Services -->
                     <div class="mb-6">
@@ -267,6 +267,47 @@
                     </div>
                 </div>
 
+                {% if item.type is defined %}
+
+                <!-- Book Tickets -->
+                <form class="mb-5">
+                    <h3 class="mb-3 font-weight-normal">Book Tickets</h3>
+
+                    <div class="form-group mb-6">
+                        <div class="select-bg-transparent select-border w-100">
+                            <select class="select-location" required>
+{#                                {% foreach  %}#}
+                                <option>Seats</option>
+                                <option>01</option>
+                                <option>02</option>
+                                <option>03</option>
+                                <option>04</option>
+                                <option>05</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-6">
+                        <div class="select-bg-transparent select-border w-100">
+                            <select class="select-location" required>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>3</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-6">
+                        <button type="submit" class="btn btn-primary"> Buy Now </button>
+                    </div>
+
+                </form>
+
+                {% else %}
+
                 <!-- Contact Vendor -->
                 <form class="mb-5" action="#">
                     <h3 class="mb-3 font-weight-normal">Contact Vendor</h3>
@@ -292,6 +333,8 @@
                     </div>
 
                 </form>
+
+                {% endif %}
 
                 <!-- Opening Hours -->
                 <div class="border rounded px-6 py-5 mb-5">
