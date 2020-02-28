@@ -28,8 +28,8 @@ class LandingpageController extends AbstractController
         // Wat doen we hier eigenlijk met organizations en groups?
         $organizations = []; // $commonGroundService->getResourceList('https://cc.larping.online/organizations',["name"=>"fc"]);
         $groups = []; // $commonGroundService->getResourceList('https://pdc.larping.online/groups',["sourceOrganization"=>"816802828"]);
-        $products = $commonGroundService->getResourceList('https://pdc.larping.eu/products', ["sourceOrganization" => "816802828"]);
-
+        $products = $commonGroundService->getResourceList('https://pdc.larping.eu/products')["hydra:member"];
+        
         $orderUri = $session->get('order');
         $order = false; // Aangezien we de order variable aan hettemplate passeeren moetdie zowiezo bestaan
         if ($orderUri) {
@@ -241,6 +241,7 @@ class LandingpageController extends AbstractController
         ];
         $organisationSMS= $commonGroundService->createResource($message, 'https://bs.larping.eu/messages');
         */
+        
         // Clear the session for a new order
 
         //todo check if the payment status is payed, if so remove order and invoice, if not don't.

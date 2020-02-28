@@ -17,12 +17,12 @@
 <!-- ====================================
 ———	INTERESTED
 ===================================== -->
-{% include 'sections/interested.html.twig' %}
+{% include 'sections/list_icon.html.twig' with {'title': 'settings','description': 'What kind of event suits you?','items': groups,'view':'app_product_view','readmore':'app_product_index'} %}
 
 <!-- ====================================
 ———	LISTING
 ===================================== -->
-{% include 'sections/popular.html.twig' %}
+{% include 'sections/list_card.html.twig' with {'title': 'organizations','description': 'Meet the best event orginizers in the world','items': organizations,'view':'app_organization_view','readmore':'app_organization_index'} %}
 
 <!-- ====================================
 ———	SERVICES SECTION

@@ -10,7 +10,7 @@
 
         <form action="{{ path('app_landingpage_index') }}" method="post">
 
-            {% for product in products['hydra:member'] %}
+            {% for product in products %}
 
                 {% if product.audience != "internal" %}
 
