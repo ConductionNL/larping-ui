@@ -7,9 +7,9 @@
                 <a href="{{ path('app_default_index') }}" class="menuzord-brand">
                     <h1>{{ application.name }}</h1>
                 </a>
-                <div class="float-right btn-wrapper">
-                    <a class="btn btn-outline-primary" href="add-listings.html">+ <span>Add listing</span></a>
-                </div>
+{#                <div class="float-right btn-wrapper">#}
+{#                    <a class="btn btn-outline-primary" href="add-listings.html">+ <span>Add listing</span></a>#}
+{#                </div>#}
                 <ul class="menuzord-menu menuzord-right">
 
                     {% for menuItem in menuItems %}
@@ -17,6 +17,8 @@
                     <li class="">
                         <a href="{{ menuItem.href }}">{{ menuItem.name }}</a>
                     </li>
+
+                    {% endfor %}
 {#                    <li class="">#}
 {#                        <a href="javascript:0">Listing</a>#}
 {#                        <div class="megamenu">#}
@@ -124,63 +126,63 @@
 {#                            </div>#}
 {#                        </div>#}
 {#                    </li>#}
-                    <li class="">
-                        <a href="javascript:0">Pages</a>
-                        <ul class="dropdown">
-                            <li><a href="contact-us.html">Contact Us</a></li>
-                            <li><a href="terms-of-services.html">Terms and Conditions</a></li>
-                            <li><a href="pricing-table.html">Pricing Table</a></li>
-                            <li><a href="how-it-works.html">How It Works</a></li>
-                            <li><a href="user-profile.html">User Profile</a></li>
-                            <li><a href="comming-soon.html">Coming Soon</a></li>
-                            <li><a href="404.html">404 Page</a></li>
-                        </ul>
-                    </li>
-                    <li class="">
-                        <a href="blog.html">Blog</a>
-                    </li>
-                    <li class="">
-                        <a href="javascript:0">Admin</a>
-                        <ul class="dropdown">
-                            <li>
-                                <a href="javascript:0">User Admin</a>
-                                <ul class="dropdown">
-                                    <li><a href="dashboard-user.html">Dashboard</a></li>
-                                    <li><a href="my-bookings.html">My Booking</a></li>
-                                    <li><a href="my-favourites.html">My Favourites</a></li>
-                                    <li><a href="my-reviews.html">My reviews</a></li>
-                                    <li><a href="profile-user.html">My Profile</a></li>
-                                    <li><a href="message-users.html">My Messages</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:0">List Admin</a>
-                                <ul class="dropdown">
-                                    <li><a href="dashboard-list-admin.html">Dashboard</a></li>
-                                    <li><a href="my-listings.html">My Listings</a></li>
-                                    <li><a href="add-listings.html">Add Listings</a></li>
-                                    <li><a href="edit-listings.html">Edit Listings</a></li>
-                                    <li><a href="admin-booking-requests.html">Admin Booking</a></li>
-                                    <li><a href="admin-reviews.html">Admin Reviews</a></li>
-                                    <li><a href="payment-process.html">Payment</a></li>
-                                    <li><a href="profile-list-admin.html">My Profile</a></li>
-                                    <li><a href="messages-list-admin.html">My Messages</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:0">Site Admin</a>
-                                <ul class="dropdown">
-                                    <li><a href="dashboard-stie-admin.html">Dashboard</a></li>
-                                    <li><a href="admin-listings.html">Admin Listings</a></li>
-                                    <li><a href="user-list-owners.html">List Owners</a></li>
-                                    <li><a href="user-generals.html">General Users</a></li>
-                                    <li><a href="profile-site-admin.html">My Profile</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="login.html">Login</a></li>
-                            <li><a href="sign-up.html">Create Account</a></li>
-                        </ul>
-                    </li>
+{#                    <li class="">#}
+{#                        <a href="javascript:0">Pages</a>#}
+{#                        <ul class="dropdown">#}
+{#                            <li><a href="contact-us.html">Contact Us</a></li>#}
+{#                            <li><a href="terms-of-services.html">Terms and Conditions</a></li>#}
+{#                            <li><a href="pricing-table.html">Pricing Table</a></li>#}
+{#                            <li><a href="how-it-works.html">How It Works</a></li>#}
+{#                            <li><a href="user-profile.html">User Profile</a></li>#}
+{#                            <li><a href="comming-soon.html">Coming Soon</a></li>#}
+{#                            <li><a href="404.html">404 Page</a></li>#}
+{#                        </ul>#}
+{#                    </li>#}
+{#                    <li class="">#}
+{#                        <a href="blog.html">Blog</a>#}
+{#                    </li>#}
+{#                    <li class="">#}
+{#                        <a href="javascript:0">Admin</a>#}
+{#                        <ul class="dropdown">#}
+{#                            <li>#}
+{#                                <a href="javascript:0">User Admin</a>#}
+{#                                <ul class="dropdown">#}
+{#                                    <li><a href="dashboard-user.html">Dashboard</a></li>#}
+{#                                    <li><a href="my-bookings.html">My Booking</a></li>#}
+{#                                    <li><a href="my-favourites.html">My Favourites</a></li>#}
+{#                                    <li><a href="my-reviews.html">My reviews</a></li>#}
+{#                                    <li><a href="profile-user.html">My Profile</a></li>#}
+{#                                    <li><a href="message-users.html">My Messages</a></li>#}
+{#                                </ul>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="javascript:0">List Admin</a>#}
+{#                                <ul class="dropdown">#}
+{#                                    <li><a href="dashboard-list-admin.html">Dashboard</a></li>#}
+{#                                    <li><a href="my-listings.html">My Listings</a></li>#}
+{#                                    <li><a href="add-listings.html">Add Listings</a></li>#}
+{#                                    <li><a href="edit-listings.html">Edit Listings</a></li>#}
+{#                                    <li><a href="admin-booking-requests.html">Admin Booking</a></li>#}
+{#                                    <li><a href="admin-reviews.html">Admin Reviews</a></li>#}
+{#                                    <li><a href="payment-process.html">Payment</a></li>#}
+{#                                    <li><a href="profile-list-admin.html">My Profile</a></li>#}
+{#                                    <li><a href="messages-list-admin.html">My Messages</a></li>#}
+{#                                </ul>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="javascript:0">Site Admin</a>#}
+{#                                <ul class="dropdown">#}
+{#                                    <li><a href="dashboard-stie-admin.html">Dashboard</a></li>#}
+{#                                    <li><a href="admin-listings.html">Admin Listings</a></li>#}
+{#                                    <li><a href="user-list-owners.html">List Owners</a></li>#}
+{#                                    <li><a href="user-generals.html">General Users</a></li>#}
+{#                                    <li><a href="profile-site-admin.html">My Profile</a></li>#}
+{#                                </ul>#}
+{#                            </li>#}
+{#                            <li><a href="login.html">Login</a></li>#}
+{#                            <li><a href="sign-up.html">Create Account</a></li>#}
+{#                        </ul>#}
+{#                    </li>#}
 
                 </ul>
 
