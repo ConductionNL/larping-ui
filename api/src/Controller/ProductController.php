@@ -44,8 +44,12 @@ class ProductController extends AbstractController
 	public function viewAction(CommonGroundService $commonGroundService, $id)
 	{
 		$product = $commonGroundService->getResource('https://pdc.larping.eu/products/'.$id);
+        $application = $commonGroundService->getResource('https://wrc.larping.eu/applications/71f9f51f-ab58-4b58-9035-b295db48a302');
+        $menu = $commonGroundService->getResource('https://wrc.larping.eu/menus/505b716c-9461-4588-95d7-8279b3042807');
 
-		return ["product"=>$product];
+        $menuItems = $menu['menuItem'];
+
+		return ["product"=>$product,'application'=>$application,'menuItems'=>$menuItems];
 	}
 
 }
