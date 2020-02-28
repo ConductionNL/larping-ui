@@ -36,6 +36,7 @@ class OrganizationController extends AbstractController
 	public function viewAction(CommonGroundService $commonGroundService, $id)
 	{
 		$organization = $commonGroundService->getResource('https://wrc.larping.eu/organizations/'.$id);
+		$query = [];
 		
 		$events = $commonGroundService->getResourceList('https://pdc.larping.eu/products', $query)['hydra:member'];		
 		$products = $commonGroundService->getResourceList('https://pdc.larping.eu/products', $query)['hydra:member'];
