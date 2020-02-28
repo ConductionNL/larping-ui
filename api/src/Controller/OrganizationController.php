@@ -2,6 +2,7 @@
 // src/Controller/DefaultController.php
 namespace App\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -18,20 +19,23 @@ class OrganizationController extends AbstractController
 	 * @Route("/")
 	 * @Template
 	 */
-	public function indexAction(CommonGroundService $commonGroundService)
+	public function indexAction(Request $request, CommonGroundService $commonGroundService)
 	{
-		$organizations= $commonGroundService->getResourceList('https://wrc.larping.eu/organizations');
+		$groups = $request->request->get('groups');
+		$query = ["groups"=>$groups];
+		
+		$organizations= $commonGroundService->getResourceList('https://wrc.larping.eu/organizations', $query)['hydra:member'];
 		
 		return ["organizations"=>$organizations];
 	}
 	
 	/**
-	 * @Route("/{uuid}")
+	 * @Route("/{id}")
 	 * @Template
 	 */
-	public function viewAction(CommonGroundService $commonGroundService, $uuid)
+	public function viewAction(CommonGroundService $commonGroundService, $id)
 	{
-		$organization = $commonGroundService->getResource('https://wrc.larping.eu/organizations/'.$uuid);
+		$organization = $commonGroundService->getResource('https://wrc.larping.eu/organizations/'.$id);
 		
 		return ["organization"=>$organization];
 	}

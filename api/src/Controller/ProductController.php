@@ -4,6 +4,7 @@
 
 namespace App\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -20,20 +21,25 @@ class ProductController extends AbstractController
 	 * @Route("/")
 	 * @Template
 	 */
-	public function indexAction(CommonGroundService $commonGroundService)
+	public function indexAction(Request $request, CommonGroundService $commonGroundService)
 	{
-		$products = $commonGroundService->getResourceList('https://pdc.larping.eu/products');
+		$groups = $request->request->get('groups');
+		$query = ["groups"=>$groups,"type"=>"ticket"];
 		
-		return ["products"=>$products];
+		$products = $commonGroundService->getResourceList('https://pdc.larping.eu/products', $query)['hydra:member'];
+		$organizations = $commonGroundService->getResourceList('https://wrc.larping.eu/organizations')['hydra:member'];
+		$groups = $commonGroundService->getResourceList('https://pdc.larping.eu/groups')['hydra:member'];
+		
+		return ["items"=>$products,"organizations"=>$organizations,"groups"=>$groups,];
 	}
 	
 	/**
-	 * @Route("/{uuid}")
+	 * @Route("/{id}")
 	 * @Template
 	 */
-	public function viewAction(CommonGroundService $commonGroundService, $uuid)
+	public function viewAction(CommonGroundService $commonGroundService, $id)
 	{
-		$product = $commonGroundService->getResource('https://pdc.larping.eu/products/'.$uuid);
+		$product = $commonGroundService->getResource('https://pdc.larping.eu/products/'.$id);
 		
 		return ["product"=>$product];
 	}
