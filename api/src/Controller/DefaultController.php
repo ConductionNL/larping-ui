@@ -29,8 +29,6 @@ class DefaultController extends AbstractController
     	$application = $commonGroundService->getResource('https://wrc.larping.eu/applications/71f9f51f-ab58-4b58-9035-b295db48a302');
     	$menu = $commonGroundService->getResource('https://wrc.larping.eu/menus/505b716c-9461-4588-95d7-8279b3042807');
     	
-
-    	$menuItems = [];
     	$menuItems = $menu['menuItem'];
 
     	return ['organizations'=>$organizations,'groups'=>$groups,'application'=>$application,'menuItems'=>$menuItems];
