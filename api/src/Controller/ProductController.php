@@ -32,9 +32,11 @@ class ProductController extends AbstractController
         $application = $commonGroundService->getResource('https://wrc.larping.eu/applications/71f9f51f-ab58-4b58-9035-b295db48a302');
         $menu = $commonGroundService->getResource('https://wrc.larping.eu/menus/505b716c-9461-4588-95d7-8279b3042807');
 
+        $organization = $commonGroundService->getResource('https://wrc.larping.eu'.$application['organization']['@id']);
+
         $menuItems = $menu['menuItem'];
 
-		return ["items"=>$products,"organizations"=>$organizations,"groups"=>$groups,'application'=>$application,'menuItems'=>$menuItems];
+		return ["items"=>$products,"organizations"=>$organizations,"organization"=>$organization,"groups"=>$groups,'application'=>$application,'menuItems'=>$menuItems];
 	}
 
 	/**
@@ -47,9 +49,11 @@ class ProductController extends AbstractController
         $application = $commonGroundService->getResource('https://wrc.larping.eu/applications/71f9f51f-ab58-4b58-9035-b295db48a302');
         $menu = $commonGroundService->getResource('https://wrc.larping.eu/menus/505b716c-9461-4588-95d7-8279b3042807');
 
+        $organization = $commonGroundService->getResource('https://wrc.larping.eu'.$application['organization']['@id']);
+
         $menuItems = $menu['menuItem'];
 
-		return ["product"=>$product,'application'=>$application,'menuItems'=>$menuItems];
+		return ["product"=>$product,"organization"=>$organization,'application'=>$application,'menuItems'=>$menuItems];
 	}
 
 }
