@@ -109,6 +109,8 @@ class CommonGroundService
 		
 		$response = json_decode($response->getBody(), true);
 		
+		//var_dump($response);
+		
 		/* @todo this should look to al @id keus not just the main root */
 		foreach($response['hydra:member'] as $key => $embedded){
 			if($embedded['@id']){
