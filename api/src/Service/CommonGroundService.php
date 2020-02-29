@@ -67,8 +67,14 @@ class CommonGroundService
 		
 		// Split enviroments, if the env is not dev the we need add the env to the url name
 		$parsedUrl = parse_url($url);
+		
+		// We only do this on non-production enviroments
 		if($this->params->get('app_env') != "prod"){
-			$url = str_replace("https://","https://".$this->params->get('app_env'),$url);
+			
+			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
+			$host = explode('.', $parsedUrl['host']);			
+			$subdomain = $host[0];
+			$url = str_replace($subdomain,$subdomain.'.'.$this->params->get('app_env'),$url);
 		}
 		
 		$elementList = [];
@@ -96,7 +102,7 @@ class CommonGroundService
 					'query' => $query,
 					'headers' => $headers,
 			]
-					);
+		);
 		}
 		else {
 			
@@ -137,8 +143,14 @@ class CommonGroundService
 		
 		// Split enviroments, if the env is not dev the we need add the env to the url name
 		$parsedUrl = parse_url($url);
+		
+		// We only do this on non-production enviroments
 		if($this->params->get('app_env') != "prod"){
-			$url = str_replace("https://","https://".$this->params->get('app_env'),$url);
+			
+			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
+			$host = explode('.', $parsedUrl['host']);
+			$subdomain = $host[0];
+			$url = str_replace($subdomain,$subdomain.'.'.$this->params->get('app_env'),$url);
 		}
 		
 		// To work with NLX we need a couple of default headers
@@ -190,8 +202,14 @@ class CommonGroundService
 		
 		// Split enviroments, if the env is not dev the we need add the env to the url name
 		$parsedUrl = parse_url($url);
+		
+		// We only do this on non-production enviroments
 		if($this->params->get('app_env') != "prod"){
-			$url = str_replace("https://","https://".$this->params->get('app_env'),$url);
+			
+			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
+			$host = explode('.', $parsedUrl['host']);
+			$subdomain = $host[0];
+			$url = str_replace($subdomain,$subdomain.'.'.$this->params->get('app_env'),$url);
 		}
 				
 		// To work with NLX we need a couple of default headers
@@ -261,8 +279,14 @@ class CommonGroundService
 		
 		// Split enviroments, if the env is not dev the we need add the env to the url name
 		$parsedUrl = parse_url($url);
+		
+		// We only do this on non-production enviroments
 		if($this->params->get('app_env') != "prod"){
-			$url = str_replace("https://","https://".$this->params->get('app_env'),$url);
+			
+			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
+			$host = explode('.', $parsedUrl['host']);
+			$subdomain = $host[0];
+			$url = str_replace($subdomain,$subdomain.'.'.$this->params->get('app_env'),$url);
 		}
 		
 		if(!$async){
