@@ -1,0 +1,26 @@
+<!-- ====================================
+   ICON LIST
+===================================== -->
+<section class="pt-md-10 sec-pb-70 pt-8 pb-6 bg-light">
+    <div class="container">
+        <div class="section-title">
+            {% if title is defined %}<h2>{{ title|capitalize|trans }}</h2>{% endif %}
+            {% if description is defined %}<p>{{ description|capitalize|trans }}</p>{% endif %}
+        </div>
+        <div class="row">
+            {% for item in items %}
+            <div class="col-md-4 col-lg-3 col-xs-12">
+                <a class="card py-5 hover-bg-primary bg-transparent" href="{% if readmore is defined %}{{ path(readmore, {filters: item.id}) }}{% else %}#{% endif %}">
+                    <div class="card-body text-center">
+                        <div class="icon-md">
+                            <i class="icon-listy icon-agenda {% if item.icon is defined %}{{ item.icon }}{% endif %}"></i>
+                        </div>
+                        <span class="h5">{{ item.name|capitalize }}</span>
+                    </div>
+               </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+

@@ -2,6 +2,18 @@
 
 {% block content %}
 
-    {% include "sections/organization/organization_dashboard.html.twig" %}
+    <section class="py-7 py-md-10">
+        <div class="container">
+            <div class="row">
+
+                {% include 'sections/list-broad-items.html.twig' with {'view':'app_organization_view'} %}
+
+                {% include 'sections/small-search-filter.html.twig'  %}
+
+                {% include 'sections/pagination.html.twig'  %}
+
+            </div>
+        </div>
+    </section>
 
 {% endblock %}
