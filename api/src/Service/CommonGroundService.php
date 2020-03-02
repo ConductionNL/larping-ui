@@ -129,7 +129,18 @@ class CommonGroundService
 					);
 		}
 		
+		if($response->getStatusCode() != 200){
+			var_dump(json_encode($query));
+			var_dump(json_encode($headers));
+			var_dump(json_encode($url));
+			var_dump($response->getBody());
+			die;
+		}
+		
+		
 		$response = json_decode($response->getBody(), true);
+		
+		
 		
 		//var_dump($response);
 		
@@ -195,6 +206,14 @@ class CommonGroundService
 					'headers' => $headers,
 			]
 					);
+		}
+		
+		if($response->getStatusCode() != 200){
+			var_dump(json_encode($query));
+			var_dump(json_encode($headers));
+			var_dump(json_encode($url));
+			var_dump($response->getBody());
+			die;
 		}
 		
 		$response = json_decode($response->getBody(), true);
