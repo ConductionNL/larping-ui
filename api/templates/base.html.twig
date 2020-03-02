@@ -72,6 +72,14 @@
     <div class="main-wrapper">
     {% include 'header.html.twig' %}
 
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+        <div class="{{ label }} alert-notice">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endfor %}
+
 	{% block content %}
 
     {% endblock %}

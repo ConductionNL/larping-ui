@@ -13,6 +13,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use App\Service\CommonGroundService;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use App\Security\User\CommongroundUser;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * Class UserController
@@ -25,15 +29,43 @@ class UserController extends AbstractController
 	 * @Route("/login")
      * @Template
 	 */
-	public function login(AuthenticationUtils $authenticationUtils)
+	public function login(Request $request, CommonGroundService $commonGroundService,  ParameterBagInterface $params, EventDispatcherInterface $dispatcher)
 	{
-		// get the login error if there is one
-		$error = $authenticationUtils->getLastAuthenticationError();
-		// last username entered by the user
-		$lastUsername = $authenticationUtils->getLastUsername();
 		
-		if($error){
-			$this->addFlash('danger', $error);
+		// Kijken of het formulier is getriggerd
+		if ($request->isMethod('POST')) {
+			
+			$credentials = [
+					'username' => $request->request->get('username'),
+					'password' => $request->request->get('password'),
+					'csrf_token' => $request->request->get('_csrf_token'),
+			];
+			
+			$user = $commonGroundService->createResource($credentials, $params->get('auth_provider_user').'/login');
+			
+			if(!$user){
+				
+				$this->addFlash('alert', "Ow nooz!");
+				
+				return $this->render('user/login.html.twig', [
+						'last_username' => $user['username'],
+						'error' => $error
+				]);
+			}
+			
+			$user = new CommongroundUser($user['username'], $credentials["password"], null, ['user'] );
+			
+			// Manually authenticate user in controller
+			$token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+			$this->get('security.token_storage')->setToken($token);
+			$this->get('session')->set('_security_main', serialize($token));
+			
+			
+			//  Fire the login event manually 			
+			$event = new InteractiveLoginEvent($request, $token);
+			$dispatcher->dispatch($event);
+			
+			return $this->redirect($this->generateUrl('app_user_settings'));
 		}
 		
 		return [];
@@ -43,7 +75,7 @@ class UserController extends AbstractController
      * @Route("/register")
      * @Template
      */
-	public function registerAction(Request $request, CommonGroundService $commonGroundService, ParameterBagInterface $params)
+	public function registerAction(Request $request, CommonGroundService $commonGroundService, ParameterBagInterface $params, EventDispatcherInterface $dispatcher)
     {
     	// Kijken of het formulier is getriggerd
     	if ($request->isMethod('POST')) {
@@ -57,46 +89,61 @@ class UserController extends AbstractController
     				$this->addFlash('danger', $requiredValue.' is a required value');
     				$error = true;
     			}
-    			
-    			
-    			if($request->request->get('password') != $request->request->get('password2')){
-    				$this->addFlash('danger','Password and repeat password do not match');
-    				$error = true;
-    			}
-    			
-    			
-    			$users = $commonGroundService->getResourceList($params->get('auth_provider_user').'/users',["username"=> $request->request->get('username')], true);
-    			$users = $users["hydra:member"];
-    			    			
-    			if($users && count($users) >= 1){
-    				$this->addFlash('danger','Username is already taken');
-    				$error = true;
-    			}
-    			
-    			if($error){
-    				return [];
-    			}
-    			
-    			
-    			$application = $commonGroundService->getApplication();
-    			
-    			// contact persoon aanmaken op order
-    			$contact['givenName'] = $request->request->get('givenName');
-    			$contact['familyName'] = $request->request->get('familyName');    			
-    			$contact['emails'] = [];
-    			$contact['emails'][] = ["name" => "primary", "email" => $request->request->get('username')];
-    			//$contact['organization'] = 'https://wrc.larping.eu'.$application['organization']['@id'];
-    			$contact = $commonGroundService->createResource($contact, 'https://cc.larping.eu/people'); /*@todo awfulle specific */
-    			
-    			//  Create the uses
-    			$user = [];
-    			$user['username'] =  $request->request->get('username');
-    			$user['password'] =  $request->request->get('password');
-    			$user['organization'] = 'https://wrc.larping.eu'.$application['organization']['@id'];
-    			$user['person'] = $contact['@id'];
-    			//$contact['organization'] = 'https://wrc.larping.eu'.$application['organization']['@id'];
-    			$user= $commonGroundService->createResource($user, 'https://uc.larping.eu/users'); /*@todo awfulle specific */
     		}
+    		
+    		
+    		if($request->request->get('password') != $request->request->get('password2')){
+    			$this->addFlash('danger','Password and repeat password do not match');
+    			$error = true;
+    		}
+    		
+    		
+    		$users = $commonGroundService->getResourceList($params->get('auth_provider_user').'/users',["username"=> $request->request->get('username')], true);
+    		$users = $users["hydra:member"];
+    		
+    		if($users && count($users) >= 1){
+    			$this->addFlash('danger','Username is already taken');
+    			$error = true;
+    		}
+    		
+    		if($error){
+    			return [];
+    		}
+    		
+    		
+    		$application = $commonGroundService->getApplication();
+    		
+    		// contact persoon aanmaken op order
+    		$contact['givenName'] = $request->request->get('givenName');
+    		$contact['familyName'] = $request->request->get('familyName');
+    		$contact['emails'] = [];
+    		$contact['emails'][] = ["name" => "primary", "email" => $request->request->get('username')];
+    		//$contact['organization'] = 'https://wrc.larping.eu'.$application['organization']['@id'];
+    		$contact = $commonGroundService->createResource($contact, 'https://cc.larping.eu/people'); /*@todo awfulle specific */
+    		
+    		//  Create the uses
+    		$user = [];
+    		$user['username'] =  $request->request->get('username');
+    		$user['password'] =  $request->request->get('password');
+    		$user['organization'] = 'https://wrc.larping.eu'.$application['organization']['@id'];
+    		$user['person'] = 'https://cc.larping.eu'.$contact['@id'];
+    		//$contact['organization'] = 'https://wrc.larping.eu'.$application['organization']['@id'];
+    		$user= $commonGroundService->createResource($user, 'https://uc.larping.eu/users'); /*@todo awfulle specific */
+    		
+    		
+    		$user = new CommongroundUser($user['username'], $request->request->get('password'), null, ['user'] );
+    		
+    		// Manually authenticate user in controller
+    		$token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+    		$this->get('security.token_storage')->setToken($token);
+    		$this->get('session')->set('_security_main', serialize($token));
+    		
+    		
+    		//  Fire the login event manually
+    		$event = new InteractiveLoginEvent($request, $token);
+    		$dispatcher->dispatch($event);
+    		
+    		return $this->redirect($this->generateUrl('app_user_confirm'));
     	}	
     	
         return [];

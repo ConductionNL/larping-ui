@@ -30,6 +30,8 @@
                   </a>
                 <a href="{{ path('app_user_reminder') }}">Forgot Password?</a>
               </div>
+              
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
             </form>
           </div>
           <div class="card-footer bg-transparent text-center py-3">
