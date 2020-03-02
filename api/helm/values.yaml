@@ -10,7 +10,6 @@ settings:
   version: V.0.1
   description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.&#039;'
   repro: 'https://github.com/ConductionNL/Proto-component-commonground'
-  subdomain:   
   domain: larping.eu
   organisationName: Conduction
   email: info@conduction.nl
@@ -18,7 +17,6 @@ settings:
   state: Noord-Holland
   locality: Amsterdam
   unit: Common-Ground  
-
   demo: larping.eu
   env: dev
   debug: 1
@@ -40,7 +38,8 @@ settings:
 
   notificationEnabled: false
   audittrailEnabled: false
-  authorisationEnabled: false
+  authorisationProviderUser: https://uc.larping.eu
+  authorisationProviderApplication: https://ac.larping.eu
   healthEnabled: false
   archiveEnabled: false
 
