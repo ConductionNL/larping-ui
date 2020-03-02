@@ -65,10 +65,10 @@ class UserController extends AbstractController
     			}
     			
     			
-    			$users = $commonGroundService->getResourceList($params->get('auth_provider_user').'/users',["username"->$credentials["username"]]);
+    			$users = $commonGroundService->getResourceList($params->get('auth_provider_user').'/users',["username"=> $request->request->get('username')], true);
     			$users = $users["hydra:member"];
-    			
-    			if(count($users) >= 1){
+    			    			
+    			if($users && count($users) >= 1){
     				$this->addFlash('danger','Username is already taken');
     				$error = true;
     			}
@@ -93,7 +93,9 @@ class UserController extends AbstractController
     			$user['username'] =  $request->request->get('username');
     			$user['password'] =  $request->request->get('password');
     			$user['organization'] = 'https://wrc.larping.eu'.$application['organization']['@id'];
-    			$user['perosn'] = $contact['@id']; 
+    			$user['person'] = $contact['@id'];
+    			//$contact['organization'] = 'https://wrc.larping.eu'.$application['organization']['@id'];
+    			$user= $commonGroundService->createResource($user, 'https://uc.larping.eu/users'); /*@todo awfulle specific */
     		}
     	}	
     	
