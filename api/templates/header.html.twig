@@ -12,8 +12,8 @@
                 </div>
 
                 <ul class="menuzord-menu menuzord-right">
-				{% if  common_ground_service.getApplication.defaultConfiguration is defined and common_ground_service.getApplication.defaultConfiguration.configuration.menuPrimary   %}
-		        {% set menu = commonground_resource(common_ground_service.getApplication.defaultConfiguration.configuration.menuPrimary)  %}
+				{% if  common_ground_service.getApplication.defaultConfiguration is defined and common_ground_service.getApplication.defaultConfiguration.configuration.larpingUi   %}
+		        {% set menu = commonground_resource(common_ground_service.getApplication.defaultConfiguration.configuration.larpingUi.menuPrimary)  %}
                     {% for item in menu.menuItems %}
                     <li class="">
                         <a href="{{ path( item.href ) }}">{{ item.name }}</a>

@@ -20,8 +20,8 @@
             </ul>
           </div>
 
-		 {% if common_ground_service.getApplication.defaultConfiguration is defined and common_ground_service.getApplication.defaultConfiguration.configuration.menuFooter1 %}
-		 {% set menu = commonground_resource(common_ground_service.getApplication.defaultConfiguration.configuration.menuFooter1)  %}
+		 {% if common_ground_service.getApplication.defaultConfiguration is defined and common_ground_service.getApplication.defaultConfiguration.configuration.larpingUi %}
+		 {% set menu = commonground_resource(common_ground_service.getApplication.defaultConfiguration.configuration.larpingUi.menuFooter1)  %}
           <div class="col-sm-3 col-xs-12">
             <div class="mb-4 mt-4 mt-md-0">
               <h2 class="h4">{{ menu.name }}</h2>
@@ -37,8 +37,8 @@
           </div>
          {% endif %}
 
-		 {% if  common_ground_service.getApplication.defaultConfiguration is defined and common_ground_service.getApplication.defaultConfiguration.configuration.menuFooter2 %}
-		 {% set menu = commonground_resource(common_ground_service.getApplication.defaultConfiguration.configuration.menuFooter2)  %}
+		 {% if  common_ground_service.getApplication.defaultConfiguration is defined and common_ground_service.getApplication.defaultConfiguration.configuration.larpingUi %}
+		 {% set menu = commonground_resource(common_ground_service.getApplication.defaultConfiguration.configuration.larpingUi.menuFooter2)  %}
           <div class="col-sm-2 col-xs-12">
             <div class="mb-4 mt-4 mt-md-0">
               <h2 class="h4">{{ menu.name }}</h2>
@@ -62,8 +62,8 @@
 
           <div class="col-sm-7 col-xs-12 align-self-center order-3 order-md-0">
             <p class="copy-right mb-0 pb-4 pb-md-0">
-              Copyright &copy; 2020. All Rights Reserved by
-              <a href="http://www.iamabdus.com/" target="_blank"> Abdus</a>
+              Copyright &copy; {{ "now"|date("Y") }}. All Rights Reserved by
+              <a href="http://www.conduction.nl/" target="_blank"> Conduction</a>
             </p>
           </div>
 

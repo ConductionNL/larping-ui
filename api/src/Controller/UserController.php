@@ -25,6 +25,20 @@ class UserController extends AbstractController
 
     public function loginAction(Request $request, EntityManagerInterface $em)
     {
+    	// Kijken of het formulier is getriggerd
+    	if ($request->isMethod('POST')) {
+    		
+    		// Lets check on required values
+    		$requiredValues = ['"username"','password'];
+    		$error = false;
+    		foreach($requiredValues as $requiredValue){
+    			if(!$request->request->get($requiredValue)|| $request->request->get($requiredValue) == null){
+    				$this->addFlash('danger', $requiredValue.' is a required value');
+    				$error = true;
+    			}
+    		}
+    	}	
+    		
         return [];
     }
 
@@ -34,6 +48,35 @@ class UserController extends AbstractController
      */
     public function registerAction(Request $request, EntityManagerInterface $em)
     {
+    	// Kijken of het formulier is getriggerd
+    	if ($request->isMethod('POST')) {
+    		
+    		// Lets check on required values
+    		$requiredValues = ['givenName','familyName','password','password2','username'];
+    		$error = false;
+    		foreach($requiredValues as $requiredValue){
+    			
+    			if(!$request->request->get($requiredValue)|| $request->request->get($requiredValue) == null){
+    				$this->addFlash('danger', $requiredValue.' is a required value');
+    				$error = true;
+    			}
+    			
+    			
+    			// contact persoon aanmaken op order
+    			$contact['givenName'] = $request->request->get('givenName');
+    			$contact['familyName'] = $request->request->get('familyName');    			
+    			$contact['emails'] = [];
+    			$contact['emails'][] = ["name" => "primary", "email" => $request->request->get('username')];
+    			$contact = $commonGroundService->createResource($contact, 'https://cc.larping.eu/people');
+    			
+    			// 
+    			$user = [];
+    			$user['username'] =  $request->request->get('username');
+    			$user['password'] =  $request->request->get('password');
+    			$user['contact'] = $contact['@id'];
+    		}
+    	}	
+    	
         return [];
     }
 
@@ -53,6 +96,20 @@ class UserController extends AbstractController
      */
     public function reminderAction(Request $request, EntityManagerInterface $em)
     {
+    	// Kijken of het formulier is getriggerd
+    	if ($request->isMethod('POST')) {
+    		
+    		// Lets check on required values
+    		$requiredValues = ['givenName','familyName','street','street','houseNumber','postalCode','locality','email'];
+    		$error = false;
+    		foreach($requiredValues as $requiredValue){
+    			if(!$request->request->get($requiredValue)|| $request->request->get($requiredValue) == null){
+    				$this->addFlash('danger', $requiredValue.' is a required value');
+    				$error = true;
+    			}
+    		}
+    	}	
+    	
     	return [];
     }
 
