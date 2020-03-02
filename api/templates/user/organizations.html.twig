@@ -1,0 +1,306 @@
+{% extends "body.html.twig" %}
+
+{% block content %}
+
+<!-- ====================================
+———	MY FAVOURITES
+===================================== -->
+<section class="bg-light pb-5 height100vh">
+  <div class="container">
+    <div class="d-flex flex-column flex-md-row justify-content-md-between align-items-center py-7">
+      <h2 class="mb-5 mb-lg-0 font-weight-normal">My Favourites</h2>
+      <form style="min-width: 200px">
+        <div class="select-default bg-white">
+          <select class="select-location">
+            <option>All Categories</option>
+            <option>Restaurants</option>
+            <option>Bar</option>
+            <option>Cafe</option>
+            <option>Cafe</option>
+          </select>
+        </div>
+      </form>
+    </div>
+
+    <table id="my-favourites" class="display nowrap table-data-default" style="width:100%">
+      <thead>
+        <tr class="table-row-bg-white">
+          <th>Listing</th>
+          <th>Details</th>
+          <th>Posted on</th>
+          <th data-priority="2"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="table-row-bg-white">
+          <td class="td-media">
+            <div class="media media-table">
+              <a class="media-img" href="admin-single-listing.html">
+                <img class="img-fluid rounded mr-2" src="assets/img/listing/listing-4.jpg" alt="listing.jpg">
+              </a>
+              <div class="media-body">
+                <h3 class="media-title">
+                  <a href="admin-single-listing.html">Think Coffee
+                    <i class="fa fa-check-circle" aria-hidden="true"></i></a>
+                </h3>
+                <p class="mb-1">215 Terry Lane, New York </p>
+                <span class="text-primary text-capitalize d-inline-block mb-1">eat & drink</span>
+                <p class="text-dark">From $50.00 /Night
+                  <span class="text-muted ml-2">
+                    <i class="fa fa-heart-o text-primary" aria-hidden="true"></i>10k
+                  </span>
+                </p>
+              </div>
+            </div>
+          </td>
+          <td class="td-details">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt labore
+            et dolore magna aliqua. Consectetur adipisicing elit, sed eiusmod tempor incididunt labore
+            et dolore magna aliqua.</p>
+          </td>
+          <td>
+            <span class="d-block">01 Aug 19</span>
+            <span class="d-block">07.00 PM</span>
+          </td>
+          <td>
+            <div class="dropdown">
+              <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Veiw Details</a>
+                <a class="dropdown-item" href="#">Unfavourite</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr class="table-row-bg-white">
+          <td class="td-media">
+            <div class="media media-table">
+              <a class="media-img" href="admin-single-listing.html">
+                <img class="img-fluid rounded mr-2" src="./assets/img/listing/listing-5.jpg" alt="listing.jpg">
+              </a>
+              <div class="media-body">
+                <h3 class="media-title">
+                  <a href="admin-single-listing.html"> Burger House <i class="fa fa-check-circle" aria-hidden="true"></i>
+                  </a>
+                </h3>
+                <p class="mb-1">2726 Shinn Street, New York </p>
+                <span class="text-primary text-capitalize d-inline-block mb-1">eat & drink</span>
+                <p class="text-dark">From $50.00 /Night
+                  <span class="text-muted ml-2">
+                    <i class="fa fa-heart-o text-primary" aria-hidden="true"></i>9.2k
+                  </span>
+                </p>
+              </div>
+            </div>
+          </td>
+          <td class="td-details">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt labore
+              et dolore magna aliqua. Consectetur adipisicing elit, sed eiusmod tempor incididunt labore
+              et dolore magna aliqua.</p>
+          </td>
+
+          <td>
+            <span class="d-block">02 Aug 19</span>
+            <span class="d-block">11.00 PM</span>
+          </td>
+          <td>
+            <div class="dropdown">
+              <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" data-display="static">
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Veiw Details</a>
+                <a class="dropdown-item" href="#">Unfavourite</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr class="table-row-bg-white">
+          <td class="td-media">
+            <div class="media media-table">
+              <a class="media-img" href="admin-single-listing.html">
+                <img class="img-fluid rounded mr-2" src="./assets/img/listing/listing-10.jpg" alt="listing.jpg">
+              </a>
+              <div class="media-body">
+                <h3 class="media-title">
+                  <a href="admin-single-listing.html">Tom's Restaurant
+                    <i class="fa fa-check-circle" aria-hidden="true"></i></a>
+                </h3>
+                <p class="mb-1">964 School Street, New York </p>
+                <span class="text-primary text-capitalize d-inline-block mb-1">eat & drink</span>
+                <p class="text-dark">From $50.00 /Night
+                  <span class="text-muted ml-2">
+                    <i class="fa fa-heart-o text-primary" aria-hidden="true"></i>9.5k
+                  </span>
+                </p>
+              </div>
+            </div>
+          </td>
+          <td class="td-details">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt labore
+              et dolore magna aliqua. Consectetur adipisicing elit, sed eiusmod tempor incididunt labore
+              et dolore magna aliqua.</p>
+          </td>
+          <td>
+            <span class="d-block">05 Aug 19</span>
+            <span class="d-block">11.00 PM</span>
+          </td>
+          <td>
+            <div class="dropdown">
+              <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" data-display="static">
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Veiw Details</a>
+                <a class="dropdown-item" href="#">Unfavourite</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr class="table-row-bg-white">
+          <td class="td-media">
+            <div class="media media-table">
+              <a class="media-img" href="admin-single-listing.html">
+                <img class="img-fluid rounded mr-2" src="./assets/img/listing/listing-1.jpg" alt="listing.jpg">
+              </a>
+              <div class="media-body">
+                <h3 class="media-title">
+                  <a href="admin-single-listing.html">The City Theater</a>
+                </h3>
+                <p class="mb-1">155 1st Avenue, New York </p>
+                <span class="text-primary text-capitalize d-inline-block mb-1">Other's</span>
+                <p class="text-dark">From $50.00 /Night
+                  <span class="text-muted ml-2">
+                    <i class="fa fa-heart-o text-primary" aria-hidden="true"></i>9.5k
+                  </span>
+                </p>
+              </div>
+            </div>
+          </td>
+          <td class="td-details">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt labore
+              et dolore magna aliqua. Consectetur adipisicing elit, sed eiusmod tempor incididunt labore
+              et dolore magna aliqua.</p>
+          </td>
+          <td>
+            <span class="d-block">06 Aug 19</span>
+            <span class="d-block">10.13 PM</span>
+          </td>
+          <td>
+            <div class="dropdown">
+              <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" data-display="static">
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Veiw Details</a>
+                <a class="dropdown-item" href="#">Unfavourite</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr class="table-row-bg-white">
+          <td class="td-media">
+            <div class="media media-table">
+              <a class="media-img" href="admin-single-listing.html">
+                <img class="img-fluid rounded mr-2" src="./assets/img/listing/listing-7.jpg" alt="listing.jpg">
+              </a>
+              <div class="media-body">
+                <h3 class="media-title">
+                  <a href="admin-single-listing.html">Sticky Band
+                    <i class="fa fa-check-circle" aria-hidden="true"></i></a>
+                </h3>
+                <p class="mb-1">Bishop Avenue, New York </p>
+                <span class="text-primary text-capitalize d-inline-block mb-1">events</span>
+                <p class="text-dark">From $50.00 /Night
+                  <span class="text-muted ml-2">
+                    <i class="fa fa-heart-o text-primary" aria-hidden="true"></i>5.9k
+                  </span>
+                </p>
+              </div>
+            </div>
+          </td>
+          <td class="td-details">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt labore
+              et dolore magna aliqua. Consectetur adipisicing elit, sed eiusmod tempor incididunt labore
+              et dolore magna aliqua.</p>
+          </td>
+          <td>
+            <span class="d-block">07 Aug 19</span>
+            <span class="d-block">12.14 PM</span>
+          </td>
+
+          <td>
+            <div class="dropdown">
+              <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" data-display="static">
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Veiw Details</a>
+                <a class="dropdown-item" href="#">Unfavourite</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+        <tr class="table-row-bg-white">
+          <td class="td-media">
+            <div class="media media-table">
+              <a class="media-img" href="admin-single-listing.html">
+                <img class="img-fluid rounded mr-2" src="./assets/img/listing/listing-8.jpg" alt="listing.jpg">
+              </a>
+              <div class="media-body">
+                <h3 class="media-title">
+                  <a href="admin-single-listing.html">Hotel Govendor
+                    <i class="fa fa-check-circle" aria-hidden="true"></i></a>
+                </h3>
+                <p class="mb-1">78 Country Street, New York </p>
+                <span class="text-primary text-capitalize d-inline-block mb-1">events</span>
+                <p class="text-dark">From $50.00 /Night
+                  <span class="text-muted ml-2">
+                    <i class="fa fa-heart-o text-primary" aria-hidden="true"></i>5k
+                  </span>
+                </p>
+              </div>
+            </div>
+          </td>
+          <td class="td-details">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed eiusmod tempor incididunt labore
+              et dolore magna aliqua. Consectetur adipisicing elit, sed eiusmod tempor incididunt labore
+              et dolore magna aliqua.</p>
+          </td>
+          <td>
+            <span class="d-block">10 Aug 19</span>
+            <span class="d-block">01.30 PM</span>
+          </td>
+          <td>
+            <div class="dropdown">
+              <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false" data-display="static">
+              </a>
+
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                <a class="dropdown-item" href="#">Veiw Details</a>
+                <a class="dropdown-item" href="#">Unfavourite</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+</section>
+
+{% endblock %}

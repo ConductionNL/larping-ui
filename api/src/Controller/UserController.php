@@ -155,7 +155,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("profile")
+     * @Route("user/profile")
      * @Template
      */
     public function profileAction(Request $request)
@@ -164,21 +164,57 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("history")
+     * @Route("user/dashboard")
      * @Template
      */
-    public function historyAction(Request $request)
+    public function dashboardAction(Request $request)
     {
         return[];
     }
-
+    
     /**
-     * @Route("settings")
+     * @Route("user/characters")
+     * @Template
+     */
+    public function charactersAction(Request $request)
+    {
+    	return[];
+    }
+    
+    /**
+     * @Route("user/orders")
+     * @Template
+     */
+    public function ordersAction(Request $request)
+    {
+    	return[];
+    }
+    
+    /**
+     * @Route("user/reviews")
+     * @Template
+     */
+    public function reviewsAction(Request $request)
+    {
+    	return[];
+    }
+    
+    /**
+     * @Route("user/organizations")
+     * @Template
+     */
+    public function organizationsAction(Request $request)
+    {
+    	return[];
+    }
+    
+    /**
+     * @Route("user/settings")
      * @Template
      */
     public function settingsAction(Request $request)
     {
-        return[];
+    	return[];
     }
 
 }
