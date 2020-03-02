@@ -32,7 +32,7 @@ class PaymentController extends AbstractController
         // Terug sturen als er geen offers zijn
         if(!$offers || count($offers) < 1) {
             $this->addFlash('danger', 'There are no products in your basket');
-            return $this->redirect($this->generateUrl('app_default_index'));
+            return $this->redirect($this->generateUrl('app_landingpage_index'));
         }
 
         // Kijken of het formulier is getriggerd
@@ -217,5 +217,26 @@ class PaymentController extends AbstractController
         $session->remove('invoice');
 
         return ['invoice'=>$invoice];
+    }
+
+    /**
+     * @Route("/add-offer")
+     */
+    public function addOfferAction(Session $session, Request $request, CommonGroundService $commonGroundService)
+    {
+        if($request->isMethod('POST')) {
+
+            // kijken of er in de sessie al een order zit, zo nee order aan maken. We slaan hier alleen de order ID (URI) op. Het bijhouden van het order object laten we via de commonground controller aan de cache
+            $offer = $request->request->get('offer');
+            $offers[] = $offer;
+
+            $session->set('offers', $offers);
+
+            // flashban zetten met eindresultaat
+            $this->addFlash('success', 'Uw product(en) is toegevoegd');
+
+            return $this->redirect($this->generateUrl('app_payment_index'));
+        }
+        return [];
     }
 }
