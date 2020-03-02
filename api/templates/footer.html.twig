@@ -5,9 +5,9 @@
         <div class="row">
           <div class="col-sm-7 col-xs-12">
             <a class="d-inline-block mb-6" href="{{ path('app_default_index') }}">
-                <h1>{{ application.name }}</h1>
+                <h1>{{ common_ground_service.getApplication.name }}</h1>
             </a>
-            <p class="text-muted pt-1 pb-3"> {{ application.description }} </p>
+            <p class="text-muted pt-1 pb-3"> {{ common_ground_service.getApplication.description }} </p>
             <ul class="list-unstyled text-muted">
               <li class="mb-3">
                 <i class="fa fa-phone mr-3" aria-hidden="true"></i>
@@ -20,45 +20,40 @@
             </ul>
           </div>
 
+		 {% if common_ground_service.getApplication.defaultConfiguration is defined and common_ground_service.getApplication.defaultConfiguration.configuration.menuFooter1 %}
+		 {% set menu = commonground_resource(common_ground_service.getApplication.defaultConfiguration.configuration.menuFooter1)  %}
           <div class="col-sm-3 col-xs-12">
             <div class="mb-4 mt-4 mt-md-0">
-              <h2 class="h4">Links</h2>
-            </div>
+              <h2 class="h4">{{ menu.name }}</h2>
+            </div>                
             <ul class="list-unstyled list-gray">
-
-{#                {% for menuItem in menuItems %}#}
-
-{#              <li class="mb-3">#}
-{#                <a href="{{ menuItem.href }}">{{ menuItem.name }}</a>#}
-{#              </li>#}
-
-{#                {% endfor %}#}
+             {% for item in menu.menuItems %}
+              <li class="mb-3">
+                <a href="{{ path( item.href ) }}">{{ item.name }}</a>
+              </li>
+              {% endfor %}
 
             </ul>
           </div>
+         {% endif %}
 
+		 {% if  common_ground_service.getApplication.defaultConfiguration is defined and common_ground_service.getApplication.defaultConfiguration.configuration.menuFooter2 %}
+		 {% set menu = commonground_resource(common_ground_service.getApplication.defaultConfiguration.configuration.menuFooter2)  %}
           <div class="col-sm-2 col-xs-12">
             <div class="mb-4 mt-4 mt-md-0">
-              <h2 class="h4">Company</h2>
-            </div>
+              <h2 class="h4">{{ menu.name }}</h2>
+            </div>                
             <ul class="list-unstyled list-gray">
+             {% for item in menu.menuItems %}
               <li class="mb-3">
-                <a href="contact-us.html">Contact Us</a>
+                <a href="{{ path( item.href ) }}">{{ item.name }}</a>
               </li>
-              <li class="mb-3">
-                <a href="terms-of-services.html">Terms and Conditions</a>
-              </li>
-              <li class="mb-3">
-                <a href="how-it-works.html">How It Works</a>
-              </li>
-              <li class="mb-3">
-                <a href="payment-process.html">Payment</a>
-              </li>
-              <li class="mb-3">
-                <a href="pricing-table.html">Pricing</a>
-              </li>
+              {% endfor %}
+
             </ul>
           </div>
+         {% endif %}          
+          
         </div>
 
         <hr>
