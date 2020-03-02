@@ -119,7 +119,7 @@ class CommonGroundService
 		
 		/* @todo this should look to al @id keus not just the main root */
 		foreach($response['hydra:member'] as $key => $embedded){
-			if($embedded['@id']){
+			if(in_array('@id', $embedded) && $embedded['@id']){
 				$response['hydra:member'][$key]['@id'] =  $parsedUrl["scheme"]."://".$parsedUrl["host"].$embedded['@id'];
 			}
 		}
@@ -180,7 +180,7 @@ class CommonGroundService
 		
 		$response = json_decode($response->getBody(), true);
 		
-		if($response['@id']){
+		if(in_array('@id', $response) && $response['@id']){
 			$response['@id'] = $parsedUrl["scheme"]."://".$parsedUrl["host"].$response['@id'];
 		}
 		
@@ -251,7 +251,7 @@ class CommonGroundService
 		
 		$response = json_decode($response->getBody(), true);
 		
-		if($response['@id']){
+		if(in_array('@id', $response) && $response['@id']){
 			$response['@id'] = $parsedUrl["scheme"]."://".$parsedUrl["host"].$response['@id'];
 		}
 		
@@ -281,8 +281,7 @@ class CommonGroundService
 		$parsedUrl = parse_url($url);
 		
 		// We only do this on non-production enviroments
-		if($this->params->get('app_env') != "prod"){
-			
+		if($this->params->get('app_env') != "prod"){			
 			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
 			$host = explode('.', $parsedUrl['host']);
 			$subdomain = $host[0];
@@ -315,7 +314,7 @@ class CommonGroundService
 		
 		$response = json_decode($response->getBody(), true);
 		
-		if($response['@id']){
+		if(in_array('@id', $response) && $response['@id']){
 			$response['@id'] = $parsedUrl["scheme"]."://".$parsedUrl["host"].$response['@id'];
 		}
 		

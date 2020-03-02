@@ -7,18 +7,18 @@
                 <a href="{{ path('app_default_index') }}" class="menuzord-brand">
                     <h1>{{ application.name }}</h1>
                 </a>
-{#                <div class="float-right btn-wrapper">#}
-{#                    <a class="btn btn-outline-primary" href="add-listings.html">+ <span>Add listing</span></a>#}
-{#                </div>#}
+                <div class="float-right btn-wrapper">
+                    <a class="btn btn-outline-primary" href=" href="{{  path('app_user_login' ) }}">+ <span>Login or Join</span></a>
+                </div>
+
                 <ul class="menuzord-menu menuzord-right">
 
-{#                    {% for menuItem in menuItems %}#}
+                    {% for item in menu.menuItems %}
 
-{#                    <li class="">#}
-{#                        <a href="{{  path( menuItem.href ) }}">{{ menuItem.name }}</a>#}
-{#                    </li>#}
-
-{#                    {% endfor %}#}
+                    <li class="">
+                        <a href="{{  path( menuItem.href ) }}">{{ menuItem.name }}/{{ menuItem.href }}</a>
+                    </li>
+                    {% endfor %}
 
 {#                    <li class="">#}
 {#                        <a href="javascript:0">Listing</a>#}
