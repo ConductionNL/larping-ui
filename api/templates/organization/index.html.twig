@@ -5,13 +5,18 @@
     <section class="py-7 py-md-10">
         <div class="container">
             <div class="row">
-
-                {% include 'sections/list-broad-items.html.twig' with {'view':'app_organization_view', 'items':organizations} %}
-
-                {% include 'sections/small-search-filter.html.twig' %}
-
+                {# Item card list #}
+                <div class="col-lg-8">
+                    {% include 'sections/list-broad-items.html.twig' with {'view':'app_organization_view', 'items':organizations} %}
+				</div>
+                {# Right sidebar #}
+				<div class="col-lg-4 pl-xl-6">
+                    {% include 'sections/small-search-filter.html.twig' %}
+				</div>				
+                {# Right pagination #}
+				<section class="my-5">
                 {% include 'sections/pagination.html.twig' %}
-
+				</section>
             </div>
         </div>
     </section>
