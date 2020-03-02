@@ -29,6 +29,8 @@ class PaymentController extends AbstractController
         // Als we geen order hebbenkunnen we logischerwijs ook geen betaling verwerken
         $offers = $session->get('offers');
 
+        $order = $session->get('order');
+
         // Terug sturen als er geen offers zijn
         if(!$offers || count($offers) < 1) {
             $this->addFlash('danger', 'There are no products in your basket');
@@ -123,7 +125,7 @@ class PaymentController extends AbstractController
             return $this->redirect($invoice['paymentUrl']);
         }
 
-        return ['offers' => $offers];
+        return ['offers' => $offers, 'order'=>$order];
     }
 
     /**
@@ -132,6 +134,8 @@ class PaymentController extends AbstractController
      */
     public function confirmationAction(Session $session, Request $request, CommonGroundService $commonGroundService, $uuid)
     {
+        $order = $session->get('order');
+
         // Factuur ophalen aan de hand van id
         if($uuid){
             $invoice = $commonGroundService->getResource('https://bc.larping.eu/invoices/' . $uuid, [], true);
@@ -216,7 +220,7 @@ class PaymentController extends AbstractController
         $session->remove('order');
         $session->remove('invoice');
 
-        return ['invoice'=>$invoice];
+        return ['invoice'=>$invoice,'order'=>$order];
     }
 
     /**
@@ -228,7 +232,9 @@ class PaymentController extends AbstractController
 
             // kijken of er in de sessie al een order zit, zo nee order aan maken. We slaan hier alleen de order ID (URI) op. Het bijhouden van het order object laten we via de commonground controller aan de cache
             $offer = $request->request->get('offer');
+
             $offers[] = $offer;
+
 
             $session->set('offers', $offers);
 
@@ -239,4 +245,37 @@ class PaymentController extends AbstractController
         }
         return [];
     }
+
+
+    //@todo remove offer
+//    /**
+//     * @Route("/remove-offer")
+//     */
+//    public function removeOfferAction(Session $session, Request $request, CommonGroundService $commonGroundService)
+//    {
+//        if($request->isMethod('POST')) {
+//
+//            $removeOffer = $request->request->get('removeOffer');
+//
+//            // kijken of er in de sessie al een order zit, zo nee order aan maken. We slaan hier alleen de order ID (URI) op. Het bijhouden van het order object laten we via de commonground controller aan de cache
+//            $offers = $request->request->get('offers');
+//
+//
+//            foreach ($offers as $offer) {
+//                if ($removeOffer['id'] == $offer['id'] ){
+//                    $offer = $commonGroundService->removeOffer
+//                }
+//
+//            }
+//
+//
+//            $session->set('offers', $offers);
+//
+//            // flashban zetten met eindresultaat
+//            $this->addFlash('success', 'Uw product(en) is toegevoegd');
+//
+//            return $this->redirect($this->generateUrl('app_payment_index'));
+//        }
+//        return [];
+//    }
 }
