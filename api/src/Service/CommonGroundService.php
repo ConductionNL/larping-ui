@@ -55,6 +55,19 @@ class CommonGroundService
 		$this->client = new Client($this->guzzleConfig);
 	}
 	
+	
+	/*
+	 * Get the current application from the wrc
+	 */
+	public function getApplication($force = false, $async = false)
+	{
+		/* @todo this is very very hacky */
+		$applications = $this->getResourceList('https://wrc.larping.eu/applications',[],$force, $async);
+		return $applications['hydra:member'][0];
+		
+	}
+	
+	
 	/*
 	 * Get a single resource from a common ground componant
 	 */
@@ -71,6 +84,9 @@ class CommonGroundService
 		// We only do this on non-production enviroments
 		if($this->params->get('app_env') != "prod"){
 			
+			// Lets make sure we dont have doubles 
+			$url = str_replace($this->params->get('app_env').'.','',$url);
+					
 			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
 			$host = explode('.', $parsedUrl['host']);			
 			$subdomain = $host[0];
@@ -147,6 +163,9 @@ class CommonGroundService
 		// We only do this on non-production enviroments
 		if($this->params->get('app_env') != "prod"){
 			
+			// Lets make sure we dont have doubles
+			$url = str_replace($this->params->get('app_env').'.','',$url);
+			
 			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
 			$host = explode('.', $parsedUrl['host']);
 			$subdomain = $host[0];
@@ -205,6 +224,9 @@ class CommonGroundService
 		
 		// We only do this on non-production enviroments
 		if($this->params->get('app_env') != "prod"){
+			
+			// Lets make sure we dont have doubles
+			$url = str_replace($this->params->get('app_env').'.','',$url);
 			
 			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
 			$host = explode('.', $parsedUrl['host']);
@@ -281,7 +303,11 @@ class CommonGroundService
 		$parsedUrl = parse_url($url);
 		
 		// We only do this on non-production enviroments
-		if($this->params->get('app_env') != "prod"){			
+		if($this->params->get('app_env') != "prod"){
+			
+			// Lets make sure we dont have doubles
+			$url = str_replace($this->params->get('app_env').'.','',$url);
+			
 			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
 			$host = explode('.', $parsedUrl['host']);
 			$subdomain = $host[0];

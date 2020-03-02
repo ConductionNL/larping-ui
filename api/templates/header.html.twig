@@ -5,21 +5,21 @@
             <div id="menuzord" class="menuzord menuzord-responsive">
 
                 <a href="{{ path('app_default_index') }}" class="menuzord-brand">
-                    <h1>{{ application.name }}</h1>
+                    <h1>{{ common_ground_service.getApplication.name }}</h1>
                 </a>
                 <div class="float-right btn-wrapper">
-                    <a class="btn btn-outline-primary" href=" href="{{  path('app_user_login' ) }}">+ <span>Login or Join</span></a>
+                    <a class="btn btn-outline-primary" href="{{  path('app_user_login' ) }}">+ <span>Login or Join</span></a>
                 </div>
 
                 <ul class="menuzord-menu menuzord-right">
-
+				{% if  common_ground_service.getApplication.defaultConfiguration is defined and common_ground_service.getApplication.defaultConfiguration.configuration.menuPrimary   %}
+		        {% set menu = commonground_resource(common_ground_service.getApplication.defaultConfiguration.configuration.menuPrimary)  %}
                     {% for item in menu.menuItems %}
-
                     <li class="">
-                        <a href="{{  path( item.href ) }}">{{ item.name }}</a>
+                        <a href="{{ path( item.href ) }}">{{ item.name }}</a>
                     </li>
                     {% endfor %}
-
+                {% endif %}
                 </ul>
             </div>
         </div>
