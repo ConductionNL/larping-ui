@@ -6,11 +6,11 @@
         <div class="container">
             <div class="row">
 
-                {% include 'sections/list-broad-items.html.twig' with {'view':'app_organization_view'} %}
+                {% include 'sections/list-broad-items.html.twig' with {'view':'app_organization_view', 'items':organizations} %}
 
-                {% include 'sections/small-search-filter.html.twig'  %}
+                {% include 'sections/small-search-filter.html.twig' %}
 
-                {% include 'sections/pagination.html.twig'  %}
+                {% include 'sections/pagination.html.twig' %}
 
             </div>
         </div>

@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
 
-                {% include 'sections/list-broad-items.html.twig' with {'view':'app_product_view'} %}
+                {% include 'sections/list-broad-items.html.twig' with {'view':'app_product_view', 'items':products} %}
 
                 {% include 'sections/small-search-filter.html.twig' %}
 
