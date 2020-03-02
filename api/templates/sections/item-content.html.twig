@@ -6,7 +6,8 @@
         <div class="row">
             <div class="col-md-7 col-lg-8">
                 <div class="single-listing-content mb-6">
-                    <h3 class="font-weight-normal mb-6">About This {% if item.type is not defined %} {{ item['@type']|capitalize }} {% else %}{{ item.type|capitalize }} {% endif %}</h3>
+                    <h3 class="font-weight-normal mb-6">About
+                        This {% if item.type is not defined %} Organization {% else %} {{ item.type|capitalize }} {% endif %}</h3>
                     <p class="mb-6">{{ item.description }}</p>
 
                     <!-- Services -->
@@ -46,7 +47,7 @@
                             <i class="fa fa-cube mr-2" aria-hidden="true"></i>Reservations
                         </li>
                         <li class="d-inline-block mr-4 mb-2">
-                            <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>  Pets Friendly
+                            <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i> Pets Friendly
                         </li>
                         <li class="d-inline-block mr-4 mb-2">
                             <i class="fa fa-credit-card mr-2" aria-hidden="true"></i>Accept Credit Card
@@ -56,21 +57,175 @@
                 </div>
 
                 <!-- Added By -->
-                {% if item.organization is defined %}
-                    {# Organization can be both an object and and an url #}
-                    {% if item.organization['@id'] is defined  %}
-                    	{% set organization = item.organization %}
-                    {% else %}
-                    	{% set organization = commonground_resource(item.organization) %}
-                    {% endif %}
-                    {% include 'widgets/view_item_organization.html.twig' with {'item':organization} %}
-                {% endif %}
+                <div>
+                    <h3 class="font-weight-normal mb-6">Added By </h3>
+                    <div class="media mb-7">
+                        <div class="media-img">
+                            <img src="assets/img/user/user-xs-4.jpg" class="mr-3 media-object rounded-circle"
+                                 alt="Image User">
+                        </div>
+                        <div class="media-body">
+                            <h5 class="media-heading">Adam Smith</h5>
+                            <div class="d-flex flex-column flex-lg-row align-items-lg-center">
+                                <ul class="list-inline d-flex flex-column flex-lg-row mb-0">
 
                 <!-- Reviews -->
-                {% include 'widgets/review_list.html.twig' with {'item':item} %}
+                <div class="my-6">
+                    <h3 class="font-weight-normal mb-6">Reviews (3)</h3>
+                    <div class="media mb-3">
+                        <div class="media-img">
+                            <img src="assets/img/user/user-xs-1.jpg" class="mr-3 media-object rounded-circle"
+                                 alt="Image User">
+                        </div>
+                        <div class="media-body">
+                            <h5 class="media-heading">Aaren</h5>
+                            <ul class="list-inline list-inline-rating">
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                            </ul>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                laudan totam rem ape
+                                riam,</p>
+
+                            <!-- Reply Section -->
+                            <div class="reply-wrapper">
+                                <a class="d-inline-block mb-2 btn-reply" href="javascript:0">Reply</a>
+                                <form class="form-reply my-3">
+                                    <textarea class="form-control mb-6" rows="3"
+                                              placeholder="Enter your comment"></textarea>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="media mb-3">
+                        <div class="media-img">
+                            <img src="assets/img/user/user-xs-2.jpg" class="mr-3 media-object rounded-circle"
+                                 alt="Image User">
+                        </div>
+                        <div class="media-body">
+                            <h5 class="media-heading">Abby</h5>
+                            <ul class="list-inline list-inline-rating">
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </li>
+                            </ul>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                lauda totam rem ape riam,
+                            </p>
+
+                            <p class="bg-light p-4 rounded">Nam illo asperiores architecto fuga corrupti. Voluptates,
+                                assumenda. Repellendus,
+                                dicta voluptatum. Voluptatibus eos voluptatum, consequuntur rerum voluptas reiciendis et
+                                quo deleniti illum
+                                nihil</p>
+                        </div>
+                    </div>
+                    <div class="media mb-3">
+                        <div class="media-img">
+                            <img src="assets/img/user/user-xs-3.jpg" class="mr-3 media-object rounded-circle"
+                                 alt="Image User">
+                        </div>
+                        <div class="media-body">
+                            <h5 class="media-heading">Abriel</h5>
+                            <ul class="list-inline list-inline-rating">
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star" aria-hidden="true"></i>
+                                </li>
+                                <li class="list-inline-item">
+                                    <i class="fa fa-star-o" aria-hidden="true"></i>
+                                </li>
+                            </ul>
+                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                                laudan totam rem ape
+                                riam,</p>
+
+                            <p class="bg-light p-4 rounded">Nam illo asperiores architecto fuga corrupti. Voluptates,
+                                assumenda. Repellendus,
+                                dicta
+                                voluptatum. Voluptatibus eos voluptatum, consequuntur rerum voluptas reiciendis et quo
+                                deleniti illum nihil</p>
+
+                        </div>
+                    </div>
+
+                    <hr>
+                </div>
 
                 <!-- Add Review -->
-                {% include 'widgets/review_add.html.twig' with {'item':item} %}
+                <div class="my-6" id="add-review">
+                    <h3 class="font-weight-normal mb-6"> Add Review </h3>
+                    <span class="star add-rating-default pl-0 mb-6"></span>
+                    <form>
+                        <div class="form-check form-check-inline mb-6 mr-lg-7">
+                            <input class="form-check-input mr-2" type="radio" name="inlineRadioOptions"
+                                   id="inlineRadio1" value="option1"
+                                   checked>
+                            <label class="form-check-label" for="inlineRadio1">
+                                <div class="media media-xs align-items-center">
+                                    <img src="assets/img/user/user-xs-3.jpg" class="mr-2 media-object rounded-circle"
+                                         alt="Image User">
+                                    <div class="media-body">
+                                        <h5 class="media-heading mb-0">William</h5>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline mb-6">
+                            <input class="form-check-input mr-2" type="radio" name="inlineRadioOptions"
+                                   id="inlineRadio2" value="option2">
+                            <label class="form-check-label" for="inlineRadio2">
+                                <div class="media media-xs align-items-center">
+                                    <img src="assets/img/user/avatar-01.png"
+                                         class="mr-2 media-object rounded-circle border" alt="Image User">
+                                    <div class="media-body">
+                                        <h5 class="media-heading mb-0">Anonymous</h5>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="form-group mb-6">
+                            <textarea class="form-control" rows="6" placeholder="Enter Your Comment"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary text-uppercase"> Send Review</button>
+                        </div>
+                    </form>
 
             <!--======= Sidebar =======-->
             <div class="col-md-5 col-lg-4 pl-xl-8">
@@ -90,70 +245,66 @@
 
                 {% if item.type is defined %}
 
-                <!-- Book Tickets -->
-                <form class="mb-5">
-                    <h3 class="mb-3 font-weight-normal">Book Tickets</h3>
+                    <!-- Book Tickets -->
+                    <form action="{{ path('app_payment_index') }}" method="post" class="mb-5">
+                        <h3 class="mb-3 font-weight-normal">Book Tickets</h3>
 
-                    <div class="form-group mb-6">
-                        <div class="select-bg-transparent select-border w-100">
-                            <select class="select-location" required>
-{#                                {% foreach  %}#}
-                                <option>Seats</option>
-                                <option>01</option>
-                                <option>02</option>
-                                <option>03</option>
-                                <option>04</option>
-                                <option>05</option>
-                            </select>
+                        <div class="form-group mb-6">
+                            <div class="select-bg-transparent select-border w-100">
+                                <select class="select-location" required>
+                                    {% for offer in product.offers %}
+                                        <option value="https://pdc.larping.eu{{ offer['@id'] }}">{{ offer.name }}<b>&euro; {{ offer.price/100|number_format(2, '.') }}
+                                                ,-</b></option>
+                                    {% endfor %}
+                                </select>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group mb-6">
-                        <div class="select-bg-transparent select-border w-100">
-                            <select class="select-location" required>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>3</option>
-                            </select>
+{#                        <div class="form-group mb-6">#}
+{#                            <div class="select-bg-transparent select-border w-100">#}
+{#                                <select class="select-location" required>#}
+{#                                    {% for i in 0..10 %}#}
+{#                                        <option value="{{ offer.quantity }}">{{ i }}</option>#}
+{#                                    {% endfor %}#}
+{#                                </select>#}
+{#                            </div>#}
+{#                        </div>#}
+
+                        <div class="form-group mb-6">
+                            <button type="submit" class="btn btn-primary"> Buy Now</button>
                         </div>
-                    </div>
 
-                    <div class="form-group mb-6">
-                        <button type="submit" class="btn btn-primary"> Buy Now </button>
-                    </div>
-
-                </form>
+                    </form>
 
                 {% else %}
 
-                <!-- Contact Vendor -->
-                <form class="mb-5" action="#">
-                    <h3 class="mb-3 font-weight-normal">Contact Vendor</h3>
+                    <!-- Contact Vendor -->
+                    <form class="mb-5" action="#">
+                        <h3 class="mb-3 font-weight-normal">Contact Vendor</h3>
 
-                    <div class="form-group mb-6">
-                        <input type="text" class="form-control" placeholder="Enter Your Name" required>
-                    </div>
+                        <div class="form-group mb-6">
+                            <input type="text" class="form-control" placeholder="Enter Your Name" required>
+                        </div>
 
-                    <div class="form-group mb-6">
-                        <input type="email" class="form-control" placeholder="Enter Your Email" required>
-                    </div>
+                        <div class="form-group mb-6">
+                            <input type="email" class="form-control" placeholder="Enter Your Email" required>
+                        </div>
 
-                    <div class="form-group mb-6">
-                        <input type="number" class="form-control number-appearance-none" placeholder="Enter Your Mobile Number" required>
-                    </div>
+                        <div class="form-group mb-6">
+                            <input type="number" class="form-control number-appearance-none"
+                                   placeholder="Enter Your Mobile Number" required>
+                        </div>
 
-                    <div class="form-group mb-6">
-                        <textarea class="form-control" rows="6" placeholder="Enter Your Comment" required></textarea>
-                    </div>
+                        <div class="form-group mb-6">
+                            <textarea class="form-control" rows="6" placeholder="Enter Your Comment"
+                                      required></textarea>
+                        </div>
 
-                    <div class="form-group mb-6">
-                        <button type="submit" class="btn btn-primary text-uppercase"> Send Message </button>
-                    </div>
+                        <div class="form-group mb-6">
+                            <button type="submit" class="btn btn-primary text-uppercase"> Send Message</button>
+                        </div>
 
-                </form>
+                    </form>
 
                 {% endif %}
 
@@ -197,7 +348,8 @@
                     <h3 class="mb-4 font-weight-normal">You may also like</h3>
                     <div class="card rounded-0 card-hover-overlay">
                         <div class="position-relative">
-                            <img class="card-img rounded-0" src="assets/img/listing/listing-15.jpg" alt="Card image cap">
+                            <img class="card-img rounded-0" src="assets/img/listing/listing-15.jpg"
+                                 alt="Card image cap">
                             <div class="card-img-overlay">
                                 <ul class="list-inline list-inline-rating">
                                     <li class="list-inline-item">
@@ -226,7 +378,8 @@
 
                     <div class="card rounded-0 card-hover-overlay">
                         <div class="position-relative">
-                            <img class="card-img rounded-0" src="assets/img/listing/listing-16.jpg" alt="Card image cap">
+                            <img class="card-img rounded-0" src="assets/img/listing/listing-16.jpg"
+                                 alt="Card image cap">
                             <div class="card-img-overlay">
                                 <ul class="list-inline list-inline-rating">
                                     <li class="list-inline-item">
