@@ -11,6 +11,12 @@ settings:
   description: '&#039;Naast deze JSON rest API is er ook een [graphql](/graphql) interface beschikbaar.&#039;'
   repro: 'https://github.com/ConductionNL/Proto-component-commonground'
   domain: larping.eu
+  domains:
+    - conduction.nl
+    - zaakonline.nl
+    - huwelijksplanner.online
+    - common-ground.dev
+  domainsJson: ["conduction.nl","zaakonline.nl","huwelijksplanner.online","common-ground.dev"]
   organisationName: Conduction
   email: info@conduction.nl
   country: Netherlands
