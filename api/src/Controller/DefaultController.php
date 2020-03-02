@@ -26,7 +26,7 @@ class DefaultController extends AbstractController
 	public function indexAction(Request $request, CommonGroundService $commonGroundService, ParameterBagInterface $params)
     {
         $organizations = $commonGroundService->getResourceList('https://wrc.larping.eu/organizations')['hydra:member'];
-        $groups = $commonGroundService->getResourceList('https://pdc.larping.eu/groups')['hydra:member'];
+        $groups= $commonGroundService->getResourceList('https://pdc.larping.eu/groups')['hydra:member'];
         
         // Lets get the domain for local development
         $domain = $request->getHost();
@@ -35,12 +35,12 @@ class DefaultController extends AbstractController
         }        
         
         // This lets us fetch the default application for this domains
-        $applications = $commonGroundService->getResourceList('https://wrc.larping.eu/applications',["domain"=>$domain]);
+        $applications = $commonGroundService->getResourceList('https://wrc.larping.eu/applications'); // should take domain into considaration ,["domain"=>"https://www.larping.eu"]
         $application = $applications['hydra:member'][0]; /*@todo this needs an error catch */
-        $organization = $application['organization'];        
-        
+        $organization = $application['organization'];      
+                
         // This could also be done from our template
-        $menu = $commonGroundService->getResource($application['defaultConfiguration']['configuration']['menuPrimary']);
+        $menu = $commonGroundService->getResource(str_replace ("dev.","",$application['defaultConfiguration']['configuration']['menuPrimary'])); // prevent double dev
 
         return ['organizations'=>$organizations,'groups'=>$groups,'organization'=>$organization,'application'=>$application,'menu'=>$menu];
     }
