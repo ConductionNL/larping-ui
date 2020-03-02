@@ -1,0 +1,43 @@
+{% extends 'body_landing.html.twig' %}
+
+    {% block content %}
+
+        <div class="wrapper">
+
+            <div class="container" style="height: 100%">
+
+                <!-- ====================================
+        ———	breadcrumb
+        ===================================== -->
+                <section class="bg-light py-8">
+                    <div class="container">
+                        <div class="d-flex flex-column justify-content-center align-items-center">
+                            <nav aria-label="breadcrumb">
+                                <h2 class="breadcrumb-title text-center mb-4">Terms of Services</h2>
+                                <ul class="breadcrumb bg-transparent justify-content-center p-0 m-0">
+                                    <li class="breadcrumb-item"><a href="{{ path('app_landingpage_betalen') }}">Terug</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Grid wrapper for ell elements -->
+                <div class="element-wrapper">
+
+
+                    <!-- ====================================
+                    ———	TERMS OF SERVICES
+                    ===================================== -->
+                    <div class="container">
+
+                        {% include 'sections/landingpage/termsofservicetext.html.twig' %}
+
+
+
+
+                    </div> <!-- element wrapper ends -->
+            </div>
+        </div>
+
+    {% endblock %}

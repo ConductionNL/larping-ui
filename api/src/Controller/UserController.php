@@ -46,6 +46,15 @@ class UserController extends AbstractController
     {
         return [];
     }
+    
+    /**
+     * @Route("/reminder")
+     * @Template
+     */
+    public function reminderAction(Request $request, EntityManagerInterface $em)
+    {
+    	return [];
+    }
 
     /**
      * @Route("profile")

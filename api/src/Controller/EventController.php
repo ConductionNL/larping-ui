@@ -1,5 +1,5 @@
 <?php
-// src/Controller/DefaultController.php
+//src/Controller/DefaultController.php
 namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
@@ -19,30 +19,30 @@ use App\Service\EventService;
  */
 class EventController extends AbstractController
 {
-    /**
-     * @Route("/")
-     * @Template
-     */
-    public function indexAction(Request $request, EntityManagerInterface $em)
-    {
-        return [];
-    }
-
-    /**
-     * @Route("/view")
-     * @Template
-     */
-    public function viewAction(Request $request, EntityManagerInterface $em)
-    {
-        return [];
-    }
-
-    /**
-     * @Route("/dashboard")
-     * @Template
-     */
-    public function dashboardAction(Request $request, EntityManagerInterface $em)
-    {
-        return [];
-    }
+//    /**
+//     * @Route("/")
+//     * @Template
+//     */
+//    public function indexAction(Request $request, EntityManagerInterface $em)
+//    {
+//        return [];
+//    }
+//
+//    /**
+//     * @Route("/view")
+//     * @Template
+//     */
+//    public function viewAction(Request $request, EntityManagerInterface $em)
+//    {
+//        return [];
+//    }
+//
+//    /**
+//     * @Route("/dashboard")
+//     * @Template
+//     */
+//    public function dashboardAction(Request $request, EntityManagerInterface $em)
+//    {
+//        return [];
+//    }
 }

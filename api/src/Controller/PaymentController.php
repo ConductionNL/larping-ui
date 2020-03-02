@@ -18,21 +18,21 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  */
 class PaymentController extends AbstractController
 {
-	/**
-	* @Route("/")
- 	* @Template
-	*/
-	public function indexAction(Request $request, EntityManagerInterface $em)
-	{
-		return [];
-	}
-
-    /**
-     * @Route("/confirm")
-     * @Template
-     */
-    public function confirmAction(Request $request, EntityManagerInterface $em)
-    {
-        return [];
-    }
+//	/**
+//	* @Route("/")
+// 	* @Template
+//	*/
+//	public function indexAction(Request $request, EntityManagerInterface $em)
+//	{
+//		return [];
+//	}
+//
+//    /**
+//     * @Route("/confirm")
+//     * @Template
+//     */
+//    public function confirmAction(Request $request, EntityManagerInterface $em)
+//    {
+//        return [];
+//    }
 }
