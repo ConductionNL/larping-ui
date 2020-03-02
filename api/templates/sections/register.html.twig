@@ -10,62 +10,39 @@
           <p>Please fill out the fields below to create your account. We will send your account information to the email address
             you enter. Your email address and information will NOT be sold or shared with any 3rd party. If you already have an
             account, please,
-            <a href="login.html">click here</a>.</p>
+            <a href="{{ path('app_user_login') }}">click here</a>.</p>
 
-          <form class="py-7" action="#">
-
-            <div class="bg-light p-5 mb-8 rounded">
-              <h3 class="h4 font-weight-normal mb-4">Subscriptions</h3>
-              <div class="row justify-content-between">
-                <div class="col-md-6">
-                  <div class="select-bg-transparent select-border w-100">
-                    <select class="select-location">
-                      <option>Free</option>
-                      <option>Premium-119 USD/YEAR</option>
-                      <option>Lifetime 299 USD/YEAR</option>
-                    </select>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="d-flex justify-content-md-end">
-                    <a class="btn btn-link pl-0" href="pricing-table.html">Veiw Pricing Details</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <form class="py-7" action="{{ path('app_user_register') }}" method="post">
 
             <h3 class="h4 font-weight-normal mb-4">Contact Information</h3>
             <div class="row">
               <div class="form-group col-md-6">
                 <label for="inputtext">First Name*</label>
-                <input type="text" class="form-control" id="inputtext" placeholder="">
+                <input type="text" class="form-control" id="givenName" name="givenName" placeholder="John">
               </div>
               <div class="form-group col-md-6">
                 <label for="inputText">Last Name*</label>
-                <input type="text" class="form-control" id="inputText" placeholder="">
+                <input type="text" class="form-control" id="familyName" name="familyName" placeholder="Doe">
               </div>
             </div>
             <div class="form-group mb-8">
               <label for="inputAddress">Email Address*</label>
-              <input type="email" class="form-control" id="inputAddress" placeholder="">
+              <input type="email" class="form-control" id="username"  name="username" placeholder="">
             </div>
 
             <h3 class="h4 font-weight-normal mb-4 mt-7">Account Information</h3>
-            <div class="form-group">
-              <label for="inputText">Username*</label>
-              <input type="text" class="form-control" id="inputText" placeholder="">
-            </div>
             <div class="row mb-6">
               <div class="form-group col-md-6 mb-4">
                 <label for="inputPassword">Password*</label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="">
+                <input type="password" class="form-control" id="password" name="password"  placeholder="">
               </div>
               <div class="form-group col-md-6 mb-4">
                 <label for="inputPassword">Password (re-type)*</label>
-                <input type="password" class="form-control" id="inputPassword" placeholder="">
+                <input type="password" class="form-control" id="password2" name="password2"  placeholder="">
               </div>
             </div>
 
+			<!-- 
             <h3 class="h4 font-weight-normal mb-4 mt-7">Security Control</h3>
             <div class="form-group mb-7">
               <label for="usernames" class="control-label">
@@ -73,51 +50,22 @@
               </label> <br>
               <img src="assets/img/business/recaptcha.jpg" alt="Image captcha" class="img-fluid">
             </div>
-
+ 			-->
+ 			
             <div class="form-group mb-6">
               <div class="checkbox">
                 <label>
                   <input type="checkbox">
-                  I agree to the <a href="terms-of-services.html">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>. Your
-                  business listing is fully backed by our 100% money back guarantee.
+                  I agree to the <a href="terms-of-services.html">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>.
                 </label>
               </div>
             </div>
 
             <button type="submit" class="btn btn-primary"> Create Account </button>
 
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
           </form>
-
-          <div class="border rounded d-inline-block p-3 mb-4 position-relative">
-            <img class="paypal" src="assets/img/business/paypal.png" alt="paypal">
-            <ul class="list-unstyled list-payment-logo">
-              <li>
-                <a href="#">
-                  <img src="assets/img/business/visa.jpg" alt="visa.jpg">
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="assets/img/business/master-card.jpg" alt="master-card.jpg">
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="assets/img/business/american-express.jpg" alt="american-express.jpg">
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <img src="assets/img/business/discover.jpg" alt="discover.jpg">
-                </a>
-              </li>
-            </ul>
-          </div>
-          <p class="mb-0">We use <span class="text-dark">PayPal</span> to process all transactions securely. <span
-              class="text-dark">Payments can be made using any major credit card, without the need for a PayPal account</span>. If
-            you already have a PayPal account, you can also pay with PayPal funds or through your bank account. We don't keep any
-            credit card information stored on our site. No tax is added to your order. For more information <a
-              href="https://www.paypal.com">www.paypal.com</a></p>
+          
         </div>
       </div>
     </div>

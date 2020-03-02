@@ -44,7 +44,7 @@
     <!-- FAVICON -->
       {#    <link href="/img/favicon.png" rel="shortcut icon">#}
 
-      <link rel="shortcut icon" href="data:image/x-icon;base64,{{ organization.styles[0].favicon.base64 }}" type="image/x-icon">
+      <link rel="shortcut icon" href="data:image/x-icon;base64,{{ common_ground_service.getApplication.organization.styles[0].favicon.base64 }}" type="image/x-icon">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -71,6 +71,14 @@
 
     <div class="main-wrapper">
     {% include 'header.html.twig' %}
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+        <div class="{{ label }} alert-notice">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endfor %}
 
 	{% block content %}
 

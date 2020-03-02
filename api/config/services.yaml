@@ -6,6 +6,8 @@
 parameters:
 
 services:
+    App\Security\CommongroundUserAuthenticator:
+        $userProvider: '@security.user.provider.concrete.backend_users'
     # default configuration for services in *this* file
     _defaults:
         autowire: true      # Automatically injects dependencies in your services.
