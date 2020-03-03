@@ -89,7 +89,7 @@ class CommongroundUserAuthenticator extends AbstractGuardAuthenticator
 		
 		$user = $users[0];
 				
-		return new CommongroundUser($user['username'], $credentials["password"], null, ['user'] );
+		return new CommongroundUser($user['username'], $user['id'], null, ['user'],$user['person'],$user['organization']);
 	}
 	
 	public function checkCredentials($credentials, UserInterface $user)
@@ -110,7 +110,7 @@ class CommongroundUserAuthenticator extends AbstractGuardAuthenticator
 		//	return new RedirectResponse($targetPath);
 		//}
 		
-		return new RedirectResponse($this->urlGenerator->generate('app_user_settings'));
+		return new RedirectResponse($this->urlGenerator->generate('app_user_dashboard'));
 	}
 	
 	public function onAuthenticationFailure(Request $request, AuthenticationException $exception)

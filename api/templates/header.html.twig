@@ -7,9 +7,13 @@
                 <a href="{{ path('app_default_index') }}" class="menuzord-brand">
                     <h1>{{ common_ground_service.getApplication.name }}</h1>
                 </a>
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    {% include 'widgets/menu_user.html.twig' %}
+                {% else %}
                 <div class="float-right btn-wrapper">
                     <a class="btn btn-outline-primary" href="{{  path('app_user_login' ) }}">+ <span>Login or Join</span></a>
                 </div>
+                {% endif %}
 
                 <ul class="menuzord-menu menuzord-right">
 				{% if  common_ground_service.getApplication.defaultConfiguration is defined and common_ground_service.getApplication.defaultConfiguration.configuration.larpingUi   %}

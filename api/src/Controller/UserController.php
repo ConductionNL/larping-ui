@@ -30,44 +30,16 @@ class UserController extends AbstractController
      * @Template
 	 */
 	public function login(Request $request, CommonGroundService $commonGroundService,  ParameterBagInterface $params, EventDispatcherInterface $dispatcher)
-	{
-		
-		// Kijken of het formulier is getriggerd
-		if ($request->isMethod('POST')) {
-			
-			$credentials = [
-					'username' => $request->request->get('username'),
-					'password' => $request->request->get('password'),
-					'csrf_token' => $request->request->get('_csrf_token'),
-			];
-			
-			$user = $commonGroundService->createResource($credentials, $params->get('auth_provider_user').'/login');
-			
-			if(!$user){
-				
-				$this->addFlash('alert', "Ow nooz!");
-				
-				return $this->render('user/login.html.twig', [
-						'last_username' => $user['username'],
-						'error' => $error
-				]);
-			}
-			
-			$user = new CommongroundUser($user['username'], $credentials["password"], null, ['user'] );
-			
-			// Manually authenticate user in controller
-			$token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
-			$this->get('security.token_storage')->setToken($token);
-			$this->get('session')->set('_security_main', serialize($token));
-			
-			
-			//  Fire the login event manually 			
-			$event = new InteractiveLoginEvent($request, $token);
-			$dispatcher->dispatch($event);
-			
-			return $this->redirect($this->generateUrl('app_user_settings'));
-		}
-		
+	{		
+		return [];
+	}
+	
+	/**
+	 * @Route("/logout")
+	 * @Template
+	 */
+	public function logout(Request $request, CommonGroundService $commonGroundService,  ParameterBagInterface $params, EventDispatcherInterface $dispatcher)
+	{		
 		return [];
 	}
 
@@ -183,7 +155,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("profile")
+     * @Route("user/profile")
      * @Template
      */
     public function profileAction(Request $request)
@@ -192,21 +164,57 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("history")
+     * @Route("user/dashboard")
      * @Template
      */
-    public function historyAction(Request $request)
+    public function dashboardAction(Request $request)
     {
         return[];
     }
-
+    
     /**
-     * @Route("settings")
+     * @Route("user/characters")
+     * @Template
+     */
+    public function charactersAction(Request $request)
+    {
+    	return[];
+    }
+    
+    /**
+     * @Route("user/orders")
+     * @Template
+     */
+    public function ordersAction(Request $request)
+    {
+    	return[];
+    }
+    
+    /**
+     * @Route("user/reviews")
+     * @Template
+     */
+    public function reviewsAction(Request $request)
+    {
+    	return[];
+    }
+    
+    /**
+     * @Route("user/organizations")
+     * @Template
+     */
+    public function organizationsAction(Request $request)
+    {
+    	return[];
+    }
+    
+    /**
+     * @Route("user/settings")
      * @Template
      */
     public function settingsAction(Request $request)
     {
-        return[];
+    	return[];
     }
 
 }
