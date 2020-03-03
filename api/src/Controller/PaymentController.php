@@ -29,6 +29,8 @@ class PaymentController extends AbstractController
         // Als we geen order hebbenkunnen we logischerwijs ook geen betaling verwerken
         $offers = $session->get('offers');
 
+        var_dump($offers);
+
         $order = $session->get('order');
 
         // Terug sturen als er geen offers zijn
@@ -250,34 +252,33 @@ class PaymentController extends AbstractController
 
 
     //@todo remove offer
-//    /**
-//     * @Route("/remove-offer")
-//     */
-//    public function removeOfferAction(Session $session, Request $request, CommonGroundService $commonGroundService)
-//    {
-//        if($request->isMethod('POST')) {
-//
-//            $removeOffer = $request->request->get('removeOffer');
-//
-//            // kijken of er in de sessie al een order zit, zo nee order aan maken. We slaan hier alleen de order ID (URI) op. Het bijhouden van het order object laten we via de commonground controller aan de cache
-//            $offers = $request->request->get('offers');
-//
-//
-//            foreach ($offers as $offer) {
-//                if ($removeOffer['id'] == $offer['id'] ){
-//                    $offer = $commonGroundService->removeOffer
-//                }
-//
-//            }
-//
-//
-//            $session->set('offers', $offers);
-//
-//            // flashban zetten met eindresultaat
-//            $this->addFlash('success', 'Uw product(en) is toegevoegd');
-//
-//            return $this->redirect($this->generateUrl('app_payment_index'));
-//        }
-//        return [];
-//    }
+    /**
+     * @Route("/remove-offer")
+     */
+    public function removeOfferAction(Session $session, Request $request, CommonGroundService $commonGroundService)
+    {
+        if($request->isMethod('POST')) {
+
+            $removeOffer = $request->request->get('removingOffer');
+            var_dump($removeOffer);
+
+            $offers = $session->get('offers');
+            var_dump($offers);
+
+            foreach ($offers as $key => $offer) {
+                if ($removeOffer == $offer['id']){
+                    unset($offers[$key]);
+
+                    // flashban zetten met eindresultaat
+                    $this->addFlash('success', 'Uw product is verwijderd uit uw winkelmandje');
+                }
+            }
+
+            $session->set('offers', $offers);
+
+
+            return $this->redirect($this->generateUrl('app_payment_index'));
+        }
+        return [];
+    }
 }

@@ -11,7 +11,8 @@
                 <div style="margin-top: 20px" class="custom-container row ">
                     <div class="col-md-6 payment-summary">
                         <div class="bg-white p-5 rounded border">
-                            <p>U heeft geen producten geselecteerd, keer <a href="{{ path('app_landingpage_index') }}">terug</a> om iets aan te schaffen.</p>
+                            <p>U heeft geen producten geselecteerd, keer <a href="{{ path('app_landingpage_index') }}">terug</a>
+                                om iets aan te schaffen.</p>
                         </div>
                     </div>
                 </div>
@@ -30,6 +31,7 @@
                                     <th class="sum-first-child">Product</th>
                                     <th>Hoeveelheid</th>
                                     <th>Prijs</th>
+                                    <th></th>
                                 </tr>
                                 </thead>
                                 {% set total = 0 %}
@@ -37,11 +39,22 @@
                                     {% set total = total + offer.price * offer.quantity %}
                                     {% set price = offer.price * offer.quantity %}
                                     <tr>
-                                        <td class="sum-first-child"><a href="{{ path('app_product_view',{id : offer.boughtProduct} ) }}">{{ offer.name }}</a>{% if offer.products|length > 1 %}<br/>
+                                        <td class="sum-first-child"><a
+                                                href="{{ path('app_product_view',{id : offer.boughtProduct} ) }}">{{ offer.name }}</a>{% if offer.products|length > 1 %}
+                                        <br/>
                                             Bevat:{% for product in offer.products %}{{ product.name }}{% endfor %}{% endif %}
                                         </td>
                                         <td>{{ offer.quantity }}</td>
                                         <td>&euro; {{ price/100 }},-</td>
+                                        <td>
+                                            <form method="post" action="{{ path('app_payment_removeoffer') }}">
+                                                <input type="hidden" name="removingOffer" value="{{ offer['id'] }}">
+                                                <button type="submit" formmethod="post"
+                                                        class=""><i style="color:red"
+                                                                                   class="fa fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 {% endfor %}
                                 <tfoot>
@@ -50,6 +63,7 @@
                                     <td></td>
                                     <td style="text-align: right"><b>Totaal:</b></td>
                                     <td style="color: black"><b>&euro; {{ total/100 }},-</b></td>
+                                    <td></td>
                                 </tr>
                                 </tfoot>
                             </table>
@@ -84,7 +98,8 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="inputtext">Tussenvoegsel</label>
-                                        <input type="text" class="form-control" id="additionalName" name="additionalName"
+                                        <input type="text" class="form-control" id="additionalName"
+                                               name="additionalName"
                                                placeholder="">
                                     </div>
                                     <div class="form-group col-md-4">
@@ -150,7 +165,9 @@
                                     <div class="checkbox">
                                         <label>
                                             <input type="checkbox" class="required" required>
-                                            I agree to the <a href="{{ path('app_default_termsofservice') }}">Terms of Services</a> & <a href="{{ path('app_default_privacypolicy') }}">Privacy Policy</a>.
+                                            I agree to the <a href="{{ path('app_default_termsofservice') }}">Terms of
+                                                Services</a> & <a href="{{ path('app_default_privacypolicy') }}">Privacy
+                                                Policy</a>.
                                         </label>
                                     </div>
                                 </div>
