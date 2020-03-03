@@ -234,6 +234,8 @@ class PaymentController extends AbstractController
 
             $offer['quantity'] = $request->request->get('quantity');
 
+            $offer['boughtProduct'] = $request->request->get('boughtProduct');
+
             $offers[] = $offer;
 
             $session->set('offers', $offers);

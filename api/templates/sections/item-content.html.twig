@@ -6,7 +6,8 @@
         <div class="row">
             <div class="col-md-7 col-lg-8">
                 <div class="single-listing-content mb-6">
-                    <h3 class="font-weight-normal mb-6">About This {% if item.type is not defined %} {{ item['@type']|capitalize }} {% else %}{{ item.type|capitalize }} {% endif %}</h3>
+                    <h3 class="font-weight-normal mb-6">About
+                        This {% if item.type is not defined %} {{ item['@type']|capitalize }} {% else %}{{ item.type|capitalize }} {% endif %}</h3>
                     <p class="mb-6">{{ item.description }}</p>
 
                     <!-- Services -->
@@ -46,7 +47,7 @@
                             <i class="fa fa-cube mr-2" aria-hidden="true"></i>Reservations
                         </li>
                         <li class="d-inline-block mr-4 mb-2">
-                            <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>  Pets Friendly
+                            <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i> Pets Friendly
                         </li>
                         <li class="d-inline-block mr-4 mb-2">
                             <i class="fa fa-credit-card mr-2" aria-hidden="true"></i>Accept Credit Card
@@ -58,7 +59,7 @@
                 <!-- Added By -->
                 {% if item.organization is defined %}
                     {# Organization can be both an object and and an url #}
-                    {% if item.organization['@id'] is defined  %}
+                    {% if item.organization['@id'] is defined %}
                         {% set organization = item.organization %}
                     {% else %}
                         {% set organization = commonground_resource(item.organization) %}
@@ -106,15 +107,20 @@
                                 </div>
                             </div>
 
-                                                    <div class="form-group mb-6">
-                                                        <div class="select-bg-transparent select-border w-100">
-                                                            <select class="select-location" name="quantity" required>
-                                                                {% for i in 1..10 %}
-                                                                    <option value="{{ i }}">{{ i }}</option>
-                                                                {% endfor %}
-                                                            </select>
-                                                        </div>
-                                                    </div>
+                            <div class="form-group mb-6">
+                                <div class="select-bg-transparent select-border w-100">
+                                    <select class="select-location" name="quantity" required>
+                                        {% for i in 1..10 %}
+                                            <option value="{{ i }}">{{ i }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            {# Geeft de product mee aan de offer #}
+                            <input type="hidden" value="{{ item['id'] }}" name="boughtProduct">
 
                             <div class="form-group mb-6">
                                 <button type="submit" class="btn btn-primary" formmethod="post"> Buy Now</button>
@@ -198,7 +204,8 @@
                         <h3 class="mb-4 font-weight-normal">You may also like</h3>
                         <div class="card rounded-0 card-hover-overlay">
                             <div class="position-relative">
-                                <img class="card-img rounded-0" src="assets/img/listing/listing-15.jpg" alt="Card image cap">
+                                <img class="card-img rounded-0" src="assets/img/listing/listing-15.jpg"
+                                     alt="Card image cap">
                                 <div class="card-img-overlay">
                                     <ul class="list-inline list-inline-rating">
                                         <li class="list-inline-item">
@@ -227,7 +234,8 @@
 
                         <div class="card rounded-0 card-hover-overlay">
                             <div class="position-relative">
-                                <img class="card-img rounded-0" src="assets/img/listing/listing-16.jpg" alt="Card image cap">
+                                <img class="card-img rounded-0" src="assets/img/listing/listing-16.jpg"
+                                     alt="Card image cap">
                                 <div class="card-img-overlay">
                                     <ul class="list-inline list-inline-rating">
                                         <li class="list-inline-item">

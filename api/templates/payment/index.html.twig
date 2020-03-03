@@ -37,7 +37,7 @@
                                     {% set total = total + offer.price * offer.quantity %}
                                     {% set price = offer.price * offer.quantity %}
                                     <tr>
-                                        <td class="sum-first-child"><b>{{ offer.name }}</b>{% if offer.products|length > 1 %}<br/>
+                                        <td class="sum-first-child"><a href="{{ path('app_product_view',{id : offer.boughtProduct} ) }}">{{ offer.name }}</a>{% if offer.products|length > 1 %}<br/>
                                             Bevat:{% for product in offer.products %}{{ product.name }}{% endfor %}{% endif %}
                                         </td>
                                         <td>{{ offer.quantity }}</td>

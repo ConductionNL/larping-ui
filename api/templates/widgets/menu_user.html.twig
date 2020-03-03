@@ -18,8 +18,9 @@
             {% for offer in offers %}
                 {% set total = total + offer.price * offer.quantity %}
 
+
                 <li class="border-bottom ">
-                    <a href="{{ path('app_product_view', {id : offer.id}) }}">
+                    <a href="{{ path('app_product_view', {id : offer.boughtProduct }) }}">
                         <div class="media media-xs align-items-center">
                             {#                            <img class="rounded-circle mr-3" src="/img/user/user-xs-1.jpg" alt="Image">#}
                             <div class="media-body">
