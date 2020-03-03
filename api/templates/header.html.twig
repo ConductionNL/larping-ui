@@ -7,6 +7,9 @@
                 <a href="{{ path('app_default_index') }}" class="menuzord-brand">
                     <h1>{{ common_ground_service.getApplication.name }}</h1>
                 </a>
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    {% include 'widgets/menu_user.html.twig' %}
+                {% else %}
                 <div class="float-right btn-wrapper">
 
                     <a class="btn btn-outline-primary" href="{{ path('app_user_login' ) }}">+
@@ -21,6 +24,7 @@
                         <i style="font-size: 32px; color: #2196f3;" class="fa fa-shopping-cart pt-1 pr-5"></i>
                     </a>
                 </div>
+                {% endif %}
 
                 {% endif %}
 

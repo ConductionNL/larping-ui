@@ -10,8 +10,12 @@ settings:
   version: {{ app_version }}
   description: '{{ app_description }}'
   repro: '{{ app_repro }}'
-  subdomain: {{ app_subdomain }}  
   domain: {{ app_domain }}
+  domains:
+{% for domain in app_domains %}
+    - {{ domain }}
+{% endfor %}
+  domainsJson: {{ app_domains | json_encode()|raw }}
   organisationName: {{ organization_name }}
   email: {{ organization_email }}
   country: {{ organization_country }}
@@ -40,7 +44,8 @@ settings:
 
   notificationEnabled: false
   audittrailEnabled: false
-  authorisationEnabled: false
+  authorisationProviderUser: {{ auth_provider_user }}
+  authorisationProviderApplication: {{ auth_provider_application }}
   healthEnabled: false
   archiveEnabled: false
 

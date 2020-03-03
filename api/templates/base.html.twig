@@ -68,9 +68,21 @@
         </div>
       </div>
     </div>
-
-    <div class="main-wrapper">
+    
     {% include 'header.html.twig' %}
+    <div class="main-wrapper">
+    
+                {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+                    {% include 'widgets/menu_dashboard.html.twig' %}
+                {% endif %}
+                
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+        <div class="{{ label }} alert-notice">
+            {{ message }}
+        </div>
+        {% endfor %}
+    {% endfor %}
 
 	{% block content %}
 

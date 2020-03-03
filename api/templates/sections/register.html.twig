@@ -10,9 +10,9 @@
           <p>Please fill out the fields below to create your account. We will send your account information to the email address
             you enter. Your email address and information will NOT be sold or shared with any 3rd party. If you already have an
             account, please,
-            <a href="login.html">click here</a>.</p>
+            <a href="{{ path('app_user_login') }}">click here</a>.</p>
 
-          <form class="py-7" action="#">
+            <form class="py-7" action="{{ path('app_user_register') }}" method="post">
 
             <h3 class="h4 font-weight-normal mb-4">Contact Information</h3>
             <div class="row">
@@ -34,14 +34,15 @@
             <div class="row mb-6">
               <div class="form-group col-md-6 mb-4">
                 <label for="inputPassword">Password*</label>
-                <input type="password" class="form-control" id="password" placeholder="">
+                <input type="password" class="form-control" id="password" name="password"  placeholder="">
               </div>
               <div class="form-group col-md-6 mb-4">
                 <label for="inputPassword">Password (re-type)*</label>
-                <input type="password" class="form-control" id="password2" placeholder="">
+                <input type="password" class="form-control" id="password2" name="password2"  placeholder="">
               </div>
             </div>
 
+			<!-- 
             <h3 class="h4 font-weight-normal mb-4 mt-7">Security Control</h3>
             <div class="form-group mb-7">
               <label for="usernames" class="control-label">
@@ -49,7 +50,8 @@
               </label> <br>
               <img src="assets/img/business/recaptcha.jpg" alt="Image captcha" class="img-fluid">
             </div>
-
+ 			-->
+ 			
             <div class="form-group mb-6">
               <div class="checkbox">
                 <label>
@@ -61,6 +63,7 @@
 
             <button type="submit" class="btn btn-primary"> Create Account </button>
 
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
           </form>
           
         </div>

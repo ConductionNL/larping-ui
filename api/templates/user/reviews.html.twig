@@ -1,0 +1,482 @@
+{% extends "body.html.twig" %}
+
+{% block content %}
+
+
+<!-- ====================================
+———	MY REVIEWS
+===================================== -->
+<section class="pb-8 pt-5 bg-light height100vh">
+  <div class="container">
+
+    <!-- Breadcrumb -->
+    <nav class="bg-transparent breadcrumb breadcrumb-2 px-0 mb-5" aria-label="breadcrumb">
+      <h2 class="font-weight-normal mb-4 mb-md-0">My Reviews</h2>
+      <ul class="list-unstyled d-flex p-0 m-0">
+        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+        <li class="breadcrumb-item"><a href="dashboard-user.html">Dashboard</a></li>
+        <li class="breadcrumb-item active" aria-current="page">My Reviews</li>
+      </ul>
+    </nav>
+
+    <table id="my-reviews-lg" class="display nowrap table-data-default" style="width:100%">
+      <thead>
+        <tr>
+          <th class="text-capitalize">Listing</th>
+          <th>Requested Time</th>
+          <th class="text-capitalize">Rating</th>
+          <th class="text-capitalize">Review Message</th>
+          <th class="text-capitalize">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-capitalize td-title">
+            <a class="text-hover-primary text-muted" href="listing-restuarant.html">The Missiisipi Hotel</a>
+          </td>
+          <td>
+            <span class="d-block">01 Aug 19</span>
+            <span class="d-block">11.00 PM</span>
+          </td>
+          <td class="td-no-white-space">
+            <ul class="list-inline list-inline-rating">
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              </li>
+            </ul>
+          </td>
+          <td class="td-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ullam ducimus aliquam animi
+            eius ab repellendus ipsum officia pariatur suscipit, dignissimos tempore delectus veritatis dolore!
+            <span class="bg-success text-white d-block p-2 mt-3 rounded">Officia error odit vitae nobis, deleniti dolorem
+              voluptatum necessitatibus perspiciatis voluptate quam libero nostrum</span>
+          </td>
+          <td class="td-buttons-2">
+            <div class="d-flex flex-column flex-lg-row">
+              <a class="btn btn-outline-primary btn-sm mr-lg-3 mb-2" href="listing-event.html">
+                <i class="fa fa-edit"></i>
+                edit
+              </a>
+              <button class="btn btn-outline-danger btn-sm">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                delete
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="text-capitalize ">
+            <a class="text-hover-primary text-muted" href="listing-restuarant.html">think Coffee</a>
+          </td>
+          <td>
+            <span class="d-block">01 Aug 19</span>
+            <span class="d-block">11.00 PM</span>
+          </td>
+          <td class="td-no-white-space">
+            <ul class="list-inline list-inline-rating">
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              </li>
+            </ul>
+          </td>
+
+          <td class="td-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ullam ducimus aliquam animi
+            eius ab repellendus ipsum officia pariatur suscipit, dignissimos tempore delectus veritatis dolore!
+            <span class="bg-success text-white d-block p-2 mt-3 rounded">Officia error odit vitae nobis, deleniti dolorem
+              voluptatum necessitatibus perspiciatis voluptate quam libero nostrum</span>
+          </td>
+          <td class="td-buttons-2">
+            <div class="d-flex flex-column flex-lg-row">
+              <a class="btn btn-outline-primary btn-sm mr-lg-3 mb-2" href="listing-event.html">
+                <i class="fa fa-edit"></i>
+                edit
+              </a>
+              <button class="btn btn-outline-danger btn-sm">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                delete
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="text-capitalize">
+            <a class="text-hover-primary text-muted" href="listing-restuarant.html">Sticky Band</a>
+          </td>
+          <td>
+            <span class="d-block">02 Aug 19</span>
+            <span class="d-block">10.17 AM</span>
+          </td>
+          <td class="td-no-white-space">
+            <ul class="list-inline list-inline-rating">
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              </li>
+            </ul>
+          </td>
+          <td class="td-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ullam ducimus aliquam animi
+            eius ab repellendus ipsum officia pariatur suscipit, dignissimos tempore delectus veritatis dolore!</td>
+          <td class="td-buttons-2">
+            <div class="d-flex flex-column flex-lg-row">
+              <a class="btn btn-outline-primary btn-sm mr-lg-3 mb-2" href="listing-event.html">
+                <i class="fa fa-edit"></i>
+                edit
+              </a>
+              <button class="btn btn-outline-danger btn-sm">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                delete
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="text-capitalize">
+            <a class="text-hover-primary text-muted" href="listing-restuarant.html">Hotel Govendor</a>
+          </td>
+          <td>
+            <span class="d-block">02 Aug 19</span>
+            <span class="d-block">8.39 AM</span>
+          </td>
+          <td class="td-no-white-space">
+            <ul class="list-inline list-inline-rating">
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              </li>
+            </ul>
+          </td>
+          <td class="td-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ullam ducimus aliquam animi
+            eius ab repellendus ipsum officia pariatur suscipit, dignissimos tempore delectus veritatis dolore!</td>
+          <td class="td-buttons-2">
+            <div class="d-flex flex-column flex-lg-row">
+              <a class="btn btn-outline-primary btn-sm mr-lg-3 mb-2" href="listing-event.html">
+                <i class="fa fa-edit"></i>
+                edit
+              </a>
+              <button class="btn btn-outline-danger btn-sm">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                delete
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="text-capitalize">
+            <a class="text-hover-primary text-muted" href="listing-restuarant.html">John F. Kennedy Airport</a>
+          </td>
+          <td>
+            <span class="d-block">03 Aug 19</span>
+            <span class="d-block">11.13 PM</span>
+          </td>
+          <td class="td-no-white-space">
+            <ul class="list-inline list-inline-rating">
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              </li>
+            </ul>
+          </td>
+          <td class="td-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ullam ducimus aliquam animi
+            eius ab repellendus ipsum officia pariatur suscipit, dignissimos tempore delectus veritatis dolore!</td>
+          <td class="td-buttons-2">
+            <div class="d-flex flex-column flex-lg-row">
+              <a class="btn btn-outline-primary btn-sm mr-lg-3 mb-2" href="listing-event.html">
+                <i class="fa fa-edit"></i>
+                edit
+              </a>
+              <button class="btn btn-outline-danger btn-sm">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                delete
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="text-capitalize">
+            <a class="text-hover-primary text-muted" href="listing-restuarant.html">Water Grill</a>
+          </td>
+          <td>
+            <span class="d-block">03 Aug 19</span>
+            <span class="d-block">11.139 PM</span>
+          </td>
+          <td class="td-no-white-space">
+            <ul class="list-inline list-inline-rating">
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              </li>
+            </ul>
+          </td>
+          <td class="td-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ullam ducimus aliquam animi
+            eius ab repellendus ipsum officia pariatur suscipit, dignissimos tempore delectus veritatis dolore!</td>
+          <td class="td-buttons-2">
+            <div class="d-flex flex-column flex-lg-row">
+              <a class="btn btn-outline-primary btn-sm mr-lg-3 mb-2" href="listing-event.html">
+                <i class="fa fa-edit"></i>
+                edit
+              </a>
+              <button class="btn btn-outline-danger btn-sm">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                delete
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="text-capitalize td-title">
+            <a class="text-hover-primary text-muted" href="listing-restuarant.html">The Missiisipi Hotel</a>
+          </td>
+          <td>
+            <span class="d-block">05 Aug 19</span>
+            <span class="d-block">12.17 PM</span>
+          </td>
+          <td class="td-no-white-space">
+            <ul class="list-inline list-inline-rating">
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              </li>
+            </ul>
+          </td>
+          <td class="td-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ullam ducimus aliquam animi
+            eius ab repellendus ipsum officia pariatur suscipit, dignissimos tempore delectus veritatis dolore!
+            <span class="bg-success text-white d-block p-2 mt-3 rounded">Officia error odit vitae nobis, deleniti dolorem
+              voluptatum necessitatibus perspiciatis voluptate quam libero nostrum</span>
+          </td>
+          <td class="td-buttons-2">
+            <div class="d-flex flex-column flex-lg-row">
+              <a class="btn btn-outline-primary btn-sm mr-lg-3 mb-2" href="listing-event.html">
+                <i class="fa fa-edit"></i>
+                edit
+              </a>
+              <button class="btn btn-outline-danger btn-sm">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                delete
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="text-capitalize ">
+            <a class="text-hover-primary text-muted" href="listing-restuarant.html">Think Coffee</a>
+          </td>
+          <td>
+            <span class="d-block">07 Aug 19</span>
+            <span class="d-block">09.00 PM</span>
+          </td>
+          <td class="td-no-white-space">
+            <ul class="list-inline list-inline-rating">
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              </li>
+            </ul>
+          </td>
+
+          <td class="td-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ullam ducimus aliquam animi
+            eius ab repellendus ipsum officia pariatur suscipit, dignissimos tempore delectus veritatis dolore!
+            <span class="bg-success text-white d-block p-2 mt-3 rounded">Officia error odit vitae nobis, deleniti dolorem
+              voluptatum necessitatibus perspiciatis voluptate quam libero nostrum</span>
+          </td>
+          <td class="td-buttons-2">
+            <div class="d-flex flex-column flex-lg-row">
+              <a class="btn btn-outline-primary btn-sm mr-lg-3 mb-2" href="listing-event.html">
+                <i class="fa fa-edit"></i>
+                edit
+              </a>
+              <button class="btn btn-outline-danger btn-sm">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                delete
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="text-capitalize">
+            <a class="text-hover-primary text-muted" href="listing-restuarant.html">Sticky Band</a>
+          </td>
+          <td>
+            <span class="d-block">07 Aug 19</span>
+            <span class="d-block">09.00 PM</span>
+          </td>
+          <td class="td-no-white-space">
+            <ul class="list-inline list-inline-rating">
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              </li>
+            </ul>
+          </td>
+          <td class="td-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ullam ducimus aliquam animi
+            eius ab repellendus ipsum officia pariatur suscipit, dignissimos tempore delectus veritatis dolore!</td>
+          <td class="td-buttons-2">
+            <div class="d-flex flex-column flex-lg-row">
+              <a class="btn btn-outline-primary btn-sm mr-lg-3 mb-2" href="listing-event.html">
+                <i class="fa fa-edit"></i>
+                edit
+              </a>
+              <button class="btn btn-outline-danger btn-sm">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                delete
+              </button>
+            </div>
+          </td>
+        </tr>
+
+        <tr>
+          <td class="text-capitalize">
+            <a class="text-hover-primary text-muted" href="listing-restuarant.html">Hotel Govendor</a>
+          </td>
+          <td>
+            <span class="d-block">19 Aug 19</span>
+            <span class="d-block">07.19 PM</span>
+          </td>
+          <td class="td-no-white-space">
+            <ul class="list-inline list-inline-rating">
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star" aria-hidden="true"></i>
+              </li>
+              <li class="list-inline-item">
+                <i class="fa fa-star-o" aria-hidden="true"></i>
+              </li>
+            </ul>
+          </td>
+          <td class="td-details">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ullam ducimus aliquam animi
+            eius ab repellendus ipsum officia pariatur suscipit, dignissimos tempore delectus veritatis dolore!</td>
+          <td class="td-buttons-2">
+            <div class="d-flex flex-column flex-lg-row">
+              <a class="btn btn-outline-primary btn-sm mr-lg-3 mb-2" href="listing-event.html">
+                <i class="fa fa-edit"></i>
+                edit
+              </a>
+              <button class="btn btn-outline-danger btn-sm">
+                <i class="fa fa-times" aria-hidden="true"></i>
+                delete
+              </button>
+            </div>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+</section>
+{% endblock %}
