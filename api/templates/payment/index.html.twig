@@ -28,25 +28,26 @@
                                 <thead>
                                 <tr>
                                     <th class="sum-first-child">Product</th>
-                                    <!--
-                                    <th>Aantal</th> -->
+                                    <th>Hoeveelheid</th>
                                     <th>Prijs</th>
                                 </tr>
                                 </thead>
                                 {% set total = 0 %}
                                 {% for offer in offers %}
-                                    {% set total = total + commonground_resource(offer).price %}
+                                    {% set total = total + offer.price * offer.quantity %}
+                                    {% set price = offer.price * offer.quantity %}
                                     <tr>
-                                        <td class="sum-first-child"><b>{{ commonground_resource(offer).name }}</b>{% if commonground_resource(offer).products|length > 1 %}<br/>
-                                            Bevat:{% for product in commonground_resource(offer).products %}{{ product.name }}{% endfor %}{% endif %}
+                                        <td class="sum-first-child"><b>{{ offer.name }}</b>{% if offer.products|length > 1 %}<br/>
+                                            Bevat:{% for product in offer.products %}{{ product.name }}{% endfor %}{% endif %}
                                         </td>
-                                        <!-- <td>1</td> -->
-                                        <td>&euro; {{ commonground_resource(offer).price/100 }},-</td>
+                                        <td>{{ offer.quantity }}</td>
+                                        <td>&euro; {{ price/100 }},-</td>
                                     </tr>
                                 {% endfor %}
                                 <tfoot>
                                 <tr>
                                     <!-- <td></td>-->
+                                    <td></td>
                                     <td style="text-align: right"><b>Totaal:</b></td>
                                     <td style="color: black"><b>&euro; {{ total/100 }},-</b></td>
                                 </tr>

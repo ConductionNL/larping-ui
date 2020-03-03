@@ -91,14 +91,11 @@ class PaymentController extends AbstractController
 
             foreach ($offers as $offer) {
 
-                // Dit is lelijk, eigenlijk zou de offer id an zich al een uri moeten zijn
-                $offer = $commonGroundService->getResource($offer);
-
                 $orderItem = [];
                 $orderItem['offer'] = $offer['@id'];
                 $orderItem['name'] = $offer['name'];
                 $orderItem['description'] = $offer['description'];
-                $orderItem['quantity'] = 1;
+                $orderItem['quantity'] = $offer['quantity'];
                 $orderItem['price'] = number_format($offer['price'] / 100, 2, '.', ' '); // hier gaat iets mis dat dit nodig is
                 $orderItem['priceCurrency'] = $offer['priceCurrency'];
                 //$orderItem['taxPercentage'] = $offer['taxes'][0]['percentage']; // Taxes in orders en invoices moet worden bijgewerkt
@@ -233,8 +230,11 @@ class PaymentController extends AbstractController
             // kijken of er in de sessie al een order zit, zo nee order aan maken. We slaan hier alleen de order ID (URI) op. Het bijhouden van het order object laten we via de commonground controller aan de cache
             $offer = $request->request->get('offer');
 
-            $offers[] = $offer;
+            $offer = $commonGroundService->getResource($offer);
 
+            $offer['quantity'] = $request->request->get('quantity');
+
+            $offers[] = $offer;
 
             $session->set('offers', $offers);
 
