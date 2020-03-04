@@ -35,7 +35,7 @@ class UserController extends AbstractController
 	}
 
 	/**
-	 * @Route("/logout")
+     * @Route("/logout", name="app_user_logout", methods={"GET"})
 	 * @Template
 	 */
 	public function logout(Request $request, CommonGroundService $commonGroundService,  ParameterBagInterface $params, EventDispatcherInterface $dispatcher)
