@@ -29,14 +29,12 @@ class PaymentController extends AbstractController
         // Als we geen order hebbenkunnen we logischerwijs ook geen betaling verwerken
         $offers = $session->get('offers');
 
-        var_dump($offers);
-
         $order = $session->get('order');
 
         // Terug sturen als er geen offers zijn
         if(!$offers || count($offers) < 1) {
             $this->addFlash('danger', 'There are no products in your basket');
-            return $this->redirect($this->generateUrl('app_landingpage_index'));
+            return $this->redirect($this->generateUrl('app_default_index'));
         }
 
         // Kijken of het formulier is getriggerd
@@ -250,8 +248,6 @@ class PaymentController extends AbstractController
         return [];
     }
 
-
-    //@todo remove offer
     /**
      * @Route("/remove-offer")
      */
@@ -260,17 +256,15 @@ class PaymentController extends AbstractController
         if($request->isMethod('POST')) {
 
             $removeOffer = $request->request->get('removingOffer');
-            var_dump($removeOffer);
 
             $offers = $session->get('offers');
-            var_dump($offers);
 
             foreach ($offers as $key => $offer) {
                 if ($removeOffer == $offer['id']){
                     unset($offers[$key]);
 
                     // flashban zetten met eindresultaat
-                    $this->addFlash('success', 'Uw product is verwijderd uit uw winkelmandje');
+                    $this->addFlash('success', 'Product succesfully removed from shopping cart');
                 }
             }
 
