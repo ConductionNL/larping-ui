@@ -53,9 +53,8 @@
         <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
            data-display="static" aria-expanded="false">
             <img class="avatar-img" src="/img/user/user-2.jpg" alt="Image">
-            <span
-                class="avatar-name">{{ commonground_resource(app.user.organization).name }} {# should be the other way around #}
-                      <span class="small">{{ app.user.person }}</span>
+            <span><b>{{ app.user.username }}</b><br>
+                      <span class="small">{{ commonground_resource(app.user.organization).name }}</span>
                     </span>
         </a>
         <ul class="dropdown-menu">
