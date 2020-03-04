@@ -167,9 +167,23 @@ class UserController extends AbstractController
      * @Route("user/dashboard")
      * @Template
      */
-    public function dashboardAction(Request $request)
+    public function dashboardAction(Request $request, CommonGroundService $commonGroundService)
     {
-        return[];
+        $user = $this->getUser()->getPerson();
+
+//        $user = "https://cc.larping.eu/people/0760200e-b277-48e8-8edc-3b07fbceeeef";
+
+        $orders = $commonGroundService->getResourceList("https://orc.dev.larping.eu/orders")["hydra:member"];
+
+        $userOrders = [];
+
+        foreach($orders as $order){
+            if($order['customer'] == $user){
+                $userOrders[] = $order;
+            }
+        }
+
+        return["userOrders"=>$userOrders];
     }
 
     /**
