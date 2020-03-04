@@ -30,16 +30,16 @@ class UserController extends AbstractController
      * @Template
 	 */
 	public function login(Request $request, CommonGroundService $commonGroundService,  ParameterBagInterface $params, EventDispatcherInterface $dispatcher)
-	{		
+	{
 		return [];
 	}
-	
+
 	/**
 	 * @Route("/logout")
 	 * @Template
 	 */
 	public function logout(Request $request, CommonGroundService $commonGroundService,  ParameterBagInterface $params, EventDispatcherInterface $dispatcher)
-	{		
+	{
 		return [];
 	}
 
@@ -51,48 +51,48 @@ class UserController extends AbstractController
     {
     	// Kijken of het formulier is getriggerd
     	if ($request->isMethod('POST')) {
-    		
+
     		// Lets check on required values
     		$requiredValues = ['givenName','familyName','password','password2','username'];
     		$error = false;
     		foreach($requiredValues as $requiredValue){
-    			
+
     			if(!$request->request->get($requiredValue)|| $request->request->get($requiredValue) == null){
     				$this->addFlash('danger', $requiredValue.' is a required value');
     				$error = true;
     			}
     		}
-    		
-    		
+
+
     		if($request->request->get('password') != $request->request->get('password2')){
     			$this->addFlash('danger','Password and repeat password do not match');
     			$error = true;
     		}
-    		
-    		
+
+
     		$users = $commonGroundService->getResourceList($params->get('auth_provider_user').'/users',["username"=> $request->request->get('username')], true);
     		$users = $users["hydra:member"];
-    		
+
     		if($users && count($users) >= 1){
     			$this->addFlash('danger','Username is already taken');
     			$error = true;
     		}
-    		
+
     		if($error){
     			return [];
     		}
-    		
-    		
+
+
     		$application = $commonGroundService->getApplication();
-    		
-    		// contact persoon aanmaken op order
+
+    		// contact persoon aanmaken op register
     		$contact['givenName'] = $request->request->get('givenName');
     		$contact['familyName'] = $request->request->get('familyName');
     		$contact['emails'] = [];
     		$contact['emails'][] = ["name" => "primary", "email" => $request->request->get('username')];
     		//$contact['organization'] = 'https://wrc.larping.eu'.$application['organization']['@id'];
     		$contact = $commonGroundService->createResource($contact, 'https://cc.larping.eu/people'); /*@todo awfulle specific */
-    		
+
     		//  Create the uses
     		$user = [];
     		$user['username'] =  $request->request->get('username');
@@ -101,23 +101,23 @@ class UserController extends AbstractController
     		$user['person'] = 'https://cc.larping.eu'.$contact['@id'];
     		//$contact['organization'] = 'https://wrc.larping.eu'.$application['organization']['@id'];
     		$user= $commonGroundService->createResource($user, 'https://uc.larping.eu/users'); /*@todo awfulle specific */
-    		
-    		
+
+
     		$user = new CommongroundUser($user['username'], $request->request->get('password'), null, ['user'] );
-    		
+
     		// Manually authenticate user in controller
     		$token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
     		$this->get('security.token_storage')->setToken($token);
     		$this->get('session')->set('_security_main', serialize($token));
-    		
-    		
+
+
     		//  Fire the login event manually
     		$event = new InteractiveLoginEvent($request, $token);
     		$dispatcher->dispatch($event);
-    		
+
     		return $this->redirect($this->generateUrl('app_user_confirm'));
-    	}	
-    	
+    	}
+
         return [];
     }
 
@@ -130,7 +130,7 @@ class UserController extends AbstractController
     {
         return [];
     }
-    
+
     /**
      * @Route("/reminder")
      * @Template
@@ -139,7 +139,7 @@ class UserController extends AbstractController
     {
     	// Kijken of het formulier is getriggerd
     	if ($request->isMethod('POST')) {
-    		
+
     		// Lets check on required values
     		$requiredValues = ['givenName','familyName','street','street','houseNumber','postalCode','locality','email'];
     		$error = false;
@@ -149,8 +149,8 @@ class UserController extends AbstractController
     				$error = true;
     			}
     		}
-    	}	
-    	
+    	}
+
     	return [];
     }
 
@@ -171,7 +171,7 @@ class UserController extends AbstractController
     {
         return[];
     }
-    
+
     /**
      * @Route("user/characters")
      * @Template
@@ -180,7 +180,7 @@ class UserController extends AbstractController
     {
     	return[];
     }
-    
+
     /**
      * @Route("user/orders")
      * @Template
@@ -189,7 +189,7 @@ class UserController extends AbstractController
     {
     	return[];
     }
-    
+
     /**
      * @Route("user/reviews")
      * @Template
@@ -198,7 +198,7 @@ class UserController extends AbstractController
     {
     	return[];
     }
-    
+
     /**
      * @Route("user/organizations")
      * @Template
@@ -207,7 +207,7 @@ class UserController extends AbstractController
     {
     	return[];
     }
-    
+
     /**
      * @Route("user/settings")
      * @Template
