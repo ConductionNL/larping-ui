@@ -98,7 +98,7 @@ class UserController extends AbstractController
     		$user['username'] =  $request->request->get('username');
     		$user['password'] =  $request->request->get('password');
     		$user['organization'] = 'https://wrc.larping.eu'.$application['organization']['@id'];
-    		$user['person'] = 'https://cc.larping.eu'.$contact['@id'];
+    		$user['person'] = $contact['@id'];
     		//$contact['organization'] = 'https://wrc.larping.eu'.$application['organization']['@id'];
     		$user= $commonGroundService->createResource($user, 'https://uc.larping.eu/users'); /*@todo awfulle specific */
 

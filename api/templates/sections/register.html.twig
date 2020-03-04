@@ -1,5 +1,5 @@
 <!-- ====================================
-———	SING UP
+ï¿½ï¿½ï¿½	SING UP
 ===================================== -->
 <section class="py-7 py-md-10 bg-light height100vh">
   <div class="container">
@@ -18,31 +18,31 @@
             <div class="row">
               <div class="form-group col-md-6">
                 <label for="inputtext">First Name*</label>
-                <input type="text" class="form-control" id="givenName" name="givenName" placeholder="John">
+                <input type="text" class="form-control" id="givenName" name="givenName" placeholder="John" required>
               </div>
               <div class="form-group col-md-6">
                 <label for="inputText">Last Name*</label>
-                <input type="text" class="form-control" id="familyName" name="familyName" placeholder="Doe">
+                <input type="text" class="form-control" id="familyName" name="familyName" placeholder="Doe" required>
               </div>
             </div>
             <div class="form-group mb-8">
               <label for="inputAddress">Email Address*</label>
-              <input type="email" class="form-control" id="username"  name="username" placeholder="">
+              <input type="email" class="form-control" id="username"  name="username" placeholder="" required>
             </div>
 
             <h3 class="h4 font-weight-normal mb-4 mt-7">Account Information</h3>
             <div class="row mb-6">
               <div class="form-group col-md-6 mb-4">
                 <label for="inputPassword">Password*</label>
-                <input type="password" class="form-control" id="password" name="password"  placeholder="">
+                <input type="password" class="form-control" id="password" name="password"  placeholder="" required>
               </div>
               <div class="form-group col-md-6 mb-4">
                 <label for="inputPassword">Password (re-type)*</label>
-                <input type="password" class="form-control" id="password2" name="password2"  placeholder="">
+                <input type="password" class="form-control" id="password2" name="password2"  placeholder="" required>
               </div>
             </div>
 
-			<!-- 
+			<!--
             <h3 class="h4 font-weight-normal mb-4 mt-7">Security Control</h3>
             <div class="form-group mb-7">
               <label for="usernames" class="control-label">
@@ -51,11 +51,11 @@
               <img src="assets/img/business/recaptcha.jpg" alt="Image captcha" class="img-fluid">
             </div>
  			-->
- 			
+
             <div class="form-group mb-6">
               <div class="checkbox">
                 <label>
-                  <input type="checkbox">
+                  <input type="checkbox" required>
                   I agree to the <a href="terms-of-services.html">Terms of Use</a> &amp; <a href="#">Privacy Policy</a>.
                 </label>
               </div>
@@ -65,7 +65,7 @@
 
 			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
           </form>
-          
+
         </div>
       </div>
     </div>
