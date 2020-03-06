@@ -6,7 +6,8 @@
         <div class="row">
             <div class="col-md-7 col-lg-8">
                 <div class="single-listing-content mb-6">
-                    <h3 class="font-weight-normal mb-6">About This {% if item.type is not defined %} {{ item['@type']|capitalize }} {% else %}{{ item.type|capitalize }} {% endif %}</h3>
+                    <h3 class="font-weight-normal mb-6">About
+                        This {% if item.type is not defined %} {{ item['@type']|capitalize }} {% else %}{{ item.type|capitalize }} {% endif %}</h3>
                     <p class="mb-6">{{ item.description }}</p>
 
                     <!-- Services -->
@@ -46,7 +47,7 @@
                             <i class="fa fa-cube mr-2" aria-hidden="true"></i>Reservations
                         </li>
                         <li class="d-inline-block mr-4 mb-2">
-                            <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i>  Pets Friendly
+                            <i class="fa fa-check-circle-o mr-2" aria-hidden="true"></i> Pets Friendly
                         </li>
                         <li class="d-inline-block mr-4 mb-2">
                             <i class="fa fa-credit-card mr-2" aria-hidden="true"></i>Accept Credit Card
@@ -58,10 +59,10 @@
                 <!-- Added By -->
                 {% if item.organization is defined %}
                     {# Organization can be both an object and and an url #}
-                    {% if item.organization['@id'] is defined  %}
-                    	{% set organization = item.organization %}
+                    {% if item.organization['@id'] is defined %}
+                        {% set organization = item.organization %}
                     {% else %}
-                    	{% set organization = commonground_resource(item.organization) %}
+                        {% set organization = commonground_resource(item.organization) %}
                     {% endif %}
                     {% include 'widgets/view_item_organization.html.twig' with {'item':organization} %}
                 {% endif %}
@@ -72,189 +73,197 @@
                 <!-- Add Review -->
                 {% include 'widgets/review_add.html.twig' with {'item':item} %}
 
-            <!--======= Sidebar =======-->
-            <div class="col-md-5 col-lg-4 pl-xl-8">
+                <!--======= Sidebar =======-->
+                <div class="col-md-5 col-lg-4 pl-xl-8">
 
-                <!-- Single listing Map -->
-                <div class="map-sidebar border rounded mb-5">
-                    <div id="single-listing-map" data-lat="40.805628" data-lag="-73.965431"></div>
-                    <div class="px-6 py-5">
+                    <!-- Single listing Map -->
+                    <div class="map-sidebar border rounded mb-5">
+                        <div id="single-listing-map" data-lat="40.805628" data-lag="-73.965431"></div>
+                        <div class="px-6 py-5">
+                            <ul class="list-unstyled mb-0">
+                                <li class="d-flex align-items-start">
+                                    <i class="fa fa-map-marker mr-3 mt-1" aria-hidden="true"></i>
+                                    <span>2880 Broadway, New York, NY 10025, USA</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    {% if item.type is defined %}
+
+                        <!-- Book Tickets -->
+                        <form action="{{ path('app_payment_addoffer') }}" method="post"
+                              class="mb-5">
+                            <h3 class="mb-3 font-weight-normal">Book Tickets</h3>
+
+                            <div class="form-group mb-6">
+                                <div class="select-bg-transparent select-border w-100">
+                                    <select class="select-location" name="offer" required>
+                                        {% for offer in product.offers %}
+                                            <option value="https://pdc.larping.eu{{ offer['@id'] }}">{{ offer.name }}
+                                                <b>&euro; {{ offer.price/100|number_format(2, '.') }},-</b></option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-6">
+                                <div class="select-bg-transparent select-border w-100">
+                                    <select class="select-location" name="quantity" required>
+                                        {% for i in 1..10 %}
+                                            <option value="{{ i }}">{{ i }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+
+
+
+                            {# Geeft de product mee aan de offer #}
+                            <input type="hidden" value="{{ item['id'] }}" name="boughtProduct">
+
+                            <div class="form-group mb-6">
+                                <button type="submit" class="btn btn-primary" formmethod="post"> Buy Now</button>
+                            </div>
+
+                        </form>
+
+                    {% else %}
+
+                        <!-- Contact Vendor -->
+                        <form class="mb-5" action="#">
+                            <h3 class="mb-3 font-weight-normal">Contact Vendor</h3>
+
+                            <div class="form-group mb-6">
+                                <input type="text" class="form-control"
+                                       placeholder="Enter Your Name" required>
+                            </div>
+
+                            <div class="form-group mb-6">
+                                <input type="email" class="form-control"
+                                       placeholder="Enter Your Email" required>
+                            </div>
+
+                            <div class="form-group mb-6">
+                                <input type="number" class="form-control number-appearance-none"
+                                       placeholder="Enter Your Mobile Number" required>
+                            </div>
+
+                            <div class="form-group mb-6">
+                                                        <textarea class="form-control" rows="6"
+                                                                  placeholder="Enter Your Comment" required></textarea>
+                            </div>
+
+                            <div class="form-group mb-6">
+                                <button type="submit" class="btn btn-primary text-uppercase">
+                                    Send Message
+                                </button>
+                            </div>
+
+                        </form>
+
+                    {% endif %}
+
+                    <!-- Opening Hours -->
+                    <div class="border rounded px-6 py-5 mb-5">
+                        <h3 class="mb-4 font-weight-normal">Opening Hours</h3>
                         <ul class="list-unstyled mb-0">
-                            <li class="d-flex align-items-start">
-                                <i class="fa fa-map-marker mr-3 mt-1" aria-hidden="true"></i>
-                                <span>2880 Broadway, New York, NY 10025, USA</span>
+                            <li class="d-flex justify-content-between mb-3 pb-3 border-bottom">
+                                <span>Monday</span>
+                                <span>08.00am - 05.00pm</span>
+                            </li>
+                            <li class="d-flex justify-content-between mb-3 pb-3 border-bottom">
+                                <span>Tuesday</span>
+                                <span>08.00am - 05.00pm</span>
+                            </li>
+                            <li class="d-flex justify-content-between mb-3 pb-3 border-bottom">
+                                <span>Wednesday</span>
+                                <span>08.00am - 05.00pm</span>
+                            </li>
+                            <li class="d-flex justify-content-between mb-3 pb-3 border-bottom">
+                                <span>Thrusday</span>
+                                <span>08.00am - 05.00pm</span>
+                            </li>
+                            <li class="d-flex justify-content-between mb-3 pb-3 border-bottom">
+                                <span>Friday</span>
+                                <span>08.00am - 05.00pm</span>
+                            </li>
+                            <li class="d-flex justify-content-between mb-3 pb-3 border-bottom">
+                                <span>Saturday</span>
+                                <span><a href="#">Closed</a></span>
+                            </li>
+                            <li class="d-flex justify-content-between mb-3">
+                                <span>Sunday</span>
+                                <span><a href="#">Closed</a></span>
                             </li>
                         </ul>
                     </div>
-                </div>
 
-                {% if item.type is defined %}
-
-                <!-- Book Tickets -->
-                <form class="mb-5">
-                    <h3 class="mb-3 font-weight-normal">Book Tickets</h3>
-
-                    <div class="form-group mb-6">
-                        <div class="select-bg-transparent select-border w-100">
-                            <select class="select-location" required>
-{#                                {% foreach  %}#}
-                                <option>Seats</option>
-                                <option>01</option>
-                                <option>02</option>
-                                <option>03</option>
-                                <option>04</option>
-                                <option>05</option>
-                            </select>
+                    <!-- You may also like  -->
+                    <div class="border rounded px-6 pt-5 mb-5">
+                        <h3 class="mb-4 font-weight-normal">You may also like</h3>
+                        <div class="card rounded-0 card-hover-overlay">
+                            <div class="position-relative">
+                                <img class="card-img rounded-0" src="assets/img/listing/listing-15.jpg"
+                                     alt="Card image cap">
+                                <div class="card-img-overlay">
+                                    <ul class="list-inline list-inline-rating">
+                                        <li class="list-inline-item">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        </li>
+                                    </ul>
+                                    <h3>
+                                        <a href="listing-store.html">Allied Steel NY</a>
+                                    </h3>
+                                    <p class="text-white">851 7th Ave, new York</p>
+                                </div>
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group mb-6">
-                        <div class="select-bg-transparent select-border w-100">
-                            <select class="select-location" required>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                                <option>3</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group mb-6">
-                        <button type="submit" class="btn btn-primary"> Buy Now </button>
-                    </div>
-
-                </form>
-
-                {% else %}
-
-                <!-- Contact Vendor -->
-                <form class="mb-5" action="#">
-                    <h3 class="mb-3 font-weight-normal">Contact Vendor</h3>
-
-                    <div class="form-group mb-6">
-                        <input type="text" class="form-control" placeholder="Enter Your Name" required>
-                    </div>
-
-                    <div class="form-group mb-6">
-                        <input type="email" class="form-control" placeholder="Enter Your Email" required>
-                    </div>
-
-                    <div class="form-group mb-6">
-                        <input type="number" class="form-control number-appearance-none" placeholder="Enter Your Mobile Number" required>
-                    </div>
-
-                    <div class="form-group mb-6">
-                        <textarea class="form-control" rows="6" placeholder="Enter Your Comment" required></textarea>
-                    </div>
-
-                    <div class="form-group mb-6">
-                        <button type="submit" class="btn btn-primary text-uppercase"> Send Message </button>
-                    </div>
-
-                </form>
-
-                {% endif %}
-
-                <!-- Opening Hours -->
-                <div class="border rounded px-6 py-5 mb-5">
-                    <h3 class="mb-4 font-weight-normal">Opening Hours</h3>
-                    <ul class="list-unstyled mb-0">
-                        <li class="d-flex justify-content-between mb-3 pb-3 border-bottom">
-                            <span>Monday</span>
-                            <span>08.00am - 05.00pm</span>
-                        </li>
-                        <li class="d-flex justify-content-between mb-3 pb-3 border-bottom">
-                            <span>Tuesday</span>
-                            <span>08.00am - 05.00pm</span>
-                        </li>
-                        <li class="d-flex justify-content-between mb-3 pb-3 border-bottom">
-                            <span>Wednesday</span>
-                            <span>08.00am - 05.00pm</span>
-                        </li>
-                        <li class="d-flex justify-content-between mb-3 pb-3 border-bottom">
-                            <span>Thrusday</span>
-                            <span>08.00am - 05.00pm</span>
-                        </li>
-                        <li class="d-flex justify-content-between mb-3 pb-3 border-bottom">
-                            <span>Friday</span>
-                            <span>08.00am - 05.00pm</span>
-                        </li>
-                        <li class="d-flex justify-content-between mb-3 pb-3 border-bottom">
-                            <span>Saturday</span>
-                            <span><a href="#">Closed</a></span>
-                        </li>
-                        <li class="d-flex justify-content-between mb-3">
-                            <span>Sunday</span>
-                            <span><a href="#">Closed</a></span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- You may also like  -->
-                <div class="border rounded px-6 pt-5 mb-5">
-                    <h3 class="mb-4 font-weight-normal">You may also like</h3>
-                    <div class="card rounded-0 card-hover-overlay">
-                        <div class="position-relative">
-                            <img class="card-img rounded-0" src="assets/img/listing/listing-15.jpg" alt="Card image cap">
-                            <div class="card-img-overlay">
-                                <ul class="list-inline list-inline-rating">
-                                    <li class="list-inline-item">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                    </li>
-                                </ul>
-                                <h3>
-                                    <a href="listing-store.html">Allied Steel NY</a>
-                                </h3>
-                                <p class="text-white">851 7th Ave, new York</p>
+                        <div class="card rounded-0 card-hover-overlay">
+                            <div class="position-relative">
+                                <img class="card-img rounded-0" src="assets/img/listing/listing-16.jpg"
+                                     alt="Card image cap">
+                                <div class="card-img-overlay">
+                                    <ul class="list-inline list-inline-rating">
+                                        <li class="list-inline-item">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <i class="fa fa-star" aria-hidden="true"></i>
+                                        </li>
+                                        <li class="list-inline-item">
+                                            <i class="fa fa-star-o" aria-hidden="true"></i>
+                                        </li>
+                                    </ul>
+                                    <h3>
+                                        <a href="listing-vendor.html">Artists & Fleas</a>
+                                    </h3>
+                                    <p class="text-white">88 10th Ave, New York</p>
+                                </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="card rounded-0 card-hover-overlay">
-                        <div class="position-relative">
-                            <img class="card-img rounded-0" src="assets/img/listing/listing-16.jpg" alt="Card image cap">
-                            <div class="card-img-overlay">
-                                <ul class="list-inline list-inline-rating">
-                                    <li class="list-inline-item">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <i class="fa fa-star-o" aria-hidden="true"></i>
-                                    </li>
-                                </ul>
-                                <h3>
-                                    <a href="listing-vendor.html">Artists & Fleas</a>
-                                </h3>
-                                <p class="text-white">88 10th Ave, New York</p>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-
             </div>
         </div>
-    </div>
 </section>

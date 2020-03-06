@@ -1,91 +1,82 @@
 <!-- ====================================
-———	user menu
+ï¿½ï¿½ï¿½	user menu
 ===================================== -->
-                  
-			<div class="menu-right">
-                <div class="notification">     
-                  <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" data-display="static"
-                    aria-haspopup="true" aria-expanded="false">
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    <span class="badge">21</span>
-                  </a>
 
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a href="#">
+{% set offers = app.session.get('offers') %}
+
+<div class="menu-right">
+    <div class="notification">
+        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" data-display="static"
+           aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            <span class="badge">{{ offers|length }}</span>
+        </a>
+
+        <ul class="dropdown-menu">
+
+            {% set total = 0 %}
+            {% for offer in offers %}
+                {% set total = total + offer.price * offer.quantity %}
+
+
+                <li class="border-bottom ">
+                    <a href="{{ path('app_product_view', {id : offer.boughtProduct }) }}">
                         <div class="media media-xs align-items-center">
-                          <img class="rounded-circle mr-3" src="/img/user/user-xs-1.jpg" alt="Image">
-                          <div class="media-body">
-                            <span class="font-weight-bold">Aaren</span>
-                            <p class="mb-1">Lorem ipsum dolor sit amet.</p>
-                            <em class="small">15min ago</em>
-                          </div>
+                            {#                            <img class="rounded-circle mr-3" src="/img/user/user-xs-1.jpg" alt="Image">#}
+                            <div class="media-body">
+                                <p class="font-weight-bold float-left">{{ offer.name }}</p>
+                                <p class="text-align-center float-left"><b>Prijs:</b>
+                                    &euro; {{ offer.price/100|number_format(2, '.') }},-</p>
+                                <p class="text-align-center float-left"><b>Hoeveelheid:</b> {{ offer.quantity }}</p>
+                                <p class="text-align-center float-left"><b>Subtotaal:</b>
+                                    &euro; {{ offer.quantity * offer.price/100|number_format(2, '.') }},- </p>
+                            </div>
                         </div>
-                      </a>
-                    </li>
+                    </a>
+                </li>
 
-                    <li>
-                      <a href="#">
-                        <div class="media media-xs align-items-center">
-                          <img class="rounded-circle mr-3" src="/img/user/user-xs-2.jpg" alt="Image">
-                          <div class="media-body">
-                            <span class="font-weight-bold">Abby</span>
-                            <p class="mb-1">Lorem ipsum dolor sit amet.</p>
-                            <em class="small">26 min ago</em>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
+            {% endfor %}
 
-                    <li>
-                      <a href="#">
-                        <div class="media media-xs align-items-center">
-                          <img class="rounded-circle mr-3" src="/img/user/user-xs-3.jpg" alt="Image">
-                          <div class="media-body">
-                            <span class="font-weight-bold">Abriel</span>
-                            <p class="mb-1">Lorem ipsum dolor sit amet.</p>
-                            <em class="small">32 min ago</em>
-                          </div>
-                        </div>
-                      </a>
-                    </li>
+            <li class="pt-3">
+                <p class="text-align-center"><b>Totaal: </b>&euro; {{ total/100|number_format(2, '.') }},-</p>
+            </li>
 
-                    <li>
-                      <a href="#">
-                        See all
-                      </a>
-                    </li>
+            <li>
+                <a href="{{ path('app_payment_index') }}">
+                    Afrekenen
+                </a>
+            </li>
 
-                  </ul>
-                </div>
-                <div class="avatar">
-                  <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
-                    data-display="static" aria-expanded="false">
-                    <img class="avatar-img" src="/img/user/user-2.jpg" alt="Image">
-                    <span class="avatar-name">{{ commonground_resource(app.user.organization).name }} {# should be the other way around #}
-                      <span class="small">{{app.user.person}}</span>
+        </ul>
+    </div>
+    <div class="avatar">
+        <a class="dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
+           data-display="static" aria-expanded="false">
+            <img class="avatar-img" src="/img/user/user-2.jpg" alt="Image">
+            <span><b>{{ app.user.username }}</b><br>
+                      <span class="small">{{ commonground_resource(app.user.organization).name }}</span>
                     </span>
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a class="d-flex flex-wrap align-items-center" href="{{  path('app_user_dashboard' ) }}">
-                        <i class="fa fa-user mr-2" aria-hidden="true"></i>
-                        <span>Dashboard</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="d-flex flex-wrap align-items-center" href="{{  path('app_user_settings' ) }}">
-                        <i class="fa fa-envelope mr-2" aria-hidden="true"></i>
-                        <span>Messages</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="d-flex flex-wrap align-items-center" href="{{  path('app_user_logout' ) }}">
-                        <i class="fa fa-diamond mr-2" aria-hidden="true"></i>
-                        <span>Logout</span>
-                      </a>
-                    </li>
-                  </ul>
+        </a>
+        <ul class="dropdown-menu">
+            <li>
+                <a class="d-flex flex-wrap align-items-center" href="{{ path('app_user_dashboard' ) }}">
+                    <i class="fa fa-user mr-2" aria-hidden="true"></i>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a class="d-flex flex-wrap align-items-center" href="{{ path('app_user_settings' ) }}">
+                    <i class="fa fa-envelope mr-2" aria-hidden="true"></i>
+                    <span>Messages</span>
+                </a>
+            </li>
+            <li>
+                <a class="d-flex flex-wrap align-items-center" href="{{ path('app_user_logout' ) }}">
+                    <i class="fa fa-diamond mr-2" aria-hidden="true"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+        </ul>
 
-                </div>
-              </div>
+    </div>
+</div>
