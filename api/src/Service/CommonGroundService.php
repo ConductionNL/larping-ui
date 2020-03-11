@@ -105,8 +105,10 @@ class CommonGroundService
 
 		// To work with NLX we need a couple of default headers
 		$headers = $this->headers;
-		$headers['X-NLX-Request-Data-Elements'] = $elementList;
-		$headers['X-NLX-Request-Data-Subject'] = $elementList;
+		if($elementList){
+			$headers['X-NLX-Request-Data-Elements'] = $elementList;
+			$headers['X-NLX-Request-Data-Subject'] = $elementList;
+		}
 				
 		$item = $this->cash->getItem('commonground_'.md5($url));
 		if ($item->isHit() && !$force) {
@@ -138,10 +140,7 @@ class CommonGroundService
 			die;
 		}
 
-
 		$response = json_decode($response->getBody(), true);
-
-
 
 		//var_dump($response);
 
