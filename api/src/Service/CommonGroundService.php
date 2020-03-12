@@ -167,7 +167,7 @@ class CommonGroundService
             // e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
             $host = explode('.', $parsedUrl['host']);
             $subdomain = $host[0];
-            $url = str_replace($subdomain,$subdomain.'.'.$this->params->get('app_env'),$url);
+            $url = str_replace($subdomain.'.',$subdomain.'.'.$this->params->get('app_env').'.',$url);
         }
 
         // To work with NLX we need a couple of default headers
