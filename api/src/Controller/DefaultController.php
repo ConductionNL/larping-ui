@@ -35,6 +35,8 @@ class DefaultController extends AbstractController
         	$domain = "https://www.larping.eu";
         }
 
+        $this->addFlash('danger', 'Uw verzoek is ingediend');
+
         return ['organizations'=>$organizations,'groups'=>$groups];
     }
 
