@@ -8,6 +8,7 @@ use GuzzleHttp\Client;
 use Symfony\Component\Cache\Adapter\AdapterInterface as CacheInterface;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
 
 class CommonGroundService
 {
@@ -15,13 +16,15 @@ class CommonGroundService
 	private $cache;
 	private $session;
 	private $headers;
+	private $requestStack;
 	
-	public function __construct(ParameterBagInterface $params, SessionInterface $session, CacheInterface $cache)
+	public function __construct(ParameterBagInterface $params, SessionInterface $session, CacheInterface $cache, RequestStack $requestStack)
 	{
 		$this->params = $params;
 		$this->session = $session;
 		$this->cash = $cache;
 		$this->session= $session;
+		$this->requestStack = $requestStack;
 		
 		// To work with NLX we need a couple of default headers
 		$this->headers = [
@@ -76,9 +79,13 @@ class CommonGroundService
 			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
 			$host = explode('.', $parsedUrl['host']);
 			$subdomain = $host[0];
-			$url = str_replace($subdomain,$subdomain.'.'.$this->params->get('app_env'),$url);
+			$url = str_replace($subdomain.'.',$subdomain.'.'.$this->params->get('app_env').'.',$url);
 		}
 		
+		// To work with NLX we need a couple of default headers
+		$headers = $this->headers;
+		
+		/* This is broken
 		$elementList = [];
 		foreach($query as $element){
 			if(!is_array($element)){
@@ -88,12 +95,12 @@ class CommonGroundService
 		}
 		$elementList = implode(",", $elementList);
 		
-		// To work with NLX we need a couple of default headers
-		$headers = $this->headers;
+		
 		if($elementList){
 			$headers['X-NLX-Request-Data-Elements'] = $elementList;
-			$headers['X-NLX-Request-Data-Subject'] = $elementList;			
+			$headers['X-NLX-Request-Data-Subject'] = $elementList;
 		}
+		*/
 		
 		$item = $this->cash->getItem('commonground_'.md5($url));
 		if ($item->isHit() && !$force) {
@@ -101,19 +108,19 @@ class CommonGroundService
 		}
 		
 		if(!$async){
-			$response = $this->client->request('GET', $url, [
-					'query' => $query,
-					'headers' => $headers,
-			]
-					);
+				$response = $this->client->request('GET', $url, [
+						'query' => $query,
+						'headers' => $headers,
+				]
+			);
 		}
 		else {
 			
-			$response = $this->client->requestAsync('GET', $url, [
-					'query' => $query,
-					'headers' => $headers,
-			]
-					);
+				$response = $this->client->requestAsync('GET', $url, [
+						'query' => $query,
+						'headers' => $headers,
+				]
+			);
 		}
 		
 		if($response->getStatusCode() != 200){
@@ -122,6 +129,7 @@ class CommonGroundService
 			var_dump(json_encode($headers));
 			var_dump(json_encode($url));
 			var_dump($response->getBody());
+			var_dump(json_decode($response->getBody(), true));
 			die;
 		}
 		
@@ -140,7 +148,7 @@ class CommonGroundService
 		$item->expiresAt(new \DateTime('tomorrow'));
 		$this->cash->save($item);
 		
-		return $response;
+		return $response;		
 	}
 	
 	/*
@@ -165,7 +173,7 @@ class CommonGroundService
 			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
 			$host = explode('.', $parsedUrl['host']);
 			$subdomain = $host[0];
-			$url = str_replace($subdomain,$subdomain.'.'.$this->params->get('app_env'),$url);
+			$url = str_replace($subdomain.'.',$subdomain.'.'.$this->params->get('app_env').'.',$url);
 		}
 		
 		// To work with NLX we need a couple of default headers
@@ -236,7 +244,7 @@ class CommonGroundService
 			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
 			$host = explode('.', $parsedUrl['host']);
 			$subdomain = $host[0];
-			$url = str_replace($subdomain,$subdomain.'.'.$this->params->get('app_env'),$url);
+			$url = str_replace($subdomain.'.',$subdomain.'.'.$this->params->get('app_env').'.',$url);
 		}
 		
 		// To work with NLX we need a couple of default headers
@@ -260,7 +268,6 @@ class CommonGroundService
 		if(!$async){
 			$response = $this->client->request('PUT', $url, [
 					'body' => json_encode($resource),
-					'query' => $query,
 					'headers' => $headers,
 			]
 					);
@@ -269,7 +276,6 @@ class CommonGroundService
 			
 			$response = $this->client->requestAsync('PUT', $url, [
 					'body' => json_encode($resource),
-					'query' => $query,
 					'headers' => $headers,
 			]
 					);
@@ -320,8 +326,10 @@ class CommonGroundService
 			// e.g https://wrc.larping.eu/ becomes https://wrc.dev.larping.eu/
 			$host = explode('.', $parsedUrl['host']);
 			$subdomain = $host[0];
-			$url = str_replace($subdomain,$subdomain.'.'.$this->params->get('app_env'),$url);
+			$url = str_replace($subdomain.'.',$subdomain.'.'.$this->params->get('app_env').'.',$url);
 		}
+		
+		$headers = $this->headers;
 		
 		if(!$async){
 			$response = $this->client->request('POST', $url, [
@@ -339,7 +347,7 @@ class CommonGroundService
 		}
 		
 		
-		if($response->getStatusCode() != 201){
+		if($response->getStatusCode() != 201 && $response->getStatusCode() != 200){
 			var_dump('POST returned:'.$response->getStatusCode());
 			var_dump($headers);
 			var_dump(json_encode($resource));
@@ -364,11 +372,43 @@ class CommonGroundService
 		return $response;
 	}
 	
+	
+	/*
+	 * Get the current application from the wrc
+	 */
+	public function getApplication($force = false, $async = false)
+	{		
+		$applications = $this->getResourceList('https://wrc.'.$this->getDomain().'/applications',["domain"=>$this->getDomain()],$force, $async);
+		
+		if(count($applications['hydra:member'])>0){
+			return $applications['hydra:member'][0];			
+		}
+		
+		return false;
+	}
+	
 	/*
 	 * Get a single resource from a common ground componant
 	 */
 	public function clearCash($url)
 	{
+	}
+	
+	
+	/*
+	 * Get a single resource from a common ground componant
+	 */
+	public function getDomain()
+	{
+		$request = $this->requestStack->getCurrentRequest();
+		$host = $request->getHost();
+		
+		if($host == "" | $host == "localhost"){$host = $this->params->get('app_domain');}
+		
+		$host_names = explode(".", $host);
+		$host = $host_names[count($host_names)-2] . "." . $host_names[count($host_names)-1];
+		
+		return $host;
 	}
 	
 	/*

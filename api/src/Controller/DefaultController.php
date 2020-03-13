@@ -25,10 +25,11 @@ class DefaultController extends AbstractController
      * @Template
      */
 	public function indexAction(Request $request, CommonGroundService $commonGroundService, ParameterBagInterface $params)
-    {
+	{
+		$commonGroundService->getApplication();
         $organizations = $commonGroundService->getResourceList('https://wrc.larping.eu/organizations')['hydra:member'];
         $groups= $commonGroundService->getResourceList('https://pdc.larping.eu/groups')['hydra:member'];
-
+        
         // Lets get the domain for local development
         $domain = $request->getHost();
         if(!$domain || $domain == "localhost"){
