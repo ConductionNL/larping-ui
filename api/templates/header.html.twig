@@ -5,7 +5,7 @@
             <div id="menuzord" class="menuzord menuzord-responsive">
 
                 <a href="{{ path('app_default_index') }}" class="menuzord-brand">
-                    <h1>{{ common_ground_service.getApplication.name }}</h1>
+{#                    <h1>{{ common_ground_service.getApplication.name }}</h1>#}
                 </a>
 
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
@@ -14,7 +14,7 @@
 
                 {% else %}
 
-                <div class="float-right btn-wrapper">
+                <div class="float-right btn-wrapper mb-5">
 
                     <a class="btn btn-outline-primary" href="{{ path('app_user_login' ) }}">+
                         <span>Login or Join</span></a>

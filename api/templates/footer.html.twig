@@ -5,9 +5,9 @@
         <div class="row">
           <div class="col-sm-7 col-xs-12">
             <a class="d-inline-block mb-6" href="{{ path('app_default_index') }}">
-                <h1>{{ common_ground_service.getApplication.name }}</h1>
+{#                <h1>{{ common_ground_service.getApplication.name }}</h1>#}
             </a>
-            <p class="text-muted pt-1 pb-3"> {{ common_ground_service.getApplication.description }} </p>
+{#            <p class="text-muted pt-1 pb-3"> {{ common_ground_service.getApplication.description }} </p>#}
             <ul class="list-unstyled text-muted">
               <li class="mb-3">
                 <i class="fa fa-phone mr-3" aria-hidden="true"></i>
@@ -20,40 +20,40 @@
             </ul>
           </div>
 
-		 {% if common_ground_service.getApplication.defaultConfiguration is defined and common_ground_service.getApplication.defaultConfiguration.configuration.larpingUi %}
-		 {% set menu = commonground_resource(common_ground_service.getApplication.defaultConfiguration.configuration.larpingUi.menuFooter1)  %}
+{#		 {% if common_ground_service.getApplication.defaultConfiguration is defined and common_ground_service.getApplication.defaultConfiguration.configuration.larpingUi %}#}
+{#		 {% set menu = commonground_resource(common_ground_service.getApplication.defaultConfiguration.configuration.larpingUi.menuFooter1)  %}#}
           <div class="col-sm-3 col-xs-12">
             <div class="mb-4 mt-4 mt-md-0">
-              <h2 class="h4">{{ menu.name }}</h2>
-            </div>                
+{#              <h2 class="h4">{{ menu.name }}</h2>#}
+            </div>
             <ul class="list-unstyled list-gray">
-             {% for item in menu.menuItems %}
+{#             {% for item in menu.menuItems %}#}
               <li class="mb-3">
-                <a href="{{ path( item.href ) }}">{{ item.name }}</a>
+{#                <a href="{{ path( item.href ) }}">{{ item.name }}</a>#}
               </li>
-              {% endfor %}
+{#              {% endfor %}#}
 
             </ul>
           </div>
-         {% endif %}
+{#         {% endif %}#}
 
-		 {% if  common_ground_service.getApplication.defaultConfiguration is defined and common_ground_service.getApplication.defaultConfiguration.configuration.larpingUi %}
-		 {% set menu = commonground_resource(common_ground_service.getApplication.defaultConfiguration.configuration.larpingUi.menuFooter2)  %}
+{#		 {% if  common_ground_service.getApplication.defaultConfiguration is defined and common_ground_service.getApplication.defaultConfiguration.configuration.larpingUi %}#}
+{#		 {% set menu = commonground_resource(common_ground_service.getApplication.defaultConfiguration.configuration.larpingUi.menuFooter2)  %}#}
           <div class="col-sm-2 col-xs-12">
             <div class="mb-4 mt-4 mt-md-0">
-              <h2 class="h4">{{ menu.name }}</h2>
-            </div>                
+{#              <h2 class="h4">{{ menu.name }}</h2>#}
+            </div>
             <ul class="list-unstyled list-gray">
-             {% for item in menu.menuItems %}
+{#             {% for item in menu.menuItems %}#}
               <li class="mb-3">
-                <a href="{{ path( item.href ) }}">{{ item.name }}</a>
+{#                <a href="{{ path( item.href ) }}">{{ item.name }}</a>#}
               </li>
-              {% endfor %}
+{#              {% endfor %}#}
 
             </ul>
           </div>
-         {% endif %}          
-          
+{#         {% endif %}#}
+
         </div>
 
         <hr>
