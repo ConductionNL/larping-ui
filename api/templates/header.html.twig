@@ -5,7 +5,7 @@
             <div id="menuzord" class="menuzord menuzord-responsive">
 
                 <a href="{{ path('app_default_index') }}" class="menuzord-brand">
-                    <h1>{{ common_ground_service.getApplication.name }}</h1>
+                    {#                    <h1>{{ common_ground_service.getApplication.name }}</h1>#}
                 </a>
 
                 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
@@ -14,12 +14,12 @@
 
                 {% else %}
 
-                <div class="float-right btn-wrapper">
+                    <div class="float-right btn-wrapper mb-5">
 
-                    <a class="btn btn-outline-primary" href="{{ path('app_user_login' ) }}">+
-                        <span>Login or Join</span></a>
+                        <a class="btn btn-outline-primary" href="{{ path('app_user_login' ) }}">+
+                            <span>Login or Join</span></a>
 
-                </div>
+                    </div>
 
                 {% endif %}
 
@@ -40,6 +40,25 @@
                     {% endif %}
 
                 </ul>
+
+                <!-- the alert box -->
+                {% if app.session.flashbag.peekAll|length > 0 %}
+                    {% set datadelay = 0 %}
+                    {% for type, messages in app.session.flashbag.all %}
+                        {% for message in messages %}
+
+                            <div class="animated bounceDownIn" data-delay="3000">
+                                <div class="alert alert-{{ type }} mt-5 animated bounceOutUp" role="alert">
+                                    {{ message|trans({}, domain|default('messages')) }}
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+                <!-- end of the alert box -->
+
+
             </div>
         </div>
     </nav>
