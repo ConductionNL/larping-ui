@@ -86,21 +86,21 @@ class CommonGroundService
 		$headers = $this->headers;
 		
 		/* This is broken
-		$elementList = [];
-		foreach($query as $element){
-			if(!is_array($element)){
-				break;
-			}
-			$elementList[] = implode("=",$element);
-		}
-		$elementList = implode(",", $elementList);
-		
-		
-		if($elementList){
-			$headers['X-NLX-Request-Data-Elements'] = $elementList;
-			$headers['X-NLX-Request-Data-Subject'] = $elementList;
-		}
-		*/
+		 $elementList = [];
+		 foreach($query as $element){
+		 if(!is_array($element)){
+		 break;
+		 }
+		 $elementList[] = implode("=",$element);
+		 }
+		 $elementList = implode(",", $elementList);
+		 
+		 
+		 if($elementList){
+		 $headers['X-NLX-Request-Data-Elements'] = $elementList;
+		 $headers['X-NLX-Request-Data-Subject'] = $elementList;
+		 }
+		 */
 		
 		$item = $this->cash->getItem('commonground_'.md5($url));
 		if ($item->isHit() && !$force) {
@@ -108,19 +108,19 @@ class CommonGroundService
 		}
 		
 		if(!$async){
-				$response = $this->client->request('GET', $url, [
-						'query' => $query,
-						'headers' => $headers,
-				]
-			);
+			$response = $this->client->request('GET', $url, [
+					'query' => $query,
+					'headers' => $headers,
+			]
+					);
 		}
 		else {
 			
-				$response = $this->client->requestAsync('GET', $url, [
-						'query' => $query,
-						'headers' => $headers,
-				]
-			);
+			$response = $this->client->requestAsync('GET', $url, [
+					'query' => $query,
+					'headers' => $headers,
+			]
+					);
 		}
 		
 		if($response->getStatusCode() != 200){
@@ -148,7 +148,7 @@ class CommonGroundService
 		$item->expiresAt(new \DateTime('tomorrow'));
 		$this->cash->save($item);
 		
-		return $response;		
+		return $response;
 	}
 	
 	/*
@@ -377,11 +377,11 @@ class CommonGroundService
 	 * Get the current application from the wrc
 	 */
 	public function getApplication($force = false, $async = false)
-	{		
+	{
 		$applications = $this->getResourceList('https://wrc.'.$this->getDomain().'/applications',["domain"=>$this->getDomain()],$force, $async);
 		
 		if(count($applications['hydra:member'])>0){
-			return $applications['hydra:member'][0];			
+			return $applications['hydra:member'][0];
 		}
 		
 		return false;
