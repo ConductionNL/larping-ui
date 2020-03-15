@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 /**
  * Class DefaultController
  * @package App\Controller
- * @Route("/home")
+ * @Route("/")
  */
 class DefaultController extends AbstractController
 {

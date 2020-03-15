@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class LandingpageController
  * @package App\Controller
- * @Route("/")
+ * @Route("/landing-page")
  */
 class LandingpageController extends AbstractController
 {
